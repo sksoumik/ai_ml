@@ -1,0 +1,5 @@
+eval `ssh-agent -s`
+ssh-add
+git add .
+git commit -m "notes updated"
+git push origin main
