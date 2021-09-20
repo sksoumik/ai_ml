@@ -40,6 +40,8 @@ Output
 
 Parameters are estimated or learned from data. They are not manually set by the practitioners. For example, model **weights** in ANN.  
 
+
+
 Hyperparameters are set/specified by the practitioners.  They are often tuned for a given predictive modeling problem. For example, 
 
 - The K in the K-nearest neighbors
@@ -48,6 +50,25 @@ Hyperparameters are set/specified by the practitioners.  They are often tuned fo
 - Number of epochs 
 
 
+
+#### Language Modeling
+
+This is the task of predicting what the next word in a sentence will be based on the history of previous words. The goal of this task is to learn the probability of a
+sequence of words appearing in a given language. Language modeling is useful for building solutions for a wide variety of problems, such as speech recognition,
+optical character recognition, handwriting recognition, machine translation, and spelling correction.
+
+#### Data Lake
+
+A data lake is a centralized repository that allows you to store all your **structured and unstructured data** at any scale.
+
+|    Characteristics    |                        Data Warehouse                        |                          Data Lake                           |
+| :-------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|       **Data**        | Relational from transactional systems, operational databases, and line of business applications | Non-relational and relational from IoT devices, web sites, mobile apps, social media, and corporate applications |
+|      **Schema**       |  Designed prior to the DW implementation (schema-on-write)   |       Written at the time of analysis (schema-on-read)       |
+| **Price/Performance** |       Fastest query results using higher cost storage        |     Query results getting faster using low-cost storage      |
+|   **Data Quality **   | Highly curated data that serves as the central version of the truth |    Any data that may or may not be curated (ie. raw data)    |
+|       **Users**       |                      Business analysts                       | Data scientists, Data developers, and Business analysts (using curated data) |
+|     **Analytics**     |            Batch reporting, BI and visualizations            | Machine Learning, Predictive analytics, data discovery and profiling |
 
 
 
