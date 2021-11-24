@@ -1,7 +1,7 @@
 # ai_ml
 machine learning, ai, data science notes
 
-#### Check the tensorflow version
+### Check the tensorflow version
 
 Run
 
@@ -9,7 +9,7 @@ Run
 python3 -c 'import tensorflow as tf; print(tf.__version__)'
 ```
 
-#### Tokenization
+### Tokenization
 
 Given a character sequence and a defined document unit, tokenization is the task of chopping it up into pieces, called *tokens* , perhaps at the same time throwing away certain characters, such as punctuation. 
 
@@ -36,7 +36,7 @@ Output
 {'i': 1, 'love': 2, 'my': 3, 'dog': 4, 'cat': 5}
 ```
 
-#### Parameter vs Hyperparameter
+### Parameter vs Hyperparameter
 
 Parameters are estimated or learned from data. They are not manually set by the practitioners. For example, model **weights** in ANN.  
 
@@ -51,13 +51,13 @@ Hyperparameters are set/specified by the practitioners.  They are often tuned fo
 
 
 
-#### Language Modeling
+### Language Modeling
 
 This is the task of predicting what the next word in a sentence will be based on the history of previous words. The goal of this task is to learn the probability of a
 sequence of words appearing in a given language. Language modeling is useful for building solutions for a wide variety of problems, such as speech recognition,
 optical character recognition, handwriting recognition, machine translation, and spelling correction.
 
-#### Data Lake
+### Data Lake
 
 A data lake is a centralized repository that allows you to store all your **structured and unstructured data** at any scale.
 
@@ -72,21 +72,21 @@ A data lake is a centralized repository that allows you to store all your **stru
 
 
 
-#### When to use Precision and Recall as evaluation metric
+### When to use Precision and Recall as evaluation metric
 
 Precision can be seen as **a measure of quality**, and recall as a measure of **quantity**. 
 
 Higher precision means that an algorithm returns more relevant results than irrelevant ones, and high recall means that an algorithm returns most of the relevant results (whether or not irrelevant ones are also returned).
 
-#### When to use F1 as a evaluation metric?
+### When to use F1 as a evaluation metric?
 
 Accuracy is used when the True Positives and True negatives are more important while F1-score is used **when the False Negatives and False Positives** are crucial. Accuracy can be used when the class distribution is similar while F1-score is a better metric when there are **imbalanced classes** .
 
 
 
-#### Statistical sampling and Re-sampling
+### Statistical sampling and Re-sampling
 
-#### Compare two images and find the difference between them
+### Compare two images and find the difference between them
 
 The difference between the two images can be measured using Mean Squared Error (MSE) and Structural Similarity Index (SSI).
 
