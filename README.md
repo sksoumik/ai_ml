@@ -99,7 +99,7 @@ def mse(image_A, image_B):
 	# return the MSE, the lower the error, the more "similar"
 	return err
 ```
-** SSI calculation**
+**SSI calculation**
 ```python
 from skimage.metrics import structural_similarity as ssim
 result = ssim(image_A, image_B)
