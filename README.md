@@ -72,3 +72,21 @@ A data lake is a centralized repository that allows you to store all your **stru
 
 
 
+#### When to use Precision and Recall as evaluation metric
+
+Precision can be seen as **a measure of quality**, and recall as a measure of **quantity**. 
+
+Higher precision means that an algorithm returns more relevant results than irrelevant ones, and high recall means that an algorithm returns most of the relevant results (whether or not irrelevant ones are also returned).
+
+#### When to use F1 as a evaluation metric?
+
+Accuracy is used when the True Positives and True negatives are more important while F1-score is used **when the False Negatives and False Positives** are crucial. Accuracy can be used when the class distribution is similar while F1-score is a better metric when there are **imbalanced classes** .
+
+
+
+#### Statistical sampling and Re-sampling
+
+
+
+
+
