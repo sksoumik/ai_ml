@@ -86,6 +86,26 @@ Accuracy is used when the True Positives and True negatives are more important w
 
 #### Statistical sampling and Re-sampling
 
+#### Compare two images and find the difference between them
+
+The difference between the two images can be measured using Mean Squared Error (MSE) and Structural Similarity Index (SSI).
+
+**MSE calculation**
+```python
+def mse(image_A, image_B):
+	# NOTE: the two images must have the same dimension
+	err = np.sum((image_A.astype("float") - image_B.astype("float")) ** 2)
+	err /= float(image_A.shape[0] * image_A.shape[1])
+	# return the MSE, the lower the error, the more "similar"
+	return err
+```
+** SSI calculation**
+```python
+from skimage.metrics import structural_similarity as ssim
+result = ssim(image_A, image_B)
+# SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
+```
+
 
 
 
