@@ -90,7 +90,7 @@ Accuracy is used when the True Positives and True negatives are more important w
 
 The difference between the two images can be measured using Mean Squared Error (MSE) and Structural Similarity Index (SSI).
 
-**MSE calculation**
+MSE calculation
 ```python
 def mse(image_A, image_B):
 	# NOTE: the two images must have the same dimension
@@ -99,7 +99,8 @@ def mse(image_A, image_B):
 	# return the MSE, the lower the error, the more "similar"
 	return err
 ```
-**SSI calculation**
+
+SSI calculation
 ```python
 from skimage.metrics import structural_similarity as ssim
 result = ssim(image_A, image_B)
