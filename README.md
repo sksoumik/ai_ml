@@ -109,5 +109,21 @@ result = ssim(image_A, image_B)
 
 
 
+### Recommender System
+
+Traditionally, recommender systems are based on methods such as clustering, nearest neighbor and matrix factorization. 
+
+### Sigmoid Kernel
+
+The function [`sigmoid_kernel`](https://newbedev.com/scikit_learn/modules/generated/sklearn.metrics.pairwise.sigmoid_kernel#sklearn.metrics.pairwise.sigmoid_kernel) computes the sigmoid kernel between two vectors. The sigmoid kernel is also known as hyperbolic tangent, or **Multilayer Perceptron**. 
+
+```python
+from sklearn.metrics.pairwise import sigmoid_kernel
+
+# tfv_matrix: vector
+# https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.sigmoid_kernel.html
+sig = sigmoid_kernel(tfv_matrix, tfv_matrix)
+```
+
 
 
