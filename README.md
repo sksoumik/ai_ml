@@ -113,6 +113,16 @@ result = ssim(image_A, image_B)
 
 Traditionally, recommender systems are based on methods such as clustering, nearest neighbor and matrix factorization. 
 
+**Collaborative filtering:**
+
+Based on past history and what other users with similar profiles preferred in the past.
+
+**Content-based**:
+
+Based on the content similarity. For example, "related articles".  
+
+  
+
 ### Sigmoid Kernel
 
 The function [`sigmoid_kernel`](https://newbedev.com/scikit_learn/modules/generated/sklearn.metrics.pairwise.sigmoid_kernel#sklearn.metrics.pairwise.sigmoid_kernel) computes the sigmoid kernel between two vectors. The sigmoid kernel is also known as hyperbolic tangent, or **Multilayer Perceptron**. 
@@ -124,6 +134,14 @@ from sklearn.metrics.pairwise import sigmoid_kernel
 # https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.sigmoid_kernel.html
 sig = sigmoid_kernel(tfv_matrix, tfv_matrix)
 ```
+
+
+
+### Semantic Search
+
+Semantic search is a **data searching technique in a** which a search query aims to not only find keywords, but to determine the **intent and contextual meaning** of the the words a person is using for search. Semantics refer to the philosophical study of meaning.
+
+
 
 
 
