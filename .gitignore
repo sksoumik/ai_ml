@@ -1,3 +1,6 @@
 .vscode/
 recommender_systems/basic_recommender/data/
 dataset/
+src/.ipynb_checkpoints/
+.ipynb_checkpoints/
+__pycache__/
