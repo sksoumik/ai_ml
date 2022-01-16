@@ -52,6 +52,12 @@ Output
 {'i': 1, 'love': 2, 'my': 3, 'dog': 4, 'cat': 5}
 ```
 
+
+
+### Word2Vec
+
+
+
 ### Parameter vs Hyperparameter
 
 Parameters are estimated or learned from data. They are not manually set by the practitioners. For example, model **weights** in ANN.  
@@ -97,6 +103,28 @@ Higher precision means that an algorithm returns more relevant results than irre
 ### When to use F1 as a evaluation metric?
 
 Accuracy is used when the True Positives and True negatives are more important while F1-score is used **when the False Negatives and False Positives** are crucial. Accuracy can be used when the class distribution is similar while F1-score is a better metric when there are **imbalanced classes** .
+
+### Calculate document similarity
+
+Some of the most common and effective ways of calculating similarities are,
+
+***Cosine Distance/Similarity*** - It is the cosine of the angle between two vectors, which gives us the angular distance between the vectors. Formula to calculate cosine similarity between two vectors A and B is,
+
+![img](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*YInqm5R0ZgokYXjNjE3MlQ.png)
+
+In a two-dimensional space it will look like this,
+
+![angle between two vectors A and B in 2-dimensional space](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*mRjgETrg-mPt8jMBu1VtDg.png)
+
+***Euclidean Distance*** - This is one of the forms of Minkowski distance when p=2. It is defined as follows,
+
+![img](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F742%2F0*55jbZL3qTdeEI5gL.png)
+
+In two-dimensional space, Euclidean distance will look like this,
+
+![Euclidean distance between two vectors A and B in 2-dimensional space](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*aUFcVBD_dBAAayDFfAmo_A.png)
+
+​                                        Fig2:  Euclidean distance between two vectors A and B in 2-dimensional space
 
 
 
@@ -864,4 +892,10 @@ Different image formats (especially lossy ones) may produce different input arra
 ### What to do when there is no data/little data for a ML product
 
 Consider the task of building a chatbot or text classification system at your organization. In the beginning there may be little or no data to work with. At this point, a basic solution using rule-based systems or traditional machine learning will be apt. As you accumulate more data, more sophisticated NLP techniques (which are often data intensive) can be used, including deep learning. At each step of this journey there are dozens of alternative approaches one can take. 
+
+### Deal with imbalance data
+
+See [this](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data) tutorial. 
+
+
 

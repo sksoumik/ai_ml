@@ -1,0 +1,2 @@
+Build a multi-label text classifier to predict the subject areas of arXiv papers from their abstract bodies. 
+The dataset was collected using the arXiv Python library that provides a wrapper around the original arXiv API.
