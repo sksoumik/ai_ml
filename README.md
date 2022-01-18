@@ -219,9 +219,17 @@ Standardization -> Data distribution is Gaussian (bell curve).
 
 As more layers using certain activation functions are added to neural networks, the **gradients of the loss function approaches zero**, making the network hard to train. 
 
+**Why?**
+
+Certain activation functions, like the sigmoid function, squishes a large input space into a small input space between 0 and 1. Therefore, a large change in the input of the sigmoid function will cause a small change in the output. Hence, the derivative becomes small.
+
 However, when *n* hidden layers use an activation like the sigmoid function, *n* small derivatives are multiplied together. Thus, the gradient decreases exponentially as we propagate down to the initial layers.
 
-The simplest solution is to use other activation functions, such as ReLU, which doesn’t cause a small derivative.
+**Solution**
+
+1. The simplest solution is to use other activation functions, such as ReLU, which doesn’t cause a small derivative.
+2. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
+3.  batch normalization layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input so |x| doesn’t reach the outer edges of the sigmoid function. 
 
 ### Why ReLU
 
