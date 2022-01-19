@@ -217,19 +217,25 @@ Standardization -> Data distribution is Gaussian (bell curve).
 
 ### Vanishing Gradient Problem
 
-As more layers using certain activation functions are added to neural networks, the **gradients of the loss function approaches zero**, making the network hard to train. 
+As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the ***vanishing gradients\*** problem.
 
-**Why?**
+###### **Why?**
 
 Certain activation functions, like the sigmoid function, squishes a large input space into a small input space between 0 and 1. Therefore, a large change in the input of the sigmoid function will cause a small change in the output. Hence, the derivative becomes small.
 
 However, when *n* hidden layers use an activation like the sigmoid function, *n* small derivatives are multiplied together. Thus, the gradient decreases exponentially as we propagate down to the initial layers.
 
-**Solution**
+###### **Solution**
 
-1. The simplest solution is to use other activation functions, such as ReLU, which doesn’t cause a small derivative.
-2. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
-3.  batch normalization layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input so |x| doesn’t reach the outer edges of the sigmoid function. 
+1. *Use non-saturating activation function:* because of the nature of sigmoid activation function, it starts saturating for larger inputs (negative or positive) came out to be a major reason behind the vanishing of gradients thus making it non-recommendable to use in the **hidden layers** of the network.
+
+   So to tackle the issue regarding the saturation of activation functions like sigmoid and tanh, we must use some other non-saturating functions like ReLu and its alternatives.
+
+2.   *Proper weight initialization*: 
+
+3. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
+
+4.  batch normalization layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function. 
 
 ### Why ReLU
 
