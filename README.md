@@ -231,11 +231,42 @@ However, when *n* hidden layers use an activation like the sigmoid function, *n*
 
    So to tackle the issue regarding the saturation of activation functions like sigmoid and tanh, we must use some other non-saturating functions like ReLu and its alternatives.
 
-2.   *Proper weight initialization*: 
+2. *Proper weight initialization*: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers). 
+
+​	You can get the weights of a layer like below:
+
+​      
+
+```python
+# tf.keras
+model.layers[1].get_weights()
+```
+
+  
 
 3. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
 
-4.  batch normalization layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function. 
+4. Batch normalization (BN) layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function. 
+
+```python
+# tf.keras
+
+from keras.layers.normalization import BatchNormalization
+
+# instantiate model
+model = Sequential()
+
+# The general use case is to use BN between the linear and non-linear layers in your network, 
+# because it normalizes the input to your activation function, 
+# though, it has some considerable debate about whether BN should be applied before 
+# non-linearity of current layer or works best after the activation function. 
+
+model.add(Dense(64, input_dim=14, init='uniform'))    # linear layer
+model.add(BatchNormalization())                       # BN
+model.add(Activation('tanh'))                         # non-linear layer
+```
+
+Batch normalization applies a transformation that maintains the mean output close to 0 and the output standard deviation close to 1.
 
 ### Why ReLU
 
