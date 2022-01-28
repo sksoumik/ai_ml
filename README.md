@@ -17,6 +17,20 @@ machine learning, ai, data science notes
 
 7. What does a CNN see? [Colab](https://colab.research.google.com/drive/1xM6UZ9OdpGDnHBljZ0RglHV_kBrZ4e-9#scrollTo=ZP9p7mH6RJXp)
 
+### Overfitting vs Underfitting
+
+**Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit. 
+
+**Underfitting** happens when your model is too simple. For example, if your linear regression model trying to learn from a very large data set with hundreds of features. 
+
+### Bias-Variance Trade-off
+
+**Bias** is error due to wrong or overly simplistic assumptions in the learning algorithm you’re using. This can lead to the model underfitting your data, making it hard for it to have high predictive accuracy and for you to generalize your knowledge from the training set to the test set.
+
+**Variance** is error due to too much complexity in the learning algorithm you’re using. This leads to the algorithm being highly sensitive to high degrees of variation in your training data, which can lead your model to overfit the data. You’ll be carrying too much noise from your training data for your model to be very useful for your test data.
+
+The bias-variance decomposition essentially decomposes the learning error from any algorithm by adding the bias, the variance and a bit of irreducible error due to noise in the underlying dataset. Essentially, if you make the model more complex and add more variables, you’ll lose bias but gain some variance — in order to get the optimally reduced amount of error, you’ll have to tradeoff bias and variance. You don’t want either high bias or high variance in your model.
+
 ### Check the tensorflow version
 
 Run
@@ -629,14 +643,6 @@ This GAN architecture that made significant progress in generating meaningful im
 ### Reinforcement Learning
 
 An agent interacts with its environment by producing actions and discovers errors or rewards.
-
-### Bias-Variance Trade-off
-
-**Bias** is error due to wrong or overly simplistic assumptions in the learning algorithm you’re using. This can lead to the model underfitting your data, making it hard for it to have high predictive accuracy and for you to generalize your knowledge from the training set to the test set.
-
-**Variance** is error due to too much complexity in the learning algorithm you’re using. This leads to the algorithm being highly sensitive to high degrees of variation in your training data, which can lead your model to overfit the data. You’ll be carrying too much noise from your training data for your model to be very useful for your test data.
-
-The bias-variance decomposition essentially decomposes the learning error from any algorithm by adding the bias, the variance and a bit of irreducible error due to noise in the underlying dataset. Essentially, if you make the model more complex and add more variables, you’ll lose bias but gain some variance — in order to get the optimally reduced amount of error, you’ll have to tradeoff bias and variance. You don’t want either high bias or high variance in your model.
 
 ### KNN vs K-means clustering
 
