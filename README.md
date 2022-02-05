@@ -166,6 +166,8 @@ Example Data:
 
 ![](image/semantic_segmentation.png)
 
+Read more on Semantic/Instance segmentation evaluation [here](https://www.jeremyjordan.me/evaluating-image-segmentation-models/)
+
 ### Statistical sampling and Re-sampling
 
 ### Compare two images and find the difference between them
