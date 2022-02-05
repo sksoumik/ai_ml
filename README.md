@@ -114,6 +114,10 @@ Precision can be seen as **a measure of quality**, and recall as a measure of **
 
 Higher precision means that an algorithm returns more relevant results than irrelevant ones, and high recall means that an algorithm returns most of the relevant results (whether or not irrelevant ones are also returned).
 
+- Precision quantifies the number of **positive class** **predictions** that actually belong to the **positive class**.
+- Recall quantifies the number of **positive class predictions** made out of **all positive examples** in the dataset.
+- F-Measure provides a single score that **balances both the concerns of precision and recall in one number**.
+
 ### When to use F1 as a evaluation metric?
 
 Accuracy is used when the True Positives and True negatives are more important while F1-score is used **when the False Negatives and False Positives** are crucial. Accuracy can be used when the class distribution is similar while F1-score is a better metric when there are **imbalanced classes** .
@@ -141,6 +145,26 @@ In two-dimensional space, Euclidean distance will look like this,
 ​                                        Fig2:  Euclidean distance between two vectors A and B in 2-dimensional space
 
 
+
+### IoU: Intersection over Union Metric
+
+The Intersection over Union (IoU) metric, also referred to as the Jaccard index, is essentially a method to quantify the percent overlap between the target mask and  prediction output. This metric is closely related to the Dice coefficient which is often used as a [loss function](https://www.jeremyjordan.me/semantic-segmentation/#loss) during training.
+
+![](image/iou.png)
+
+We can calculate this easily using Numpy.
+
+```python
+intersection = np.logical_and(target, prediction)
+union = np.logical_or(target, prediction)
+iou_score = np.sum(intersection) / np.sum(union)
+```
+
+The IoU score is calculated for each class separately and then **averaged over all classes** to provide a global score. 
+
+Example Data:
+
+![](image/semantic_segmentation.png)
 
 ### Statistical sampling and Re-sampling
 
