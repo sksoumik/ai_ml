@@ -974,5 +974,57 @@ Consider the task of building a chatbot or text classification system at your or
 
 See [this](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data) tutorial. 
 
+### C𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁 and D𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁
+
+**Concept drift**
+
+Imagine you are developing a model for a self-driving car to detect other vehicles at night.  Well, this is not too difficult, since vehicles have two red tail lights and it is easy to get a lot of data. You model works great!
+
+![](image/data_drift.jpeg)
+
+
+
+Then,
+
+Car companies decide to experiment with red horizontal bars instead of two individual lights. Now your model fails to detect these cars because it has never seen this kind of tail light. Your model is suffering from 𝗰𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁. 
+
+![](image/concept_drift.jpeg)
+
+
+
+Concept drift happens when the objects you are trying to model change over time. In the case above, cars changed and you now need to adapt your model. 
+
+**Data drift**
+
+You are now dealing with the detection of traffic signs. Again, at night things are pretty easy because signs reflect the lights from the car's headlights and are very well visible in the image. Easy!
+
+![](image/traffice_signs.png)
+
+
+
+New cars start getting more powerful laser high beams and now suddenly the signs reflect so much light that there are overexposed in the image. The problem now is 𝗱𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁. 
+
+![](image/light_reflection.png)
+
+
+
+Data drift happens when the object you are modeling stays the same, but the environment changes in a way that affects how the object is perceived. In this case, the signs are exactly the same, but they appear different because of the lighting.
+
+What can we do about these problems? While there are some methods like online learning to continue improving the model and some others to detect the drift, usually the solution is just to retrain your model. This is something you need to be prepared about in your pipeline!
+
+
+
+### Building batch data pipeline on GCP
+
+[Written](https://d3c33hcgiwev3.cloudfront.net/-3WPwkpgT8m1j8JKYE_JgQ_6337129f8df648b89078ce1df4d5e9a1_Course-Resources---Building-Batch-Data-Pipelines-on-Google-Cloud.pdf?Expires=1645747200&Signature=Gwp-OrwS7tT3jTaVewGgttEjzeP5fqaKfGJdBB4N67C3BawFNmYCQGTkr~8azJ1bQsoVUHWFrOngyqPg0574OoH2rUfYaxpoLX17fUADQYgp5jnMPimlC0podSSrxToZMe8dmOAlo9VZU~491C6U5GEM-wV8ejLU~t6JZQbEeNE_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A) [Course](https://www.coursera.org/learn/batch-data-pipelines-gcp/home/welcome)
+
+##### some of the quality-related reasons why we might want to process data
+
+![](image/common_problems_in_data.png)
+
+##### Difference between NULL and BLANK
+
+A NULL is the absence of data. A BLANK is a value (empty string). Consider if you are trying to filter out both NULLS and BLANKS or only NULLs or only BLANKs.
+
 
 
