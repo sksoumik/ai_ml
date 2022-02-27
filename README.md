@@ -1012,6 +1012,14 @@ Data drift happens when the object you are modeling stays the same, but the envi
 
 What can we do about these problems? While there are some methods like online learning to continue improving the model and some others to detect the drift, usually the solution is just to retrain your model. This is something you need to be prepared about in your pipeline!
 
+### Sequential data
+
+Sequential Data is any kind of data where the order matters as you said. So we can assume that time series is a kind of sequential data, because the order matters. A time series is a sequence taken at successive equally spaced points in time and it is not the only case of sequential data. In the latter the order is defined by the dimension of time. There are other cases of sequential data as data from text documents, where you can take into account the order of the terms or biological data (DNA sequence etc.). 
+
+### Why transformer based models perform better
+
+Transformer architectures are typically trained in a semi-supervised manner on a massive amount of text. 
+
 
 
 ### Building batch data pipeline on GCP
