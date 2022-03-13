@@ -23,13 +23,24 @@ machine learning, ai, data science notes
 
 **Underfitting** happens when your model is too simple. For example, if your linear regression model trying to learn from a very large data set with hundreds of features. 
 
+Few solutions for model overfit:
+
+- **Reduce the network’s capacity** by removing layers or reducing the number of elements in the hidden layers.
+- Apply **regularization**, which comes down to adding a cost to the loss function for large weights.
+- Use **Dropout layers**, which will randomly remove certain features by setting them to zero.
+
+[Ref](https://towardsdatascience.com/handling-overfitting-in-deep-learning-models-c760ee047c6e)
+
 ### Bias-Variance Trade-off
 
-**Bias** is error due to wrong or overly simplistic assumptions in the learning algorithm you’re using. This can lead to the model underfitting your data, making it hard for it to have high predictive accuracy and for you to generalize your knowledge from the training set to the test set.
+**Bias** is error due to wrong or overly **simplistic assumptions** in the learning algorithm you’re using. This can lead to the **model underfitting** your data, making it hard for it to have high predictive accuracy and for you to generalize your knowledge from the training set to the test set.
 
-**Variance** is error due to too much complexity in the learning algorithm you’re using. This leads to the algorithm being highly sensitive to high degrees of variation in your training data, which can lead your model to overfit the data. You’ll be carrying too much noise from your training data for your model to be very useful for your test data.
+**Variance** is error due to too **much complexity** in the learning algorithm you’re using. This leads to the algorithm being highly sensitive to high degrees of variation in your training data, which can lead your model to **overfit** the data. You’ll be carrying too much noise from your training data for your model to be very useful for your test data.
 
 The bias-variance decomposition essentially decomposes the learning error from any algorithm by adding the bias, the variance and a bit of irreducible error due to noise in the underlying dataset. Essentially, if you make the model more complex and add more variables, you’ll lose bias but gain some variance — in order to get the optimally reduced amount of error, you’ll have to tradeoff bias and variance. You don’t want either high bias or high variance in your model.
+
+- Too simple model  -> model underfit -> Bias
+- Too complex model -> model overfit -> Variance 
 
 ### Check the tensorflow version
 
@@ -230,6 +241,12 @@ Semantic search is a **data searching technique in a** which a search query aims
 ### What is gradient
 
 A **gradient** is a derivative of a function that has more than one input variable. 
+
+### What is gradient descent?
+
+Gradient descent is an optimization algorithm used to find the values of parameters (coefficients) of a function (f) that minimizes a cost function (cost).
+
+Gradient descent is best used when the parameters cannot be calculated analytically (e.g. using linear algebra) and must be searched for by an optimization algorithm. 
 
 ### Data standardization vs Normalization
 
@@ -1060,6 +1077,30 @@ What can we do about these problems? While there are some methods like online le
 ### Sequential data
 
 Sequential Data is any kind of data where the order matters as you said. So we can assume that time series is a kind of sequential data, because the order matters. A time series is a sequence taken at successive equally spaced points in time and it is not the only case of sequential data. In the latter the order is defined by the dimension of time. There are other cases of sequential data as data from text documents, where you can take into account the order of the terms or biological data (DNA sequence etc.). 
+
+### ANN parameter calculation
+
+![](image/parameter calculation.png)
+
+[img src](https://towardsdatascience.com/handling-overfitting-in-deep-learning-models-c760ee047c6e)
+
+### Calculate the output shape and number of parameters in a CNN
+
+i = input size
+
+k = kernel size
+
+c = input's channel
+
+| Layer type | Output Shape                             | Param # (# weights)                                          |      |
+| ---------- | ---------------------------------------- | ------------------------------------------------------------ | ---- |
+| Conv2D     | [(i - k) + 1] * [(i - k) + 1] * #filters | ( k * k * c ) + (+1 bias for each #filters)  (for the first conv2D layer)  ;( k * k * #filters from the previous layer ) + bias for all #filters. (this rule is for the all layers except for the first conv2D layer) |      |
+| Activation | Same as previous layer                   | 0                                                            |      |
+|            |                                          |                                                              |      |
+|            |                                          |                                                              |      |
+|            |                                          |                                                              |      |
+
+
 
 ### Why transformer based models perform better	
 
