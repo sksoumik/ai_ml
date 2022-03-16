@@ -1078,7 +1078,55 @@ What can we do about these problems? While there are some methods like online le
 
 Sequential Data is any kind of data where the order matters as you said. So we can assume that time series is a kind of sequential data, because the order matters. A time series is a sequence taken at successive equally spaced points in time and it is not the only case of sequential data. In the latter the order is defined by the dimension of time. There are other cases of sequential data as data from text documents, where you can take into account the order of the terms or biological data (DNA sequence etc.). 
 
-### ANN parameter calculation
+### How to select the value of K in K-means clustering? 
+
+The elbow method runs k-means clustering on the dataset for a range of values of k (say 1 to 10).
+
+- Perform K-means clustering with all these different values of K. For each of the K values, we calculate average distances to the centroid across all data points.
+- Plot these points and find the point where the average distance from the centroid falls suddenly (“Elbow”).
+
+Let us see the python code with the help of an example.
+
+```
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sklearn
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+X1 = [3, 1, 1, 2, 1, 6, 6, 6, 5, 6, 7, 8, 9, 8, 9, 9, 8]
+X2 = [5, 4, 5, 6, 5, 8, 6, 7, 6, 7, 1, 2, 1, 2, 3, 2, 3]
+plt.scatter(X1,X2)
+plt.show()
+
+```
+
+![scatter plot](https://editor.analyticsvidhya.com/uploads/75736cluster.PNG)
+
+Visually we can see that the optimal number of clusters should be around 3. But ***visualizing the data alone cannot always give the right answer*****.**
+
+```
+Sum_of_squared_distances = []
+K = range(1,10)
+for num_clusters in K :
+ kmeans = KMeans(n_clusters=num_clusters)
+ kmeans.fit(data_frame)
+ Sum_of_squared_distances.append(kmeans.inertia_)
+plt.plot(K,Sum_of_squared_distances,’bx-’)
+plt.xlabel(‘Values of K’) 
+plt.ylabel(‘Sum of squared distances/Inertia’) 
+plt.title(‘Elbow Method For Optimal k’)
+plt.show()
+
+```
+
+![K-Mean Elbow Method for optimal K](https://editor.analyticsvidhya.com/uploads/62725cluster0.PNG)
+
+The curve looks like an elbow. In the above plot, the elbow is at k=3 (i.e. Sum of squared distances falls suddenly) indicating the optimal k for this dataset is 3.
+
+[src](https://www.analyticsvidhya.com/blog/2021/05/k-mean-getting-the-optimal-number-of-clusters/)
+
+### ANN parameter calculation	
 
 ![](image/parameter calculation.png)
 
