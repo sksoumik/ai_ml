@@ -738,6 +738,30 @@ K-Nearest Neighbors is a supervised classification algorithm, while k-means clus
 
 The critical difference here is that KNN needs labeled points and is thus supervised learning, while k-means doesn’t—and is thus unsupervised learning.
 
+### Clustering
+
+Popular clustering algorithms: k-means and DBSCAN
+
+k-means: determine the value of k using Elbow method.
+
+DBSCAN: DBSCAN stands for **density-based spatial clustering of applications with noise**. It is able to find arbitrary shaped clusters and clusters with noise (i.e. outliers). The main idea behind DBSCAN is that a point belongs to a cluster if it is close to many points from that cluster.
+
+There are some notable differences between **K-means** and **DBScan.**
+
+| **S.No.** | **K-means Clustering**                                       | **DBScan Clustering**                                        |
+| :-------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| **1.**    | Clusters formed are more or less spherical or convex in shape and must have same feature size. | Clusters formed are arbitrary in shape and may not have same feature size. |
+| **2.**    | K-means clustering is sensitive to the number of clusters specified. | Number of clusters need not be specified.                    |
+| **3.**    | K-means Clustering is more efficient for large datasets.     | DBSCan Clustering can not efficiently handle high dimensional datasets. |
+| **4.**    | K-means Clustering does not work well with outliers and noisy datasets. | DBScan clustering efficiently handles outliers and noisy datasets. |
+| **5.**    | In the domain of anomaly detection, this algorithm causes problems as anomalous points will be assigned to the same cluster as “normal” data points. | DBScan algorithm, on the other hand, locates regions of high density that are separated from one another by regions of low density. |
+| **6.**    | It requires one parameter : Number of clusters (**K**)       | It requires two parameters : Radius(**R**) and Minimum Points(**M**)R determines a chosen radius such that if it includes enough points within it, it is a dense area.M determines the minimum number of data points required in a neighborhood to be defined as a cluster. |
+| **7.**    | Varying densities of the data points doesn’t affect K-means clustering algorithm. | DBScan clustering does not work very well for sparse datasets or for data points with varying density. |
+
+Ref: [GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-k-means-and-dbscan-clustering/)
+
+
+
 ### ROC curve
 
 The ROC curve is a graphical representation of the contrast between true **positive rates** and the false **positive rate** at various thresholds. It’s often used as a proxy for the trade-off between the **sensitivity** of the model (true positives) vs the fall-out or the probability it will trigger a false alarm (false positives).
