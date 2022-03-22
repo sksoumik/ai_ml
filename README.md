@@ -768,7 +768,15 @@ Ref: [GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-k-means-an
 
 - Third, the clusters formed by DBSCAN **can be any shape**, which makes it robust to different types of data.
 
-Ref: [towardsdatascience](https://towardsdatascience.com/understanding-dbscan-and-implementation-with-python-5de75a786f9f)
+  
+
+Though DBSCAN creates clusters based on varying densities, it struggles with clusters of similar densities. Also, as the dimension of data increases, it becomes difficult for DBSCAN to create clusters and it falls prey to the Curse of Dimensionality. 
+
+There also exists a much better and recent version of this algorithm known as HDBSCAN which uses Hierarchical Clustering combined with regular DBSCAN. It is much faster and accurate than DBSCAN. Understand HDBSCAN. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dGsxd67IFiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Ref: [towardsdatascience](https://towardsdatascience.com/understanding-dbscan-and-implementation-with-python-5de75a786f9f) [analyticsvidhya](https://www.analyticsvidhya.com/blog/2020/09/how-dbscan-clustering-works/)
 
 ### ROC curve
 
