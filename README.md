@@ -760,7 +760,15 @@ There are some notable differences between **K-means** and **DBScan.**
 
 Ref: [GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-k-means-and-dbscan-clustering/)
 
+### The Advantages of DBSCAN
 
+- First, DBSCAN doesn’t require users to specify the **number of clusters**.
+
+- Second, DBSCAN is NOT sensitive to **outliers**.
+
+- Third, the clusters formed by DBSCAN **can be any shape**, which makes it robust to different types of data.
+
+Ref: [towardsdatascience](https://towardsdatascience.com/understanding-dbscan-and-implementation-with-python-5de75a786f9f)
 
 ### ROC curve
 
