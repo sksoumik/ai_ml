@@ -740,6 +740,15 @@ The critical difference here is that KNN needs labeled points and is thus superv
 
 ### Clustering
 
+Clustering algorithms can be two types: 
+
+1. Centroid based, e.g. k-means clustering
+2. Density based, e.g. DBSCAN/HDBSCAN. 
+
+Another way to categorize clustering is:  	
+
+![](image/clustering.png) 
+
 Popular clustering algorithms: k-means and DBSCAN
 
 k-means: determine the value of k using Elbow method.
