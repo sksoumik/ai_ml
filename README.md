@@ -933,6 +933,32 @@ jac = jaccard_similarity_score(predictions, label, Normalize = True/False)
 
 TODO: 
 
+### What is the objective of Gradient Descent?
+
+Gradient, in plain terms means slope or slant of a surface. So gradient descent literally means descending a slope to reach the lowest point on that surface. Let us imagine a two dimensional graph, such as a parabola in the figure below.
+
+![img](https://miro.medium.com/max/846/1*D-G0RuBASeMkZQRQZRHuwA.png)
+
+A parabolic function with two dimensions (x,y)
+
+In the above graph, the lowest point on the parabola occurs at x = 1. The objective of gradient descent algorithm is to find the value of “x” such that “y” is minimum. “y” here is termed as the objective function that the gradient descent algorithm operates upon, to descend to the lowest point.
+
+[src](https://towardsdatascience.com/stochastic-gradient-descent-clearly-explained-53d239905d31)
+
+### Stochastic gradient descent
+
+read [here](https://towardsdatascience.com/stochastic-gradient-descent-clearly-explained-53d239905d31)
+
+### Gradient descent optimization algorithms
+
+https://ruder.io/optimizing-gradient-descent/
+
+### SGD is better than Adam?
+
+One interesting and dominant argument about optimizers is that SGD better generalizes than Adam. These papers argue that although Adam converges faster, SGD generalizes better than Adam and thus results in improved final performance.
+
+[src](https://medium.com/geekculture/a-2021-guide-to-improving-cnns-optimizers-adam-vs-sgd-495848ac6008#:~:text=One%20interesting%20and%20dominant%20argument,results%20in%20improved%20final%20performance.)
+
 ### What does the decoder do?
 
 Autoencoders are widly used with the image data and some of their use cases are:
@@ -1218,4 +1244,78 @@ Transformer architectures are typically trained in a semi-supervised manner on a
 A NULL is the absence of data. A BLANK is a value (empty string). Consider if you are trying to filter out both NULLS and BLANKS or only NULLs or only BLANKs.
 
 
+
+
+
+### TensorFlow/Keras Functions and Classes
+
+##### ImageDataGenerator
+
+Generate batches of tensor image data with real-time data augmentation.
+
+```python
+from keras.preprocessing.image import ImageDataGenerator
+
+tf.keras.preprocessing.image.ImageDataGenerator(
+    featurewise_center=False,
+    samplewise_center=False,
+    featurewise_std_normalization=False,
+    samplewise_std_normalization=False,
+    zca_whitening=False,
+    zca_epsilon=1e-06,
+    rotation_range=0,
+    width_shift_range=0.0,
+    height_shift_range=0.0,
+    brightness_range=None,
+    shear_range=0.0,
+    zoom_range=0.0,
+    channel_shift_range=0.0,
+    fill_mode='nearest',
+    cval=0.0,
+    horizontal_flip=False,
+    vertical_flip=False,
+    rescale=None,
+    preprocessing_function=None,
+    data_format=None,
+    validation_split=0.0,
+    dtype=None
+)
+```
+
+doc: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator
+
+
+
+##### BatchNormalization
+
+Layer that normalizes its inputs.
+
+Batch normalization is a technique for training very deep neural networks that standardizes the inputs to a layer for each mini-batch. This has the effect of stabilizing the learning process and dramatically reducing the number of training epochs required to train deep networks.
+
+Batch normalization applies a transformation that maintains the **mean output close to 0** and the output **standard deviation close to 1**.
+
+Importantly, batch normalization works differently during training and during inference.
+
+```python
+tf.keras.layers.BatchNormalization(
+    axis=-1,
+    momentum=0.99,
+    epsilon=0.001,
+    center=True,
+    scale=True,
+    beta_initializer="zeros",
+    gamma_initializer="ones",
+    moving_mean_initializer="zeros",
+    moving_variance_initializer="ones",
+    beta_regularizer=None,
+    gamma_regularizer=None,
+    beta_constraint=None,
+    gamma_constraint=None,
+    **kwargs
+)
+```
+
+##### Optimizers
+
+Optimizers are Classes or methods used to change the attributes of your machine/deep learning model such as weights and learning rate in order to reduce the losses. Optimizers help to get results faster.
 
