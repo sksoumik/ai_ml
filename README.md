@@ -1,21 +1,7 @@
 # ai_ml
 machine learning, ai, data science notes
 
-### Interesting Notebooks
 
-1. **[Bringing Old Photos Back to Life](https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life)** [Notebook](https://colab.research.google.com/drive/1NEm6AsybIiC5TwTU_4DqDkQO0nFRB-uA?usp=sharing)
-
-2. **[first order model](https://github.com/AliaksandrSiarohin/first-order-model)** Notebook
-
-3. [Get SH\*T Done with PyTorch](https://github.com/curiousily/Getting-Things-Done-with-Pytorch)
-
-4. PyTorch Transformers [Tutorials](https://github.com/abhimishra91/transformers-tutorials)
-
-5. **[huggingtweets](https://github.com/borisdayma/huggingtweets)**
-
-6. Shadow removal from image. [Colab](https://colab.research.google.com/drive/1cJ_dsBUXFaFtjoZB9gDYeahjmysnvnTq)
-
-7. What does a CNN see? [Colab](https://colab.research.google.com/drive/1xM6UZ9OdpGDnHBljZ0RglHV_kBrZ4e-9#scrollTo=ZP9p7mH6RJXp)
 
 ### Overfitting vs Underfitting
 
@@ -76,10 +62,6 @@ Output
 ```bash
 {'i': 1, 'love': 2, 'my': 3, 'dog': 4, 'cat': 5}
 ```
-
-
-
-### Word2Vec
 
 
 
@@ -359,19 +341,7 @@ See some great resources [here](static/pytorch tutorials.pdf)
 
 - download kaggle dataset: `kaggle datasets download [username/dataset name (just copy the url after kaggle.com)]`
 
-### NLP Intro
-
-- Concepts of Bag-of-Words (BoW) and TF-IDF come into play. Both BoW and TF-IDF are techniques that help us convert text sentences into **numeric vectors**. [Read](https://www.analyticsvidhya.com/blog/2020/02/quick-introduction-bag-of-words-bow-tf-idf/)
-- BERT tokenizer does the preprocessing by itself, so usually you don't benefit from standard preprocessing.
-- Transformer models: read [here](https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04)
-- Common pre-processing techniques:
-  1. Removes unicode strings like.
-  2. Removes URL strings like.
-  3. Removes emoticons from text.
-  4. Remove Punctuation (`string.punctuation` or using regular expression).
-  5. Convert all words to one case.
-  6. Filter out Stop Words (e.g. **Stopwords** are the most common **words** in any natural language. For example, "the”, “is”, “in”, “for”, “where”, “when”, “to”, “at” etc.)
-  7. _Stemming:_ A technique that takes the word to its root form. It just removes suffixes from the words. (`nltk.PorterStemmer()` / `nltk.SnowballStemmer()`).
+  
 
 ### SVM
 
