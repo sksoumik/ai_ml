@@ -101,6 +101,12 @@ A data lake is a centralized repository that allows you to store all your **stru
 
 
 
+### Best deep CNN architectures and their principles: from AlexNet to EfficientNet
+
+Read from [theaisummer](https://theaisummer.com/cnn-architectures/) 
+
+
+
 ### When to use Precision and Recall as evaluation metric
 
 Precision can be seen as **a measure of quality**, and recall as a measure of **quantity**. 
@@ -372,6 +378,19 @@ Random Forest models are a type of **ensemble** models, particularly **bagging**
 - **Batch Gradient Descent**. Batch size is set to the total number of examples in the training dataset.
 - **Stochastic Gradient Descent**. Batch size is set to one.
 - **Minibatch Gradient Descent**. Batch size is set to more than one and less than the total number of examples in the training dataset.
+
+### Small Batch Size
+
+- A smaller batch size reduces overfitting because it increases the noise in the training process.
+- A smaller batch size can improve the generalization of the model.
+
+
+
+If we use a small batch size, the optimizer will only see a small portion of the data during every cycle. This introduces noise in the training process because the gradient of the batch may take you in entirely different directions. However, on average, you will head towards a reasonable local minimum like you would using a larger batch size. Here is Jason Brownlee on ["How to Control the Stability of Training Neural Networks With the Batch Size"](https://machinelearningmastery.com/how-to-control-the-speed-and-stability-of-training-neural-networks-with-gradient-descent-batch-size/):
+
+> Smaller batch sizes are noisy, offering a regularizing effect and lower generalization error.
+
+
 
 ### Python’s built-in `sorted()` function
 
