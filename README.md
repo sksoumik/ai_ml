@@ -274,6 +274,12 @@ Linear regression requires that your features and target variables are not noisy
 
 Ref: https://today.bnomial.com/ 
 
+### Loss Funcions
+
+Machines learn by means of a loss function. It’s a method of evaluating how well specific algorithm models the given data. If predictions deviates too much from actual results, loss function would cough up a very large number. Gradually, with the help of some optimization function, loss function learns to reduce the error in prediction.
+
+
+
 ### Vanishing Gradient Problem
 
 As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the ***vanishing gradients\*** problem.
@@ -1322,3 +1328,44 @@ tf.keras.layers.BatchNormalization(
 
 Optimizers are Classes or methods used to change the attributes of your machine/deep learning model such as weights and learning rate in order to reduce the losses. Optimizers help to get results faster.
 
+##### Random_state of sklearn
+
+*random_state* is a parameter that allows reproducibility. When this is specified, every time the code is run, the data will be split in the same way. If it isn’t specified, then each iteration will be random. 
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y,
+                                                    test_size = 0.2,
+                                                    random_state = 1)
+```
+
+##### General setting for classification on tf/Keras
+
+Multi-class classification:
+
+`activation='softmax'` in the last layer and compile choice of `loss='categorical_crossentropy'` are good for a model to predict multiple mutually-exclusive classes.
+
+Binary classification:
+
+you can either just have two outputs with a `softmax` final similar to above, or you can have *final* layer with one output, `activation='sigmoid'` and `loss='binary_crossentropy'`. 
+
+Ref: [stackexchange](https://datascience.stackexchange.com/a/10052)
+
+##### from_logits in tf/keras
+
+When one is explicitly using softmax (or sigmoid) function, then, for the classification task, then there is a default option in TensorFlow loss function i.e. from_logits=False
+
+softmax/sigmoid ->
+
+```
+tf.keras.losses.CategoricalCrossentropy(from_logits=False) 
+```
+
+One is **not using the softmax** function separately and wants to include it in the calculation of the loss function. This means that whatever inputs you are providing to the loss function is not scaled.
+
+```
+tf.keras.losses.CategoricalCrossentropy(from_logits=True)
+```
+
+Ref: [stackoverflow](https://stackoverflow.com/a/71365020)
