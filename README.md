@@ -260,6 +260,20 @@ Normalization -> Data distribution is not Gaussian (bell curve).
 
 Standardization -> Data distribution is Gaussian (bell curve). 
 
+### When to use Linear Regression? 
+
+Perhaps evident, for linear regression to work, we need to ensure that the relationship between the features and the target variable is linear. If it isn't, linear regression won't give us good predictions.
+
+Sometimes, this condition means we have to transform the input features before using linear regression. For example, if you have a variable with an exponential relationship with the target variable, you can use log transform to turn the relationship linear. 
+
+Linear regression will overfit your data when you have highly correlated features. 
+
+Linear regression requires that your features and target variables are not noisy. The less noise in your data, the better predictions you'll get from the model. Here is Jason Brownlee in ["Linear Regression for Machine Learning"](https://machinelearningmastery.com/linear-regression-for-machine-learning/):
+
+> Linear regression assumes that your input and output variables are not noisy. Consider using data cleaning operations that let you better expose and clarify the signal in your data.
+
+Ref: https://today.bnomial.com/ 
+
 ### Vanishing Gradient Problem
 
 As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the ***vanishing gradients\*** problem.
