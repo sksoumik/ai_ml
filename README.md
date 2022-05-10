@@ -105,7 +105,23 @@ A data lake is a centralized repository that allows you to store all your **stru
 
 Read from [theaisummer](https://theaisummer.com/cnn-architectures/) 
 
+### How to improve the accuracy of image recognition models
 
+1. **Get more data,** improve the quality of data. e.g examine the dataset, and remove bad images. You may consider increasing the diversity of your available dataset by employing data augmentation. 
+
+2. **Adding more layers to your model** increases its ability to learn your dataset’s features more deeply. This means that it will be able to recognize subtle differences that you, as a human, might not have picked up on.
+
+3. **Change the image size.** If you choose an image size that is too small, your model will not be able to pick up on the distinctive features that help with image recognition. Conversely, if your images are too big, it increases the computational resources required by your computer and/or your model might not be sophisticated enough to process them.
+
+4. **Increase the epochs.** Epochs are basically how many times you pass the entire dataset through the neural network. Incrementally train your model with more epochs with intervals of +25, +100, and so on.
+
+   Increasing epochs makes sense only if you have a lot of data in your dataset. However, your model will eventually reach a point where increasing epochs will not improve accuracy.
+
+5. **Decrease Colour Channels**. Colour channels reflect the dimensionality of your image arrays. Most colour (RGB) images are composed of three colour channels, while grayscale images have just one channel.
+
+   The more complex the colour channels are, the more complex the dataset is and the longer it will take to train the model.
+
+   If colour is not such a significant factor in your model, you can go ahead and convert your colour images to grayscale.
 
 ### When to use Precision and Recall as evaluation metric
 
