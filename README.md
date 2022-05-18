@@ -36,6 +36,16 @@ Run
 python3 -c 'import tensorflow as tf; print(tf.__version__)'
 ```
 
+#### Check the number of GPU available
+
+```python
+import tensorflow as tf
+
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+```
+
+
+
 ### Tokenization
 
 Given a character sequence and a defined document unit, tokenization is the task of chopping it up into pieces, called *tokens* , perhaps at the same time throwing away certain characters, such as punctuation. 
@@ -1385,3 +1395,25 @@ tf.keras.losses.CategoricalCrossentropy(from_logits=True)
 ```
 
 Ref: [stackoverflow](https://stackoverflow.com/a/71365020)
+
+
+
+### Split dataset in train validation and test in the local directory 
+
+Split folders with files (e.g. images) into **train**, **validation** and **test** (dataset) folders. Use [this](https://pypi.org/project/split-folders/) library. 
+
+```python
+import splitfolders
+
+# Split with a ratio.
+# To only split into training and validation set, set a tuple to `ratio`, i.e, `(.8, .2)`.
+splitfolders.ratio(
+    "input_dir",
+    output="output_dir",
+    seed=1337,
+    ratio=(0.8, 0.1, 0.1),
+    group_prefix=None,
+    move=False,
+)  # default values
+```
+
