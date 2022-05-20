@@ -216,7 +216,21 @@ result = ssim(image_A, image_B)
 # SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
 ```
 
+### Type 1 error vs type 2 error
 
+You decide to get tested for COVID-19 based on mild symptoms. There are two errors that could potentially occur:
+
+| Error Name        | Example                                                      |
+| ----------------- | ------------------------------------------------------------ |
+| Type 1 Error (FP) | The test result says you have corona-virus, but you actually don’t. |
+| Type 2 Error (FN) | The test result says you don’t have corona-virus, but you actually do. |
+
+Ref: [scribbr](https://www.scribbr.com/statistics/type-i-and-type-ii-errors/)
+
+### TensorFlow interview questions
+
+1. https://www.mlstack.cafe/blog/tensorflow-interview-questions
+2. https://www.vskills.in/interview-questions/deep-learning-with-keras-interview-questions
 
 ### Recommender System
 
