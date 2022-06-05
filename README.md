@@ -866,6 +866,25 @@ where O is the output height/length, W is the input height/length, K is the filt
 
 Dropout layers have a very specific function in neural networks. The problem of overfitting, where after training, the weights of the network are so tuned to the training examples they are given that the network doesn’t perform well when given new examples. The idea of dropout is simplistic in nature. This layer “**drops out” a random set of activations** **in that layer by setting them to zero**. Simple as that. Now, what are the benefits of such a simple and seemingly unnecessary and counterintuitive process? Well, in a way, it forces the network to be redundant. By that I mean the network should be able to provide the right classification or output for a specific example even if some of the activations are dropped out. It makes sure that the network isn’t getting too “fitted” to the training data and thus helps alleviate the overfitting problem. An important note is that this **dropout layer is only used during training, and not during test time.**
 
+### Flatten Layer
+
+For example, in Keras:
+
+```python
+model = Sequential()
+model.add(Flatten(input_shape=(3, 2)))
+model.add(Dense(16))
+model.add(Activation('relu'))
+model.add(Dense(4))
+model.compile(loss='mean_squared_error', optimizer='SGD')
+```
+
+
+
+[![enter image description here](https://i.stack.imgur.com/lmrin.png)](https://i.stack.imgur.com/lmrin.png) This is how Flatten works converting Matrix to single array. Flattening a tensor means to remove all of the dimensions except for one. This is exactly what the Flatten layer does.
+
+Ref: [Stackoverflow](https://stackoverflow.com/a/57112001/5920567)
+
 ### Capsule Networks
 
 [READ MORE...](https://analyticsindiamag.com/why-do-capsule-networks-work-better-than-convolutional-neural-networks/) here.
@@ -1430,4 +1449,8 @@ splitfolders.ratio(
     move=False,
 )  # default values
 ```
+
+
+
+### RDD programming in Spark
 
