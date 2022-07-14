@@ -28,22 +28,6 @@ The bias-variance decomposition essentially decomposes the learning error from a
 - Too simple model  -> model underfit -> Bias
 - Too complex model -> model overfit -> Variance 
 
-### Check the tensorflow version
-
-Run
-
-```
-python3 -c 'import tensorflow as tf; print(tf.__version__)'
-```
-
-#### Check the number of GPU available
-
-```python
-import tensorflow as tf
-
-print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-```
-
 
 
 ### Tokenization
@@ -87,14 +71,7 @@ Hyperparameters are set/specified by the practitioners.  They are often tuned fo
 - Learning rate
 - Batch size
 - Number of epochs 
-
-
-
-### Language Modeling
-
-This is the task of predicting what the next word in a sentence will be based on the history of previous words. The goal of this task is to learn the probability of a
-sequence of words appearing in a given language. Language modeling is useful for building solutions for a wide variety of problems, such as speech recognition,
-optical character recognition, handwriting recognition, machine translation, and spelling correction.
+- 
 
 ### Data Lake
 
@@ -132,6 +109,133 @@ Read from [theaisummer](https://theaisummer.com/cnn-architectures/)
    The more complex the colour channels are, the more complex the dataset is and the longer it will take to train the model.
 
    If colour is not such a significant factor in your model, you can go ahead and convert your colour images to grayscale.
+
+### What is gradient descent?
+
+Gradient descent is an optimization algorithm used to find the values of parameters (coefficients) of a function (f) that minimizes a cost function (cost).
+
+Gradient descent is best used when the parameters cannot be calculated analytically (e.g. using linear algebra) and must be searched for by an optimization algorithm. 
+
+### Data standardization vs Normalization
+
+**Normalization** typically means rescales the values into a **range of [0,1]**. 
+
+**Standardization**: typically means rescales data to have a **mean of 0** and a **standard deviation of 1** (unit variance). 
+
+### Why do we normalize data
+
+For machine learning, every dataset does not require normalization. It is required only when features have different ranges. 
+
+For example, consider a data set containing two features, age(x1), and income(x2). Where age ranges from 0–100, while income ranges from 0–20,000 and higher. Income is about 1,000 times larger than age and ranges from 20,000–500,000. So, these two features are in very different ranges. When we do further analysis, like multivariate linear regression, for example, the attributed income will intrinsically influence the result more due to its larger value. But this doesn’t necessarily mean it is more important as a predictor.
+
+Because different features do not have similar ranges of values and hence **gradients may end up taking a long time** and can oscillate back and forth and take a long time before it can finally **find its way to the global/local minimum**. To overcome the model learning problem, we normalize the data. We make sure that the different features take on similar ranges of values so that **gradient descents can converge more quickly**.
+
+### When Should You Use Normalization And Standardization
+
+**Normalization** is a good technique to use when you do not know the distribution of your data or when you know the distribution is not Gaussian (a bell curve). Normalization is useful when your data has varying scales and the algorithm you are using does not make assumptions about the distribution of your data, such as k-nearest neighbors and artificial neural networks.
+
+**Standardization** assumes that your data has a Gaussian (bell curve) distribution. This does not strictly have to be true, but the technique is more effective if your attribute distribution is Gaussian. Standardization is useful when your data has varying scales and the algorithm you are using does make assumptions about your data having a Gaussian distribution, such as linear regression, logistic regression, and linear discriminant analysis. 
+
+Normalization -> Data distribution is not Gaussian (bell curve).
+
+Standardization -> Data distribution is Gaussian (bell curve). 
+
+### When to use Linear Regression? 
+
+Perhaps evident, for linear regression to work, we need to ensure that the relationship between the features and the target variable is linear. If it isn't, linear regression won't give us good predictions.
+
+Sometimes, this condition means we have to transform the input features before using linear regression. For example, if you have a variable with an exponential relationship with the target variable, you can use log transform to turn the relationship linear. 
+
+Linear regression will overfit your data when you have highly correlated features. 
+
+Linear regression requires that your features and target variables are not noisy. The less noise in your data, the better predictions you'll get from the model. Here is Jason Brownlee in ["Linear Regression for Machine Learning"](https://machinelearningmastery.com/linear-regression-for-machine-learning/):
+
+> Linear regression assumes that your input and output variables are not noisy. Consider using data cleaning operations that let you better expose and clarify the signal in your data.
+
+Ref: https://today.bnomial.com/ 
+
+### Loss Funcions
+
+Machines learn by means of a loss function. It’s a method of evaluating how well specific algorithm models the given data. If predictions deviates too much from actual results, loss function would cough up a very large number. Gradually, with the help of some optimization function, loss function learns to reduce the error in prediction.
+
+
+
+### Vanishing Gradient Problem
+
+As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the ***vanishing gradients\*** problem.
+
+###### **Why?**
+
+Certain activation functions, like the sigmoid function, squishes a large input space into a small input space between 0 and 1. Therefore, a large change in the input of the sigmoid function will cause a small change in the output. Hence, the derivative becomes small.
+
+However, when *n* hidden layers use an activation like the sigmoid function, *n* small derivatives are multiplied together. Thus, the gradient decreases exponentially as we propagate down to the initial layers.
+
+###### **Solution**
+
+1. *Use non-saturating activation function:* because of the nature of sigmoid activation function, it starts saturating for larger inputs (negative or positive) came out to be a major reason behind the vanishing of gradients thus making it non-recommendable to use in the **hidden layers** of the network.
+
+   So to tackle the issue regarding the saturation of activation functions like sigmoid and tanh, we must use some other non-saturating functions like ReLu and its alternatives.
+
+2. *Proper weight initialization*: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers). 
+
+​	You can get the weights of a layer like below:
+
+```python
+# tf.keras
+model.layers[1].get_weights()
+```
+
+  
+
+3. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
+
+4. Batch normalization (BN) layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function. 
+
+```python
+# tf.keras
+
+from keras.layers.normalization import BatchNormalization
+
+# instantiate model
+model = Sequential()
+
+# The general use case is to use BN between the linear and non-linear layers in your network, 
+# because it normalizes the input to your activation function, 
+# though, it has some considerable debate about whether BN should be applied before 
+# non-linearity of current layer or works best after the activation function. 
+
+model.add(Dense(64, input_dim=14, init='uniform'))    # linear layer
+model.add(BatchNormalization())                       # BN
+model.add(Activation('tanh'))                         # non-linear layer
+```
+
+Batch normalization applies a transformation that maintains the mean output close to 0 and the output standard deviation close to 1.
+
+### Why ReLU
+
+**ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks. 
+
+Main benefit is that the derivative/gradient of ReLu is either 0 or 1, so multiplying by it won't cause weights that are further away from the end result of the loss function to suffer from the vanishing gradient. 
+
+### What is weight decay
+
+Having fewer parameters is only one way of preventing our model from getting overly complex. But it is actually a very limiting strategy. More parameters mean more interactions between various parts of our neural network. And more interactions mean more non-linearities. These non-linearities help us solve complex problems.
+
+However, we don’t want these interactions to get out of hand. Hence, what if we penalize complexity. We will still use a lot of parameters, but we will prevent our model from getting too complex. This is how the idea of weight decay came up.
+
+One way to penalize complexity, would be to add all our parameters (weights) to our loss function. Well, that won’t quite work because some parameters are positive and some are negative. So what if we add the squares of all the parameters to our loss function. We can do that, however it might result in our loss getting so huge that the best model would be to set all the parameters to 0.
+
+To prevent that from happening, we multiply the sum of squares with another smaller number. This number is called ***weight decay\*** or `wd.`
+
+Our loss function now looks as follows:
+
+```
+Loss = MSE(y_hat, y) + wd * sum(w^2)
+```
+
+### How to use Keras Pretrained models
+
+Ref: [Medium](https://towardsdatascience.com/step-by-step-guide-to-using-pretrained-models-in-keras-c9097b647b29) 
 
 ### When to use Precision and Recall as evaluation metric
 
@@ -244,7 +348,34 @@ Based on past history and what other users with similar profiles preferred in th
 
 Based on the content similarity. For example, "related articles".  
 
-  
+
+
+### Different types of Images
+
+An Image, by definition, is essentially a visual representation of something  that depicts or records visual perception. Images are classified in one of the three types. 
+
+- Binary Images
+- Grayscale Images
+- Color Images
+
+**Binary Images:** This is the most basic type of image that exists. The only permissible pixel values in Binary images are 0(Black) and 1(White). Since only two values are required to define the image wholly, we only need one bit and hence binary images are also known as **1-Bit** images. 
+
+**Grayscale Images:** Grayscale images are by definition, monochrome images. Monochrome images have only one color throughout and the intensity of each pixel is defined by the gray level it corresponds to. Generally, an **8-Bit** image is the followed standard for grayscale images implying that there are 28= 256 grey levels in the image indexed from 0 to 255. 
+
+**Color Images:** Color images can be visualized by 3 color planes(Red, Green, Blue) stacked on top of each other. Each pixel in a specific plane contains the intensity value of the color of that plane. Each pixel in a color image is generally comprised of **24 Bits/pixel** with 8 pixels contributing from each color plane.  
+
+ref: [geeksforgeeks](https://www.geeksforgeeks.org/how-to-convert-rgb-image-to-binary-image-using-matlab/)
+
+### Image type conversion from Color to Binary
+
+> Coloured image →Gray Scale image →Binary image
+
+This can be done using different methods like
+→ Adaptive Thresholding
+→ Otsu’s Binarization
+→ Local Maxima and Minima Method
+
+Ref: [medium](https://towardsdatascience.com/what-is-ocr-7d46dc419eb9)
 
 ### Sigmoid Kernel
 
@@ -269,131 +400,6 @@ Semantic search is a **data searching technique in a** which a search query aims
 ### What is gradient
 
 A **gradient** is a derivative of a function that has more than one input variable. 
-
-### What is gradient descent?
-
-Gradient descent is an optimization algorithm used to find the values of parameters (coefficients) of a function (f) that minimizes a cost function (cost).
-
-Gradient descent is best used when the parameters cannot be calculated analytically (e.g. using linear algebra) and must be searched for by an optimization algorithm. 
-
-### Data standardization vs Normalization
-
-**Normalization** typically means rescales the values into a **range of [0,1]**. 
-
-**Standardization**: typically means rescales data to have a **mean of 0** and a **standard deviation of 1** (unit variance). 
-
-### Why do we normalize data
-
-For machine learning, every dataset does not require normalization. It is required only when features have different ranges. 
-
-For example, consider a data set containing two features, age(x1), and income(x2). Where age ranges from 0–100, while income ranges from 0–20,000 and higher. Income is about 1,000 times larger than age and ranges from 20,000–500,000. So, these two features are in very different ranges. When we do further analysis, like multivariate linear regression, for example, the attributed income will intrinsically influence the result more due to its larger value. But this doesn’t necessarily mean it is more important as a predictor.
-
-Because different features do not have similar ranges of values and hence **gradients may end up taking a long time** and can oscillate back and forth and take a long time before it can finally **find its way to the global/local minimum**. To overcome the model learning problem, we normalize the data. We make sure that the different features take on similar ranges of values so that **gradient descents can converge more quickly**.
-
-### When Should You Use Normalization And Standardization
-
-**Normalization** is a good technique to use when you do not know the distribution of your data or when you know the distribution is not Gaussian (a bell curve). Normalization is useful when your data has varying scales and the algorithm you are using does not make assumptions about the distribution of your data, such as k-nearest neighbors and artificial neural networks.
-
-**Standardization** assumes that your data has a Gaussian (bell curve) distribution. This does not strictly have to be true, but the technique is more effective if your attribute distribution is Gaussian. Standardization is useful when your data has varying scales and the algorithm you are using does make assumptions about your data having a Gaussian distribution, such as linear regression, logistic regression, and linear discriminant analysis. 
-
-Normalization -> Data distribution is not Gaussian (bell curve).
-
-Standardization -> Data distribution is Gaussian (bell curve). 
-
-### When to use Linear Regression? 
-
-Perhaps evident, for linear regression to work, we need to ensure that the relationship between the features and the target variable is linear. If it isn't, linear regression won't give us good predictions.
-
-Sometimes, this condition means we have to transform the input features before using linear regression. For example, if you have a variable with an exponential relationship with the target variable, you can use log transform to turn the relationship linear. 
-
-Linear regression will overfit your data when you have highly correlated features. 
-
-Linear regression requires that your features and target variables are not noisy. The less noise in your data, the better predictions you'll get from the model. Here is Jason Brownlee in ["Linear Regression for Machine Learning"](https://machinelearningmastery.com/linear-regression-for-machine-learning/):
-
-> Linear regression assumes that your input and output variables are not noisy. Consider using data cleaning operations that let you better expose and clarify the signal in your data.
-
-Ref: https://today.bnomial.com/ 
-
-### Loss Funcions
-
-Machines learn by means of a loss function. It’s a method of evaluating how well specific algorithm models the given data. If predictions deviates too much from actual results, loss function would cough up a very large number. Gradually, with the help of some optimization function, loss function learns to reduce the error in prediction.
-
-
-
-### Vanishing Gradient Problem
-
-As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the ***vanishing gradients\*** problem.
-
-###### **Why?**
-
-Certain activation functions, like the sigmoid function, squishes a large input space into a small input space between 0 and 1. Therefore, a large change in the input of the sigmoid function will cause a small change in the output. Hence, the derivative becomes small.
-
-However, when *n* hidden layers use an activation like the sigmoid function, *n* small derivatives are multiplied together. Thus, the gradient decreases exponentially as we propagate down to the initial layers.
-
-###### **Solution**
-
-1. *Use non-saturating activation function:* because of the nature of sigmoid activation function, it starts saturating for larger inputs (negative or positive) came out to be a major reason behind the vanishing of gradients thus making it non-recommendable to use in the **hidden layers** of the network.
-
-   So to tackle the issue regarding the saturation of activation functions like sigmoid and tanh, we must use some other non-saturating functions like ReLu and its alternatives.
-
-2. *Proper weight initialization*: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers). 
-
-​	You can get the weights of a layer like below:
-
-​      
-
-```python
-# tf.keras
-model.layers[1].get_weights()
-```
-
-  
-
-3. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
-
-4. Batch normalization (BN) layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function. 
-
-```python
-# tf.keras
-
-from keras.layers.normalization import BatchNormalization
-
-# instantiate model
-model = Sequential()
-
-# The general use case is to use BN between the linear and non-linear layers in your network, 
-# because it normalizes the input to your activation function, 
-# though, it has some considerable debate about whether BN should be applied before 
-# non-linearity of current layer or works best after the activation function. 
-
-model.add(Dense(64, input_dim=14, init='uniform'))    # linear layer
-model.add(BatchNormalization())                       # BN
-model.add(Activation('tanh'))                         # non-linear layer
-```
-
-Batch normalization applies a transformation that maintains the mean output close to 0 and the output standard deviation close to 1.
-
-### Why ReLU
-
- **ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks. 
-
-Main benefit is that the derivative/gradient of ReLu is either 0 or 1, so multiplying by it won't cause weights that are further away from the end result of the loss function to suffer from the vanishing gradient. 
-
-### What is weight decay
-
-Having fewer parameters is only one way of preventing our model from getting overly complex. But it is actually a very limiting strategy. More parameters mean more interactions between various parts of our neural network. And more interactions mean more non-linearities. These non-linearities help us solve complex problems.
-
-However, we don’t want these interactions to get out of hand. Hence, what if we penalize complexity. We will still use a lot of parameters, but we will prevent our model from getting too complex. This is how the idea of weight decay came up.
-
-One way to penalize complexity, would be to add all our parameters (weights) to our loss function. Well, that won’t quite work because some parameters are positive and some are negative. So what if we add the squares of all the parameters to our loss function. We can do that, however it might result in our loss getting so huge that the best model would be to set all the parameters to 0.
-
-To prevent that from happening, we multiply the sum of squares with another smaller number. This number is called ***weight decay\*** or `wd.`
-
-Our loss function now looks as follows:
-
-```
-Loss = MSE(y_hat, y) + wd * sum(w^2)
-```
 
 ### Mean, Median
 
@@ -492,6 +498,22 @@ Your model (linear regression) would look like this:
 And you can choose several ways to measure your error (loss), for example L1:
 
 or maybe go wild, and optimize for their harmonic loss:
+
+### Activation Functions
+
+For a neural network to learn complex patterns, we need to ensure that the network can approximate any function, not only linear ones. This is why we call it "non-linearities."
+
+The way we do this is by using activation functions.
+
+An interesting fact: the [Universal approximation theorem](https://en.wikipedia.org/wiki/Universal_approximation_theorem) states that, when using non-linear activation functions, we can turn a two-layer neural network into a universal function approximator. This is an excellent illustration of how powerful neural networks are.
+
+Some of the most popular activation functions are [sigmoid](https://en.wikipedia.org/wiki/Logistic_function), and [ReLU](https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks).  [Convolution operation is a linear operation](https://en.wikipedia.org/wiki/Convolution#Properties) without the activation functions. 
+
+
+
+### Batch Inference vs Online Inference
+
+Read here: https://mlinproduction.com/batch-inference-vs-online-inference/ 
 
 ### t-SNE algorithm
 
