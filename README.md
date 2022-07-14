@@ -1107,8 +1107,6 @@ Classic way of doing this thing is using **Bag-of-Words**.
 
 But can't work well for ordering. This can be also solved using N-grams. But the dimensionality becomes very high.
 
-**RNN**
-
 ### Statistics Resources
 
 1. Gaussian/Normal distribution - [[YouTube - Krish Naik](https://youtu.be/UQOTNkq0X48)]
@@ -1130,7 +1128,6 @@ Cosine Similarity: Cosine similarity is a metric used to determine how similar t
 3. Filter out stop words (i', 'me', 'my', 'myself', 'we', 'our' etc)
 4. Stemming
 5. Lemmitization.
-   6.
 
 ### Model Re-Training | Continuous model deployment
 
