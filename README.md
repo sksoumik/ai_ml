@@ -1327,19 +1327,7 @@ The curve looks like an elbow. In the above plot, the elbow is at k=3 (i.e. Sum 
 
 ### Calculate the output shape and number of parameters in a CNN
 
-i = input size
-
-k = kernel size
-
-c = input's channel
-
-| Layer type | Output Shape                             | Param # (# weights)                                          |      |
-| ---------- | ---------------------------------------- | ------------------------------------------------------------ | ---- |
-| Conv2D     | [(i - k) + 1] * [(i - k) + 1] * #filters | ( k * k * c ) + (+1 bias for each #filters)  (for the first conv2D layer)  ;( k * k * #filters from the previous layer ) + bias for all #filters. (this rule is for the all layers except for the first conv2D layer) |      |
-| Activation | Same as previous layer                   | 0                                                            |      |
-|            |                                          |                                                              |      |
-|            |                                          |                                                              |      |
-|            |                                          |                                                              |      |
+![](image/cnn_params.png)
 
 
 
