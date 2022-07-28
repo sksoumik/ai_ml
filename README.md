@@ -281,21 +281,36 @@ If we talk about **classification problems**, the most common metrics used are:
 When it comes to **regression**, the most commonly used evaluation metrics are:
 
 - Mean absolute error (MAE)
+
 - Mean squared error (MSE)
+
 - Root mean squared error (RMSE)
+
 - Root mean squared logarithmic error (RMSLE)
+
 - Mean percentage error (MPE)
+
 - Mean absolute percentage error (MAPE)- R2
 
-### When to use Precision and Recall as evaluation metric
+  
 
-Precision can be seen as **a measure of quality**, and recall as a measure of **quantity**. 
+### Deciding whether to use precision or recall or f1:
 
-Higher precision means that an algorithm returns more relevant results than irrelevant ones, and high recall means that an algorithm returns most of the relevant results (whether or not irrelevant ones are also returned).
+It is mathematically impossible to increase both precision and recall at the same time, as both are inversely proportional to each other.. Depending on the problem at hand we decide which of them is more important to us.
 
-- Precision quantifies the number of **positive class** **predictions** that actually belong to the **positive class**.
-- Recall quantifies the number of **positive class predictions** made out of **all positive examples** in the dataset.
-- F-Measure provides a single score that **balances both the concerns of precision and recall in one number**.
+We will first need to decide whether it’s important to avoid false positives or false negatives for our problem. Precision is used as a metric when our objective is to minimize false positives and recall is used when the objective is to minimize false negatives. We optimize our model performance on the selected metric.
+
+Below are a couple of cases for using precision/recall/f1.
+
+1. An AI is leading an operation for finding criminals hiding in a housing society. The goal should be to arrest only criminals, since arresting innocent citizens can mean that an innocent can face injustice. However, if the criminal manages to escape, there can be multiple chances to arrest him afterward. In this case, false positive(arresting an innocent person) is more damaging than false negative(letting a criminal walk free). Hence, we should select precision in order to minimize false positives.
+
+2. We are all aware of the intense security checks at airports. It is of utmost importance to ensure that people do not carry weapons along them to ensure the safety of all passengers. Sometimes these systems can lead to innocent passengers getting flagged, but it is still a better scenario than letting someone dangerous onto the flight. Each flagged individual is then checked thoroughly once more and innocent people are released. In this case, the emphasis is on ensuring false negatives(people with weapons getting into flights) are avoided during initial scanning, while detected false positives(innocent passengers flagged) are eventually let free. This is a scenario for minimizing false negatives and recall is the ideal measure of how the system has performed.
+
+3. f1-score:  Consider a scenario where your model needs to predict if a particular employee has to be promoted or not and promotion is the positive outcome. In this case, promoting an incompetent employee(false positive) and not promoting a deserving candidate(false negative) can both be equally risky for the company.
+
+   When avoiding both false positives and false negatives are equally important for our problem, we need a trade-off between precision and recall. This is when we use the f1 score as a metric. An f1 score is defined as the harmonic mean of precision and recall.
+
+ref: [analytics vidya](https://www.analyticsvidhya.com/blog/2020/11/a-tour-of-evaluation-metrics-for-machine-learning/)
 
 ### When to use F1 as a evaluation metric?
 
