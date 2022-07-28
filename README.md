@@ -237,6 +237,56 @@ Loss = MSE(y_hat, y) + wd * sum(w^2)
 
 Ref: [Medium](https://towardsdatascience.com/step-by-step-guide-to-using-pretrained-models-in-keras-c9097b647b29) 
 
+### Type 1 error vs type 2 error
+
+You decide to get tested for COVID-19 based on mild symptoms. There are two errors that could potentially occur:
+
+| Error Name        | Example                                                      |
+| ----------------- | ------------------------------------------------------------ |
+| Type 1 Error (FP) | The test result says you have corona-virus, but you actually don’t. |
+| Type 2 Error (FN) | The test result says you don’t have corona-virus, but you actually do. |
+
+Ref: [scribbr](https://www.scribbr.com/statistics/type-i-and-type-ii-errors/)
+
+### Confusion Matrix
+
+Let's say, we have a dataset which contains cancer patient data (Chest X-ray image), and we have built a machine learning model to predict if a patient has cancer or not.
+
+**True positive (TP):** Given an image, if your model predicts the patient has cancer, and the actual target for that patient has also cancer, it is considered a true positive. Means the prediction is True.
+
+**True negative (TN):** Given an image, if your model predicts that the patient does not have cancer and the actual target also says that patient doesn't have cancer it is considered a true negative. Means the prediction is True.
+
+**False positive (FP):** Given an image, if your model predicts that the patient has cancer but the the actual target for that image says that the patient doesn't have cancer, it a false positive. Means the model prediction is False.
+
+**False negative (FN):** Given an image, if your model predicts that the patient doesn't have cancer but the actual target for that image says that the patient has cancer, it is a false negative. This prediction is also false.
+
+### When not to use accuracy as Metric
+
+If the number of samples in one class outnumber the number of samples in another class by a lot. In these kinds of cases, it is not advisable to use accuracy as an evaluation metric as it is not representative of the data. So, you might get high accuracy, but your model will probably not perform that well when it comes to real-world samples, and you won’t be able to explain to your managers why. In these cases, it’s better to look at other metrics such as precision.
+
+### Common Evaluation Metrics in ML
+
+If we talk about **classification problems**, the most common metrics used are:
+
+- Accuracy
+
+- Precision (P)
+- Recall (R)
+- F1 score (F1)
+- Area under the ROC (Receiver Operating Characteristic) curve or simply AUC (AUC)
+- Log loss- Precision at k (P@k)
+- Average precision at k (AP@k)
+- Mean average precision at k (MAP@k)
+
+When it comes to **regression**, the most commonly used evaluation metrics are:
+
+- Mean absolute error (MAE)
+- Mean squared error (MSE)
+- Root mean squared error (RMSE)
+- Root mean squared logarithmic error (RMSLE)
+- Mean percentage error (MPE)
+- Mean absolute percentage error (MAPE)- R2
+
 ### When to use Precision and Recall as evaluation metric
 
 Precision can be seen as **a measure of quality**, and recall as a measure of **quantity**. 
@@ -320,21 +370,26 @@ result = ssim(image_A, image_B)
 # SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
 ```
 
-### Type 1 error vs type 2 error
 
-You decide to get tested for COVID-19 based on mild symptoms. There are two errors that could potentially occur:
-
-| Error Name        | Example                                                      |
-| ----------------- | ------------------------------------------------------------ |
-| Type 1 Error (FP) | The test result says you have corona-virus, but you actually don’t. |
-| Type 2 Error (FN) | The test result says you don’t have corona-virus, but you actually do. |
-
-Ref: [scribbr](https://www.scribbr.com/statistics/type-i-and-type-ii-errors/)
 
 ### TensorFlow interview questions
 
 1. https://www.mlstack.cafe/blog/tensorflow-interview-questions
 2. https://www.vskills.in/interview-questions/deep-learning-with-keras-interview-questions
+
+
+
+### Differences between Linear Regression and Logistic regression
+
+| Linear Regression                                            | Logistic Regression                                          |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Linear regression is used to predict the continuous dependent variable; **regression** algorithm. | Logistic Regression is used to predict the categorical dependent variable; ***classification\*** algorithm. |
+| Loss Function: is uses MSE to calculate errors.              | Loss Function: *log loss* is used to calculate errors.       |
+| Outputs **numeric** values.                                  | **Sigmoid** activation is used in the output to squash the values in the range of 0-1. |
+| To perform Linear regression we require a **linear** relationship between the dependent and independent variables. | To perform Logistic regression we **do not require a linear relationship** between the dependent and independent variables. |
+| Linear regression assumes **Gaussian** (or normal) distribution of the dependent variable. | Logistic regression assumes the **binomial** distribution of the dependent variable. |
+
+
 
 ### Recommender System
 
@@ -342,7 +397,7 @@ Traditionally, recommender systems are based on methods such as clustering, near
 
 **Collaborative filtering:**
 
-Based on past history and what other users with similar profiles preferred in the past.
+Based on **past history** and what other users with similar profiles preferred in the past.
 
 **Content-based**:
 
@@ -610,45 +665,6 @@ Categorical variables can be:
 4. Binary
 
 Nominal variables are variables that have two or more categories which do not have any kind of order associated with them. For example, if gender is classified into two groups, i.e. male and female, it can be considered as a nominal variable.Ordinal variables, on the other hand, have “levels” or categories with a particular order associated with them. For example, an ordinal categorical variable can be a feature with three different levels: low, medium and high. Order is important.As far as definitions are concerned, we can also categorize categorical variables as binary, i.e., a categorical variable with only two categories. Some even talk about a type called “cyclic” for categorical variables. Cyclic variables are present in “cycles” for example, days in a week: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday and Saturday. After Saturday, we have Sunday again. This is a cycle. Another example would be hours in a day if we consider them to be categories.
-
-### Confusion Matrix
-
-Let's say, we have a dataset which contains cancer patient data (Chest X-ray image), and we have built a machine learning model to predict if a patient has cancer or not.
-
-**True positive (TP):** Given an image, if your model predicts the patient has cancer, and the actual target for that patient has also cancer, it is considered a true positive. Means the prediction is True.
-
-**True negative (TN):** Given an image, if your model predicts that the patient does not have cancer and the actual target also says that patient doesn't have cancer it is considered a true negative. Means the prediction is True.
-
-**False positive (FP):** Given an image, if your model predicts that the patient has cancer but the the actual target for that image says that the patient doesn't have cancer, it a false positive. Means the model prediction is False.
-
-**False negative (FN):** Given an image, if your model predicts that the patient doesn't have cancer but the actual target for that image says that the patient has cancer, it is a false negative. This prediction is also false.
-
-### When not to use accuracy as Metric
-
-If the number of samples in one class outnumber the number of samples in another class by a lot. In these kinds of cases, it is not advisable to use accuracy as an evaluation metric as it is not representative of the data. So, you might get high accuracy, but your model will probably not perform that well when it comes to real-world samples, and you won’t be able to explain to your managers why. In these cases, it’s better to look at other metrics such as precision.
-
-### Common Evaluation Metrics in ML
-
-If we talk about **classification problems**, the most common metrics used are:
-
-- Accuracy
-
-- Precision (P)
-- Recall (R)
-- F1 score (F1)
-- Area under the ROC (Receiver Operating Characteristic) curve or simply AUC (AUC)
-- Log loss- Precision at k (P@k)
-- Average precision at k (AP@k)
-- Mean average precision at k (MAP@k)
-
-When it comes to **regression**, the most commonly used evaluation metrics are:
-
-- Mean absolute error (MAE)
-- Mean squared error (MSE)
-- Root mean squared error (RMSE)
-- Root mean squared logarithmic error (RMSLE)
-- Mean percentage error (MPE)
-- Mean absolute percentage error (MAPE)- R2
 
 ### Autoencoder
 
