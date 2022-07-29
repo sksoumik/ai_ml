@@ -272,7 +272,21 @@ AUC - ROC curve is a performance measurement for the classification problems at 
 
 **I would recommend using AUC over accuracy as it’s a much better indicator of model performance. This is due to AUC using the relationship between True Positive Rate and False Positive Rate to calculate the metric. If you are wanting to use accuracy as a metric, then I would encourage you to track other metrics as well, such as AUC or F1.  [Ref](https://stephenallwright.com/auc-vs-accuracy/)
 
+### Difference among micro, macro, weighted f1-score
 
+Excellent explanation: [medium](https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f)
+
+![](image/macro.png)
+
+
+
+![](image/weighted.png)
+
+![](image/micro.png)
+
+
+
+Ref: [Leung](https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f)
 
 ### When not to use accuracy as Metric
 
