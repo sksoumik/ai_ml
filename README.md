@@ -260,6 +260,20 @@ Let's say, we have a dataset which contains cancer patient data (Chest X-ray ima
 
 **False negative (FN):** Given an image, if your model predicts that the patient doesn't have cancer but the actual target for that image says that the patient has cancer, it is a false negative. This prediction is also false.
 
+
+
+### Difference Evaluation Metric calculation
+
+![](image/evals.png)AUC-ROC:
+
+AUC - ROC curve is a performance measurement for the classification problems at various threshold settings. ROC is a probability curve and AUC represents the degree or measure of separability. It tells how much the model is **capable of distinguishing between classes.** **Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1**. By analogy, the Higher the AUC, the better the model. 
+
+
+
+**I would recommend using AUC over accuracy as it’s a much better indicator of model performance. This is due to AUC using the relationship between True Positive Rate and False Positive Rate to calculate the metric. If you are wanting to use accuracy as a metric, then I would encourage you to track other metrics as well, such as AUC or F1.  [Ref](https://stephenallwright.com/auc-vs-accuracy/)
+
+
+
 ### When not to use accuracy as Metric
 
 If the number of samples in one class outnumber the number of samples in another class by a lot. In these kinds of cases, it is not advisable to use accuracy as an evaluation metric as it is not representative of the data. So, you might get high accuracy, but your model will probably not perform that well when it comes to real-world samples, and you won’t be able to explain to your managers why. In these cases, it’s better to look at other metrics such as precision.
