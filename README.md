@@ -292,6 +292,18 @@ Ref: [Leung](https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-
 
 If the number of samples in one class outnumber the number of samples in another class by a lot. In these kinds of cases, it is not advisable to use accuracy as an evaluation metric as it is not representative of the data. So, you might get high accuracy, but your model will probably not perform that well when it comes to real-world samples, and you won’t be able to explain to your managers why. In these cases, it’s better to look at other metrics such as precision.
 
+### Which performance metrics for highly imbalanced multi class classification?
+
+I would suggest to go with -
+
+- **Weighted F1-Score** or 
+
+- **Average AUC/Weighted AUC**.
+
+ [Ref](https://stats.stackexchange.com/a/463250/257584)
+
+
+
 ### Common Evaluation Metrics in ML
 
 If we talk about **classification problems**, the most common metrics used are:
@@ -1236,6 +1248,10 @@ When to use random forest :
 
 1. When you don't bother much about interpreting the model but want better accuracy.
 2. Random forest will reduce variance part of error rather than bias part, so on a given training data set decision tree may be more accurate than a random forest. But on an unexpected validation data set, Random forest always wins in terms of accuracy.
+
+### How Random Forest Works
+
+See this YouTube Video https://youtu.be/v6VJ2RO66Ag  
 
 ### What's the best way to initialize the weights of a neural network?
 
