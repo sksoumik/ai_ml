@@ -28,42 +28,9 @@ The bias-variance decomposition essentially decomposes the learning error from a
 - Too simple model  -> model underfit -> Bias
 - Too complex model -> model overfit -> Variance 
 
-
-
-### Tokenization
-
-Given a character sequence and a defined document unit, tokenization is the task of chopping it up into pieces, called *tokens* , perhaps at the same time throwing away certain characters, such as punctuation. 
-
-Tokens can be either words, characters, or sub-words. Most commonly used tokenization method happens at word level. Pre-trained word embeddings such as word2vec, and GloVe comes under word tokenization. 
-
-Program
-
-```python
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras.preprocessing.text import Tokenizer
-
-sentences = ["I love my dog", "I love my cat"]
-
-tokenizer = Tokenizer(num_words=100)
-tokenizer.fit_on_texts(sentences)
-word_index = tokenizer.word_index
-print(word_index)
-```
-
-Output
-
-```bash
-{'i': 1, 'love': 2, 'my': 3, 'dog': 4, 'cat': 5}
-```
-
-
-
 ### Parameter vs Hyperparameter
 
 Parameters are estimated or learned from data. They are not manually set by the practitioners. For example, model **weights** in ANN.  
-
-
 
 Hyperparameters are set/specified by the practitioners.  They are often tuned for a given predictive modeling problem. For example, 
 
@@ -71,7 +38,6 @@ Hyperparameters are set/specified by the practitioners.  They are often tuned fo
 - Learning rate
 - Batch size
 - Number of epochs 
-- 
 
 ### Data Lake
 
@@ -402,7 +368,86 @@ Example Data:
 
 Read more on Semantic/Instance segmentation evaluation [here](https://www.jeremyjordan.me/evaluating-image-segmentation-models/)
 
-### Statistical sampling and Re-sampling
+### Association Rule Learning
+
+[Ref](https://towardsdatascience.com/apriori-algorithm-for-association-rule-learning-how-to-find-clear-links-between-transactions-bf7ebc22cf0a) : Saul Dobilas 
+
+Clustering is not the only unsupervised way to find similarities between data points. You can also use association rule learning techniques to determine if certain data points (actions) are more likely to occur together.
+
+A simple example would be the supermarket shopping basket analysis. If someone is buying ground beef, does it make them more likely to also buy spaghetti? We can answer these types of questions by using the Apriori algorithm.
+
+Apriori is part of the association rule learning algorithms, which sit under the unsupervised branch of Machine Learning.
+
+This is because Apriori does not require us to provide a target variable for the model. Instead, the algorithm identifies relationships between data points subject to our specified constraints. 
+
+Let's say, we have a dataset like this: 
+
+![img](https://miro.medium.com/max/700/1*yTtuCcNJrSymJfrVj28fQg.png)
+
+
+
+Assume we analyze the above transaction data to find frequently bought items and determine if they are often purchased together. To help us find the answers, we will make use of the following 4 metrics:
+
+- Support
+- Confidence
+- Lift 
+
+**Calculate Support**
+
+The first step for us and the algorithm is to find frequently bought items. It is a straightforward calculation that is based on frequency:
+
+```yaml
+Support (Item) = Transaction of that Item / Total transactions 
+
+Support (Eggs) = 3 / 6  # 6 because there are shoppers 1 to 6
+               = 0.5
+Support (Bacon) = 4 / 6
+                = 0.66
+Support (Apple) = 2 / 6
+                = 0.33
+
+Support (Eggs & Bacon) = 3 / 6    # 3 because there are 3 times Eggs and Becons were bought together
+                       = 0.5
+
+Support (Banana & Butter) = 1 / 6 
+                          = 0.16
+```
+
+**Calculate Confidence**
+
+Now that we have identified frequently bought items let’s calculate confidence. This will tell us how confident (based on our data) we can be that an item will be purchased, given that another item has been purchased. 
+
+```yaml
+Confidence  = conditional probability
+Confidence (Eggs -> Bacon) = Support(Eggs & Bacon) / Support(Eggs)
+                           = 0.5 / 0.5 
+                           = 1  (100%)
+Confidence (Bacon -> Eggs) = Support(Bacon & Eggs) / Support(Bacon)
+                           = 0.5 / 0.66
+                           = 0.75
+```
+
+**Calculate Lift**
+
+Given that different items are bought at different frequencies, how do we know that eggs and bacon really do have a strong association, and how do we measure it? You will be glad to hear that we have a way to evaluate this objectively using lift.
+
+```
+Lift(Eggs -> Bacon) = Confidence(Eggs -> Bacon) / Support(Bacon)
+                    = 1 / 0.66
+                    = 1.51
+
+Lift(Bacon -> Eggs) = Confidence(Bacon -> Eggs) / Support(Eggs)
+                    = 0.75 / 0.5
+                    = 1.5 
+```
+
+Note, 
+
+- lift>1 means that the two items are more likely to be bought together;
+-  lift<1 means that the two items are more likely to be bought separately;
+- lift=1 means that there is no association between the two items.
+
+
 
 ### Compare two images and find the difference between them
 
