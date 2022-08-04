@@ -574,10 +574,6 @@ See some great resources [here](static/pytorch tutorials.pdf)
 
 Support Vector Machine (SVM) is a supervised machine learning algorithm that can be used for **both classification or regression** challenges. The model extracts the best possible hyper-plane / line that segregates the two classes.
 
-### Random Forest Model
-
-Random Forest models are a type of **ensemble** models, particularly **bagging** models. They are part of the tree-based model family.
-
 ### Text classification
 
 ###### **Approaches to automatic text classification can be grouped into three categories:**
@@ -1297,6 +1293,26 @@ When to use random forest :
 ### How Random Forest Works
 
 See this YouTube Video https://youtu.be/v6VJ2RO66Ag  
+
+### Random Forest vs Gradient Boosting
+
+Both uses decision trees. But
+
+Unlike random forests, the decision trees in gradient boosting are built additively; in other words, each decision tree is built one after another.
+
+In random forests, the results of decision trees are aggregated at the end of the process. Gradient boosting doesn’t do this and instead aggregates the results of each decision tree along the way to calculate the final result.
+
+### Max depth in decision tree
+
+It can also be described as the length of the longest path from the tree root to a leaf. The root node is considered to have a depth of 0. The Max Depth value **cannot exceed 30 on a 32-bit machine**. The default value is 30. 
+
+The maximum depth that you allow the tree to grow to. The deeper you allow, the more complex your model will become.
+
+For training error, it is easy to see what will happen. If you increase `max_depth`, training error will always go down (or at least not go up).
+
+For testing error, it gets less obvious. If you set `max_depth` *too high*, then the decision tree might simply overfit the training data without capturing useful patterns as we would like; this will cause testing error to increase. But if you set it *too low*, that is not good as well; then you might be giving the decision tree too little flexibility to capture the patterns and interactions in the training data. This will also cause the testing error to increase.
+
+There is a nice golden spot in between the extremes of too-high and too-low. Usually, the modeller would consider the `max_depth` as a hyper-parameter, and use some sort of grid/random search with cross-validation to find a good number for `max_depth`. [Ref](https://stackoverflow.com/a/49289462/5920567)
 
 ### What's the best way to initialize the weights of a neural network?
 
