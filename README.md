@@ -1302,6 +1302,20 @@ Unlike random forests, the decision trees in gradient boosting are built additiv
 
 In random forests, the results of decision trees are aggregated at the end of the process. Gradient boosting doesn’t do this and instead aggregates the results of each decision tree along the way to calculate the final result.
 
+### Why does gradient boosting generally outperform random forests?
+
+We do not have full theoretical analysis of it, so this answer is more about intuition rather than provable analysis.
+
+The thing to observe is that the motivation behind random forest and gradient boosting is very different. Random forest, like the bagging algorithm, tries to reduce variance. The idea behind it is that when you learn, some random artifacts might move the learner away from the target. Therefore, by learning simultaneously multiple models and averaging their results you can reduce the variance, that is, the amount skewness introduced by the random artifacts. In order to obtain truly different models and not just repetition of the same model different techniques may be used. In random forest different features are used for each tree while in bagging different subsets of the training data are used.
+
+Gradient boosting generates an ensemble of trees too but does so in a different way, motivated by different ideas. Gradient Boosting is a gradient descent type of an algorithm. In each round, it takes the current ensemble that it has and computes a gradient, i.e. a direction in which the model can improve (actually the direction of improvement is the opposite side of the gradient but let’s put that aside). With this direction in hand, it trains a tree to predict it and adds it to the gradient. Therefore, each additional tree tries to get the model closer to the target and reduce the bias of the model rather than the variance.  [Ref](https://qr.ae/pvuliq)
+
+##### Bagging vs Boosting
+
+Random forests which is based on bagging and Gradient boosting that as the name suggests uses a technique called boosting. Bagging and boosting are both ensemble techniques, which basically means that both approaches combine multiple weak learners to create a model with a lower error than individual learners. The most obvious difference between the two approaches is that **bagging builds all weak learners simultaneously and independently**, whereas **boosting builds the models subsequently and uses the information of the previously built ones to improve the accuracy**.
+
+Note: bagging and boosting can use several algorithms as base algorithms and are thus not limited to using decision trees.  [Ref](https://www.vantage-ai.com/en/blog/demystifying-decision-trees-random-forests-gradient-boosting)
+
 ### Max depth in decision tree
 
 It can also be described as the length of the longest path from the tree root to a leaf. The root node is considered to have a depth of 0. The Max Depth value **cannot exceed 30 on a 32-bit machine**. The default value is 30. 
@@ -1313,6 +1327,10 @@ For training error, it is easy to see what will happen. If you increase `max_dep
 For testing error, it gets less obvious. If you set `max_depth` *too high*, then the decision tree might simply overfit the training data without capturing useful patterns as we would like; this will cause testing error to increase. But if you set it *too low*, that is not good as well; then you might be giving the decision tree too little flexibility to capture the patterns and interactions in the training data. This will also cause the testing error to increase.
 
 There is a nice golden spot in between the extremes of too-high and too-low. Usually, the modeller would consider the `max_depth` as a hyper-parameter, and use some sort of grid/random search with cross-validation to find a good number for `max_depth`. [Ref](https://stackoverflow.com/a/49289462/5920567)
+
+
+
+
 
 ### What's the best way to initialize the weights of a neural network?
 
