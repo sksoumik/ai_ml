@@ -1,8 +1,3 @@
-# ai_ml
-machine learning, ai, data science notes
-
-
-
 ### Overfitting vs Underfitting
 
 **Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit. 
