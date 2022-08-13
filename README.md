@@ -500,6 +500,44 @@ Based on the content similarity. For example, "related articles".
 
 
 
+### Container vs Docker vs Kubernetes
+
+**Container**: If we can create an environment that we can transfer to other machines (for example: your friend’s computer or a cloud service provider like Google Cloud Platform), we can reproduce the results anywhere. Hence, a container is a type of software that packages up an application and all its dependencies so the application runs reliably from one computing environment to another. 
+
+**Docker**: Docker is a company that provides software (also called Docker) that allows users to build, run and manage containers. While Docker’s container are the most common, there are other less famous *alternatives* such as [LXD](https://linuxcontainers.org/lxd/introduction/) and [LXC](https://linuxcontainers.org/) that provides container solution. 
+
+**Kubernetes**: Kubernetes is a powerful open-source system developed by Google back in 2014, for managing containerized applications. In simple words, Kubernetes is a system for running and coordinating containerized applications across a cluster of machines. It is a platform designed to completely manage the life cycle of containerized applications. 
+
+Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b)
+
+### What are core features of Kubernetes?
+
+**Load Balancing:** Automatically distributes the load between containers.
+
+**Scaling:** Automatically scale up or down by adding or removing containers when demand changes such as peak hours, weekends and holidays.
+
+**Storage:** Keeps storage consistent with multiple instances of an application.
+
+**Self-healing**: Automatically restarts containers that fail and kills containers that don’t respond to your user-defined health check.
+
+**Automated Rollouts**: you can automate Kubernetes to create new containers for your deployment, remove existing containers and adopt all of their resources to the new container.
+
+Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b)
+
+### Why do you need Kubernetes if you have Docker?
+
+Imagine a scenario where you have to run multiple docker containers on multiple machines to support an enterprise level ML application with varied workloads during day and night. As simple as it may sound, it is a lot of work to do manually.
+
+You need to start the right containers at the right time, figure out how they can talk to each other, handle storage considerations, and deal with failed containers or hardware. This is the problem Kubernetes is solving by allowing large numbers of containers to work together in harmony, reducing the operational burden.
+
+In the lifecycle of any application, Docker is used for packaging the application at the time of deployment, while kubernetes is used for rest of the life for managing the application.
+
+![img](https://miro.medium.com/max/700/1*dBJjxZrfdMppXhdwjZLX6w.png)
+
+
+
+Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b), original post link: [TDS](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b)
+
 ### Different types of Images
 
 An Image, by definition, is essentially a visual representation of something  that depicts or records visual perception. Images are classified in one of the three types. 
