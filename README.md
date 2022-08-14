@@ -139,7 +139,7 @@ However, when _n_ hidden layers use an activation like the sigmoid function, _n_
 
 2. _Proper weight initialization_: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers).
 
-​ You can get the weights of a layer like below:
+ You can get the weights of a layer like below:
 
 ```python
 # tf.keras
@@ -323,7 +323,7 @@ In two-dimensional space, Euclidean distance will look like this,
 
 ![Euclidean distance between two vectors A and B in 2-dimensional space](<https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*aUFcVBD_dBAAayDFfAmo_A.png>)
 
-​ Fig2: Euclidean distance between two vectors A and B in 2-dimensional space
+ Fig2: Euclidean distance between two vectors A and B in 2-dimensional space
 
 ### IoU: Intersection over Union Metric
 
@@ -1527,6 +1527,58 @@ You need a model that takes 2 inputs. Here's an example of how this works:
 4. Use some number of **fully-connected layers** to yield a predicted output.
 
 Ref: [stackexchange](https://stats.stackexchange.com/a/473678/257584)
+
+### How to Combine text and numerical features in training sets for machine learning?
+
+To combine text features and numerical features follow this:
+
+- For Text Features, vectorize it using BoW,TFIDF,AvgW2V,TFIDFW2V any of these text feature vectorization techniques.
+- For Numerical Features , use Normalisation or Column Standardization to scale the numerical data.
+- If in case you also want to use Categorical Features, then use OneHotEncoding, LabelEncoding, ResponseCoding etc , to vectorise the Categorical Features.
+- Use hstack to put all the features in one dataframe. eg. X_tr=hstack((vectorised_text_features...., standardised_numerical_features..., standardised_categorical_features...)) And, your Train Data is ready. Now , modelling can be performed. 
+
+Ref: [StackOverflow](https://stackoverflow.com/a/56846321/5920567) 
+
+You can also use Pipeline from sklearn: 
+
+```python
+from sklearn.pipeline import Pipeline, FeatureUnion
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+def get_numeric_data(x):
+    # select numerical features
+    return [record[:-2].astype(float) for record in x]
+
+def get_text_data(x):
+    # select text features
+    return [record[-1] for record in x]
+
+transfomer_numeric = FunctionTransformer(get_numeric_data)
+transformer_text = FunctionTransformer(get_text_data)
+
+# Create a pipeline to concatenate Tfidf Vector and Numeric data
+# Use RandomForestClassifier as an example
+pipeline = Pipeline([
+    ('features', FeatureUnion([
+            ('numeric_features', Pipeline([
+                ('selector', transfomer_numeric)
+            ])),
+             ('text_features', Pipeline([
+                ('selector', transformer_text),
+                ('vec', TfidfVectorizer(analyzer='word'))
+            ]))
+         ])),
+    ('clf', RandomForestClassifier())
+])
+```
+
+Read more: [TDS](https://towardsdatascience.com/how-to-combine-textual-and-numerical-features-for-machine-learning-in-python-dc1526ca94d9) 
+
+### How do you with biases in Data?
+
+Read here in [TDS](https://towardsdatascience.com/5-types-of-bias-how-to-eliminate-them-in-your-machine-learning-project-75959af9d3a0)
 
 ### Sequential data
 
