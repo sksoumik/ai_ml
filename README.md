@@ -516,6 +516,44 @@ Techniques:
 
 Also read [here](https://towardsdatascience.com/feature-selection-techniques-in-machine-learning-with-python-f24e7da3f36e)
 
+### Scikit-learn methods to select features
+
+##### Removing features with low variance
+
+```
+from sklearn.feature_selection import VarianceThreshold
+```
+
+A feature with a higher variance means that the value within that feature varies or has a high cardinality. On the other hand, lower variance means the value within the feature is similar, and zero variance means you have a feature with the same value.
+
+Intuitively, you want to have a varied features. That is why we could select the feature based on the variance we select previously.
+
+A variance Threshold is a simple approach to eliminating features based on our expected variance within each feature. Although, there are some down-side to the Variance Threshold method. The Variance Threshold feature selection only sees the input features (X) without considering any information from the dependent variable (y). It is only useful for eliminating features for **Unsupervised Modelling** rather than Supervised Modelling.
+
+Variance Threshold only useful when we consider the feature selection for Unsupervised Learning.
+
+##### Univariate feature selection
+
+```
+from sklearn.feature_selection import SelectKBest, chi2
+
+X_new = SelectKBest(chi2, k=5).fit_transform(X, y)
+```
+
+Univariate feature selection works by selecting the best features based on univariate statistical tests. It can be seen as a preprocessing step to an estimator.  Univariate Feature Selection is a feature selection method based on the univariate statistical test, e,g: chi2, Pearson-correlation, and many more. 
+
+##### Recursive Feature Elimination (RFE)
+
+Recursive Feature Elimination or RFE is a Feature Selection method **utilizing a machine learning model to selecting the features by eliminating the least important feature after recursively training**. 
+
+First, the estimator is trained on the initial set of features and the importance of each feature is obtained either through any specific attribute (such as `coef_`, `feature_importances_`) or callable. Then, the least important features are pruned from current set of features. 
+
+[Ref](https://scikit-learn.org/stable/modules/feature_selection.html)
+
+Watch this video from Data School: https://youtu.be/YaKMeAlHgqQ 
+
+
+
 ### TensorFlow interview questions
 
 1. https://www.mlstack.cafe/blog/tensorflow-interview-questions
