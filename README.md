@@ -4,9 +4,9 @@ https://huyenchip.com/machine-learning-systems-design/design-a-machine-learning-
 
 ### Overfitting vs Underfitting
 
-**Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit. 
+**Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit.
 
-**Underfitting** happens when your model is too simple. For example, if your linear regression model trying to learn from a very large data set with hundreds of features. 
+**Underfitting** happens when your model is too simple. For example, if your linear regression model trying to learn from a very large data set with hundreds of features.
 
 Few solutions for model overfit:
 
@@ -24,42 +24,40 @@ Few solutions for model overfit:
 
 The bias-variance decomposition essentially decomposes the learning error from any algorithm by adding the bias, the variance and a bit of irreducible error due to noise in the underlying dataset. Essentially, if you make the model more complex and add more variables, you’ll lose bias but gain some variance — in order to get the optimally reduced amount of error, you’ll have to tradeoff bias and variance. You don’t want either high bias or high variance in your model.
 
-- Too simple model  -> model underfit -> Bias
-- Too complex model -> model overfit -> Variance 
+- Too simple model -> model underfit -> Bias
+- Too complex model -> model overfit -> Variance
 
 ### Parameter vs Hyperparameter
 
-Parameters are estimated or learned from data. They are not manually set by the practitioners. For example, model **weights** in ANN.  
+Parameters are estimated or learned from data. They are not manually set by the practitioners. For example, model **weights** in ANN.
 
-Hyperparameters are set/specified by the practitioners.  They are often tuned for a given predictive modeling problem. For example, 
+Hyperparameters are set/specified by the practitioners. They are often tuned for a given predictive modeling problem. For example,
 
 - The K in the K-nearest neighbors
 - Learning rate
 - Batch size
-- Number of epochs 
+- Number of epochs
 
 ### Data Lake
 
 A data lake is a centralized repository that allows you to store all your **structured and unstructured data** at any scale.
 
-|    Characteristics    |                        Data Warehouse                        |                          Data Lake                           |
-| :-------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|    Characteristics    |                                         Data Warehouse                                          |                                                    Data Lake                                                     |
+| :-------------------: | :---------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
 |       **Data**        | Relational from transactional systems, operational databases, and line of business applications | Non-relational and relational from IoT devices, web sites, mobile apps, social media, and corporate applications |
-|      **Schema**       |  Designed prior to the DW implementation (schema-on-write)   |       Written at the time of analysis (schema-on-read)       |
-| **Price/Performance** |       Fastest query results using higher cost storage        |     Query results getting faster using low-cost storage      |
-|   **Data Quality **   | Highly curated data that serves as the central version of the truth |    Any data that may or may not be curated (ie. raw data)    |
-|       **Users**       |                      Business analysts                       | Data scientists, Data developers, and Business analysts (using curated data) |
-|     **Analytics**     |            Batch reporting, BI and visualizations            | Machine Learning, Predictive analytics, data discovery and profiling |
-
-
+|      **Schema**       |                    Designed prior to the DW implementation (schema-on-write)                    |                                 Written at the time of analysis (schema-on-read)                                 |
+| **Price/Performance** |                         Fastest query results using higher cost storage                         |                               Query results getting faster using low-cost storage                                |
+|   **Data Quality **   |               Highly curated data that serves as the central version of the truth               |                              Any data that may or may not be curated (ie. raw data)                              |
+|       **Users**       |                                        Business analysts                                        |                   Data scientists, Data developers, and Business analysts (using curated data)                   |
+|     **Analytics**     |                             Batch reporting, BI and visualizations                              |                       Machine Learning, Predictive analytics, data discovery and profiling                       |
 
 ### Best deep CNN architectures and their principles: from AlexNet to EfficientNet
 
-Read from [theaisummer](https://theaisummer.com/cnn-architectures/) 
+Read from [theaisummer](https://theaisummer.com/cnn-architectures/)
 
 ### How to improve the accuracy of image recognition models
 
-1. **Get more data,** improve the quality of data. e.g examine the dataset, and remove bad images. You may consider increasing the diversity of your available dataset by employing data augmentation. 
+1. **Get more data,** improve the quality of data. e.g examine the dataset, and remove bad images. You may consider increasing the diversity of your available dataset by employing data augmentation.
 
 2. **Adding more layers to your model** increases its ability to learn your dataset’s features more deeply. This means that it will be able to recognize subtle differences that you, as a human, might not have picked up on.
 
@@ -79,17 +77,17 @@ Read from [theaisummer](https://theaisummer.com/cnn-architectures/)
 
 Gradient descent is an optimization algorithm used to find the values of parameters (coefficients) of a function (f) that minimizes a cost function (cost).
 
-Gradient descent is best used when the parameters cannot be calculated analytically (e.g. using linear algebra) and must be searched for by an optimization algorithm. 
+Gradient descent is best used when the parameters cannot be calculated analytically (e.g. using linear algebra) and must be searched for by an optimization algorithm.
 
 ### Data standardization vs Normalization
 
-**Normalization** typically means rescales the values into a **range of [0,1]**. 
+**Normalization** typically means rescales the values into a **range of [0,1]**.
 
-**Standardization**: typically means rescales data to have a **mean of 0** and a **standard deviation of 1** (unit variance). 
+**Standardization**: typically means rescales data to have a **mean of 0** and a **standard deviation of 1** (unit variance).
 
 ### Why do we normalize data
 
-For machine learning, every dataset does not require normalization. It is required only when features have different ranges. 
+For machine learning, every dataset does not require normalization. It is required only when features have different ranges.
 
 For example, consider a data set containing two features, age(x1), and income(x2). Where age ranges from 0–100, while income ranges from 0–20,000 and higher. Income is about 1,000 times larger than age and ranges from 20,000–500,000. So, these two features are in very different ranges. When we do further analysis, like multivariate linear regression, for example, the attributed income will intrinsically influence the result more due to its larger value. But this doesn’t necessarily mean it is more important as a predictor.
 
@@ -99,62 +97,58 @@ Because different features do not have similar ranges of values and hence **grad
 
 **Normalization** is a good technique to use when you do not know the distribution of your data or when you know the distribution is not Gaussian (a bell curve). Normalization is useful when your data has varying scales and the algorithm you are using does not make assumptions about the distribution of your data, such as k-nearest neighbors and artificial neural networks.
 
-**Standardization** assumes that your data has a Gaussian (bell curve) distribution. This does not strictly have to be true, but the technique is more effective if your attribute distribution is Gaussian. Standardization is useful when your data has varying scales and the algorithm you are using does make assumptions about your data having a Gaussian distribution, such as linear regression, logistic regression, and linear discriminant analysis. 
+**Standardization** assumes that your data has a Gaussian (bell curve) distribution. This does not strictly have to be true, but the technique is more effective if your attribute distribution is Gaussian. Standardization is useful when your data has varying scales and the algorithm you are using does make assumptions about your data having a Gaussian distribution, such as linear regression, logistic regression, and linear discriminant analysis.
 
 Normalization -> Data distribution is not Gaussian (bell curve).
 
-Standardization -> Data distribution is Gaussian (bell curve). 
+Standardization -> Data distribution is Gaussian (bell curve).
 
-### When to use Linear Regression? 
+### When to use Linear Regression?
 
 Perhaps evident, for linear regression to work, we need to ensure that the relationship between the features and the target variable is linear. If it isn't, linear regression won't give us good predictions.
 
-Sometimes, this condition means we have to transform the input features before using linear regression. For example, if you have a variable with an exponential relationship with the target variable, you can use log transform to turn the relationship linear. 
+Sometimes, this condition means we have to transform the input features before using linear regression. For example, if you have a variable with an exponential relationship with the target variable, you can use log transform to turn the relationship linear.
 
-Linear regression will overfit your data when you have highly correlated features. 
+Linear regression will overfit your data when you have highly correlated features.
 
 Linear regression requires that your features and target variables are not noisy. The less noise in your data, the better predictions you'll get from the model. Here is Jason Brownlee in ["Linear Regression for Machine Learning"](https://machinelearningmastery.com/linear-regression-for-machine-learning/):
 
 > Linear regression assumes that your input and output variables are not noisy. Consider using data cleaning operations that let you better expose and clarify the signal in your data.
 
-Ref: https://today.bnomial.com/ 
+Ref: https://today.bnomial.com/
 
 ### Loss Funcions
 
 Machines learn by means of a loss function. It’s a method of evaluating how well specific algorithm models the given data. If predictions deviates too much from actual results, loss function would cough up a very large number. Gradually, with the help of some optimization function, loss function learns to reduce the error in prediction.
 
-
-
 ### Vanishing Gradient Problem
 
-As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the ***vanishing gradients\*** problem.
+As the backpropagation algorithm advances downwards(or backward) from the output layer towards the input layer, the gradients often get smaller and smaller and approach zero which eventually leaves the weights of the initial or lower layers nearly unchanged. As a result, the gradient descent never converges to the optimum. This is known as the **\*vanishing gradients\*** problem.
 
 ###### **Why?**
 
 Certain activation functions, like the sigmoid function, squishes a large input space into a small input space between 0 and 1. Therefore, a large change in the input of the sigmoid function will cause a small change in the output. Hence, the derivative becomes small.
 
-However, when *n* hidden layers use an activation like the sigmoid function, *n* small derivatives are multiplied together. Thus, the gradient decreases exponentially as we propagate down to the initial layers.
+However, when _n_ hidden layers use an activation like the sigmoid function, _n_ small derivatives are multiplied together. Thus, the gradient decreases exponentially as we propagate down to the initial layers.
 
 ###### **Solution**
 
-1. *Use non-saturating activation function:* because of the nature of sigmoid activation function, it starts saturating for larger inputs (negative or positive) came out to be a major reason behind the vanishing of gradients thus making it non-recommendable to use in the **hidden layers** of the network.
+1. _Use non-saturating activation function:_ because of the nature of sigmoid activation function, it starts saturating for larger inputs (negative or positive) came out to be a major reason behind the vanishing of gradients thus making it non-recommendable to use in the **hidden layers** of the network.
 
    So to tackle the issue regarding the saturation of activation functions like sigmoid and tanh, we must use some other non-saturating functions like ReLu and its alternatives.
 
-2. *Proper weight initialization*: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers). 
+2. _Proper weight initialization_: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers).
 
-​	You can get the weights of a layer like below:
+​ You can get the weights of a layer like below:
 
 ```python
 # tf.keras
 model.layers[1].get_weights()
 ```
 
-  
+3. Residual networks are another solution, as they provide residual connections straight to earlier layers.
 
-3. Residual networks are another solution, as they provide residual connections straight to earlier layers. 
-
-4. Batch normalization (BN) layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function. 
+4. Batch normalization (BN) layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function.
 
 ```python
 # tf.keras
@@ -164,10 +158,10 @@ from keras.layers.normalization import BatchNormalization
 # instantiate model
 model = Sequential()
 
-# The general use case is to use BN between the linear and non-linear layers in your network, 
-# because it normalizes the input to your activation function, 
-# though, it has some considerable debate about whether BN should be applied before 
-# non-linearity of current layer or works best after the activation function. 
+# The general use case is to use BN between the linear and non-linear layers in your network,
+# because it normalizes the input to your activation function,
+# though, it has some considerable debate about whether BN should be applied before
+# non-linearity of current layer or works best after the activation function.
 
 model.add(Dense(64, input_dim=14, init='uniform'))    # linear layer
 model.add(BatchNormalization())                       # BN
@@ -178,9 +172,9 @@ Batch normalization applies a transformation that maintains the mean output clos
 
 ### Why ReLU
 
-**ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks. 
+**ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks.
 
-Main benefit is that the derivative/gradient of ReLu is either 0 or 1, so multiplying by it won't cause weights that are further away from the end result of the loss function to suffer from the vanishing gradient. 
+Main benefit is that the derivative/gradient of ReLu is either 0 or 1, so multiplying by it won't cause weights that are further away from the end result of the loss function to suffer from the vanishing gradient.
 
 ### What is weight decay
 
@@ -190,7 +184,7 @@ However, we don’t want these interactions to get out of hand. Hence, what if w
 
 One way to penalize complexity, would be to add all our parameters (weights) to our loss function. Well, that won’t quite work because some parameters are positive and some are negative. So what if we add the squares of all the parameters to our loss function. We can do that, however it might result in our loss getting so huge that the best model would be to set all the parameters to 0.
 
-To prevent that from happening, we multiply the sum of squares with another smaller number. This number is called ***weight decay\*** or `wd.`
+To prevent that from happening, we multiply the sum of squares with another smaller number. This number is called **\*weight decay\*** or `wd.`
 
 Our loss function now looks as follows:
 
@@ -200,15 +194,15 @@ Loss = MSE(y_hat, y) + wd * sum(w^2)
 
 ### How to use Keras Pretrained models
 
-Ref: [Medium](https://towardsdatascience.com/step-by-step-guide-to-using-pretrained-models-in-keras-c9097b647b29) 
+Ref: [Medium](https://towardsdatascience.com/step-by-step-guide-to-using-pretrained-models-in-keras-c9097b647b29)
 
 ### Type 1 error vs type 2 error
 
 You decide to get tested for COVID-19 based on mild symptoms. There are two errors that could potentially occur:
 
-| Error Name        | Example                                                      |
-| ----------------- | ------------------------------------------------------------ |
-| Type 1 Error (FP) | The test result says you have corona-virus, but you actually don’t. |
+| Error Name        | Example                                                                |
+| ----------------- | ---------------------------------------------------------------------- |
+| Type 1 Error (FP) | The test result says you have corona-virus, but you actually don’t.    |
 | Type 2 Error (FN) | The test result says you don’t have corona-virus, but you actually do. |
 
 Ref: [scribbr](https://www.scribbr.com/statistics/type-i-and-type-ii-errors/)
@@ -225,17 +219,13 @@ Let's say, we have a dataset which contains cancer patient data (Chest X-ray ima
 
 **False negative (FN):** Given an image, if your model predicts that the patient doesn't have cancer but the actual target for that image says that the patient has cancer, it is a false negative. This prediction is also false.
 
-
-
 ### Difference Evaluation Metric calculation
 
 ![](image/evals.png)AUC-ROC:
 
-AUC - ROC curve is a performance measurement for the classification problems at various threshold settings. ROC is a probability curve and AUC represents the degree or measure of separability. It tells how much the model is **capable of distinguishing between classes.** **Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1**. By analogy, the Higher the AUC, the better the model. 
+AUC - ROC curve is a performance measurement for the classification problems at various threshold settings. ROC is a probability curve and AUC represents the degree or measure of separability. It tells how much the model is **capable of distinguishing between classes.** **Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1**. By analogy, the Higher the AUC, the better the model.
 
-
-
-**I would recommend using AUC over accuracy as it’s a much better indicator of model performance. This is due to AUC using the relationship between True Positive Rate and False Positive Rate to calculate the metric. If you are wanting to use accuracy as a metric, then I would encourage you to track other metrics as well, such as AUC or F1.  [Ref](https://stephenallwright.com/auc-vs-accuracy/)
+\*\*I would recommend using AUC over accuracy as it’s a much better indicator of model performance. This is due to AUC using the relationship between True Positive Rate and False Positive Rate to calculate the metric. If you are wanting to use accuracy as a metric, then I would encourage you to track other metrics as well, such as AUC or F1. [Ref](https://stephenallwright.com/auc-vs-accuracy/)
 
 ### Difference among micro, macro, weighted f1-score
 
@@ -243,13 +233,9 @@ Excellent explanation: [medium](https://towardsdatascience.com/micro-macro-weigh
 
 ![](image/macro.png)
 
-
-
 ![](image/weighted.png)
 
 ![](image/micro.png)
-
-
 
 Ref: [Leung](https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f)
 
@@ -261,13 +247,11 @@ If the number of samples in one class outnumber the number of samples in another
 
 I would suggest to go with -
 
-- **Weighted F1-Score** or 
+- **Weighted F1-Score** or
 
 - **Average AUC/Weighted AUC**.
 
- [Ref](https://stats.stackexchange.com/a/463250/257584)
-
-
+[Ref](https://stats.stackexchange.com/a/463250/257584)
 
 ### Common Evaluation Metrics in ML
 
@@ -297,8 +281,6 @@ When it comes to **regression**, the most commonly used evaluation metrics are:
 
 - Mean absolute percentage error (MAPE)- R2
 
-  
-
 ### Deciding whether to use precision or recall or f1:
 
 It is mathematically impossible to increase both precision and recall at the same time, as both are inversely proportional to each other.. Depending on the problem at hand we decide which of them is more important to us.
@@ -311,7 +293,7 @@ Below are a couple of cases for using precision/recall/f1.
 
 2. We are all aware of the intense security checks at airports. It is of utmost importance to ensure that people do not carry weapons along them to ensure the safety of all passengers. Sometimes these systems can lead to innocent passengers getting flagged, but it is still a better scenario than letting someone dangerous onto the flight. Each flagged individual is then checked thoroughly once more and innocent people are released. In this case, the emphasis is on ensuring false negatives(people with weapons getting into flights) are avoided during initial scanning, while detected false positives(innocent passengers flagged) are eventually let free. This is a scenario for minimizing false negatives and recall is the ideal measure of how the system has performed.
 
-3. f1-score:  Consider a scenario where your model needs to predict if a particular employee has to be promoted or not and promotion is the positive outcome. In this case, promoting an incompetent employee(false positive) and not promoting a deserving candidate(false negative) can both be equally risky for the company.
+3. f1-score: Consider a scenario where your model needs to predict if a particular employee has to be promoted or not and promotion is the positive outcome. In this case, promoting an incompetent employee(false positive) and not promoting a deserving candidate(false negative) can both be equally risky for the company.
 
    When avoiding both false positives and false negatives are equally important for our problem, we need a trade-off between precision and recall. This is when we use the f1 score as a metric. An f1 score is defined as the harmonic mean of precision and recall.
 
@@ -325,29 +307,27 @@ Accuracy is used when the True Positives and True negatives are more important w
 
 Some of the most common and effective ways of calculating similarities are,
 
-***Cosine Distance/Similarity*** - It is the cosine of the angle between two vectors, which gives us the angular distance between the vectors. Formula to calculate cosine similarity between two vectors A and B is,
+**_Cosine Distance/Similarity_** - It is the cosine of the angle between two vectors, which gives us the angular distance between the vectors. Formula to calculate cosine similarity between two vectors A and B is,
 
-![img](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*YInqm5R0ZgokYXjNjE3MlQ.png)
+![img](<https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*YInqm5R0ZgokYXjNjE3MlQ.png>)
 
 In a two-dimensional space it will look like this,
 
-![angle between two vectors A and B in 2-dimensional space](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*mRjgETrg-mPt8jMBu1VtDg.png)
+![angle between two vectors A and B in 2-dimensional space](<https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*mRjgETrg-mPt8jMBu1VtDg.png>)
 
-***Euclidean Distance*** - This is one of the forms of Minkowski distance when p=2. It is defined as follows,
+**_Euclidean Distance_** - This is one of the forms of Minkowski distance when p=2. It is defined as follows,
 
-![img](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F742%2F0*55jbZL3qTdeEI5gL.png)
+![img](<https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F742%2F0*55jbZL3qTdeEI5gL.png>)
 
 In two-dimensional space, Euclidean distance will look like this,
 
-![Euclidean distance between two vectors A and B in 2-dimensional space](https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*aUFcVBD_dBAAayDFfAmo_A.png)
+![Euclidean distance between two vectors A and B in 2-dimensional space](<https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*aUFcVBD_dBAAayDFfAmo_A.png>)
 
-​                                        Fig2:  Euclidean distance between two vectors A and B in 2-dimensional space
-
-
+​ Fig2: Euclidean distance between two vectors A and B in 2-dimensional space
 
 ### IoU: Intersection over Union Metric
 
-The Intersection over Union (IoU) metric, also referred to as the Jaccard index, is essentially a method to quantify the percent overlap between the target mask and  prediction output. This metric is closely related to the Dice coefficient which is often used as a [loss function](https://www.jeremyjordan.me/semantic-segmentation/#loss) during training.
+The Intersection over Union (IoU) metric, also referred to as the Jaccard index, is essentially a method to quantify the percent overlap between the target mask and prediction output. This metric is closely related to the Dice coefficient which is often used as a [loss function](https://www.jeremyjordan.me/semantic-segmentation/#loss) during training.
 
 ![](image/iou.png)
 
@@ -359,7 +339,7 @@ union = np.logical_or(target, prediction)
 iou_score = np.sum(intersection) / np.sum(union)
 ```
 
-The IoU score is calculated for each class separately and then **averaged over all classes** to provide a global score. 
+The IoU score is calculated for each class separately and then **averaged over all classes** to provide a global score.
 
 Example Data:
 
@@ -369,7 +349,7 @@ Read more on Semantic/Instance segmentation evaluation [here](https://www.jeremy
 
 ### Association Rule Learning
 
-[Ref](https://towardsdatascience.com/apriori-algorithm-for-association-rule-learning-how-to-find-clear-links-between-transactions-bf7ebc22cf0a) : Saul Dobilas 
+[Ref](https://towardsdatascience.com/apriori-algorithm-for-association-rule-learning-how-to-find-clear-links-between-transactions-bf7ebc22cf0a) : Saul Dobilas
 
 Clustering is not the only unsupervised way to find similarities between data points. You can also use association rule learning techniques to determine if certain data points (actions) are more likely to occur together.
 
@@ -377,26 +357,24 @@ A simple example would be the supermarket shopping basket analysis. If someone i
 
 Apriori is part of the association rule learning algorithms, which sit under the unsupervised branch of Machine Learning.
 
-This is because Apriori does not require us to provide a target variable for the model. Instead, the algorithm identifies relationships between data points subject to our specified constraints. 
+This is because Apriori does not require us to provide a target variable for the model. Instead, the algorithm identifies relationships between data points subject to our specified constraints.
 
-Let's say, we have a dataset like this: 
+Let's say, we have a dataset like this:
 
 ![img](https://miro.medium.com/max/700/1*yTtuCcNJrSymJfrVj28fQg.png)
-
-
 
 Assume we analyze the above transaction data to find frequently bought items and determine if they are often purchased together. To help us find the answers, we will make use of the following 4 metrics:
 
 - Support
 - Confidence
-- Lift 
+- Lift
 
 **Calculate Support**
 
 The first step for us and the algorithm is to find frequently bought items. It is a straightforward calculation that is based on frequency:
 
 ```yaml
-Support (Item) = Transaction of that Item / Total transactions 
+Support (Item) = Transaction of that Item / Total transactions
 
 Support (Eggs) = 3 / 6  # 6 because there are shoppers 1 to 6
                = 0.5
@@ -408,22 +386,22 @@ Support (Apple) = 2 / 6
 Support (Eggs & Bacon) = 3 / 6    # 3 because there are 3 times Eggs and Becons were bought together
                        = 0.5
 
-Support (Banana & Butter) = 1 / 6 
+Support (Banana & Butter) = 1 / 6
                           = 0.16
 ```
 
 **Calculate Confidence**
 
-Now that we have identified frequently bought items let’s calculate confidence. This will tell us how confident (based on our data) we can be that an item will be purchased, given that another item has been purchased. 
+Now that we have identified frequently bought items let’s calculate confidence. This will tell us how confident (based on our data) we can be that an item will be purchased, given that another item has been purchased.
 
 ```yaml
 Confidence  = conditional probability
 Confidence (Eggs -> Bacon) = Support(Eggs & Bacon) / Support(Eggs)
-                           = 0.5 / 0.5 
-                           = 1  (100%)
+= 0.5 / 0.5
+= 1  (100%)
 Confidence (Bacon -> Eggs) = Support(Bacon & Eggs) / Support(Bacon)
-                           = 0.5 / 0.66
-                           = 0.75
+= 0.5 / 0.66
+= 0.75
 ```
 
 **Calculate Lift**
@@ -437,22 +415,21 @@ Lift(Eggs -> Bacon) = Confidence(Eggs -> Bacon) / Support(Bacon)
 
 Lift(Bacon -> Eggs) = Confidence(Bacon -> Eggs) / Support(Eggs)
                     = 0.75 / 0.5
-                    = 1.5 
+                    = 1.5
 ```
 
-Note, 
+Note,
 
 - lift>1 means that the two items are more likely to be bought together;
--  lift<1 means that the two items are more likely to be bought separately;
+- lift<1 means that the two items are more likely to be bought separately;
 - lift=1 means that there is no association between the two items.
-
-
 
 ### Compare two images and find the difference between them
 
 The difference between the two images can be measured using Mean Squared Error (MSE) and Structural Similarity Index (SSI).
 
 MSE calculation
+
 ```python
 def mse(image_A, image_B):
 	# NOTE: the two images must have the same dimension
@@ -463,33 +440,32 @@ def mse(image_A, image_B):
 ```
 
 SSI calculation
+
 ```python
 from skimage.metrics import structural_similarity as ssim
 result = ssim(image_A, image_B)
 # SSIM value can vary between -1 and 1, where 1 indicates perfect similarity.
 ```
 
-
-
 ### Why your model performance poor?
 
 1. Implementation bugs
 2. Wrong hyperparameter choises
 3. Poor data quality, doesn't represent real world data.
-4. Train data collection location and model serving location is not same. Drifts 
-5. Dataset construction issues like Not enough data, noisy data, class imbalances, train/test from different distributions. 
+4. Train data collection location and model serving location is not same. Drifts
+5. Dataset construction issues like Not enough data, noisy data, class imbalances, train/test from different distributions.
 6. Poor outlier handling.
-7. Wrong performance metric selection, doesn't meet the business KPI. 
-8. Bias Variance tradeoff. 
-9. Concept drift. 
+7. Wrong performance metric selection, doesn't meet the business KPI.
+8. Bias Variance tradeoff.
+9. Concept drift.
 
-### Reasons why your model is performing bad in production than your locally built model performance  
+### Reasons why your model is performing bad in production than your locally built model performance
 
 Ref: Liran Hasan [link](https://www.aporia.com/blog/5-reasons-your-ml-model-isnt-performing-well-in-production/)
 
 ###### Misalignment between actual business needs and machine learning objectives
 
-Before starting any project, ask your team or your stakeholders:  What business problem are we trying to solve? Why do we believe that machine learning is the right path? What is the measurable threshold of business value this project is trying to reach? What does “good enough” look like?
+Before starting any project, ask your team or your stakeholders: What business problem are we trying to solve? Why do we believe that machine learning is the right path? What is the measurable threshold of business value this project is trying to reach? What does “good enough” look like?
 
 ###### Concept Drift
 
@@ -497,26 +473,24 @@ The training dataset represents reality for the model: it’s one of the reasons
 
 ###### Application interface/ Updates
 
-Often, the ML model will be utilized by applications that are developed entirely by other teams. A common problem that occurs is when these applications are updated/modified and consequently, the data that is sent to the model is no longer what the model expects. All this without the data science team ever knowing about it. 
+Often, the ML model will be utilized by applications that are developed entirely by other teams. A common problem that occurs is when these applications are updated/modified and consequently, the data that is sent to the model is no longer what the model expects. All this without the data science team ever knowing about it.
 
 ###### Feature processing bugs
 
 Data goes through many steps of transformation before finally reaching the ML model. Changes to the data processing pipeline, whether a processing job or change of queue/database configuration, could ruin the data and corrupt the model that they are being sent to.
 
-
-
 ### How do I select features for Machine Learning?
 
-Why do we need feature selection? 
+Why do we need feature selection?
 
-Removing irrelevant features results in better performance. It gives us an easy understanding of the model. It also produce models that runs faster. 
+Removing irrelevant features results in better performance. It gives us an easy understanding of the model. It also produce models that runs faster.
 
-Techniques: 
+Techniques:
 
-1. Remove features that has high percentage of missing values. 
-2. Drop variables/features that have a very low variation. Either standardize all variables or do standard deviation and find features with zero variation. Drop features with zero variation. 
+1. Remove features that has high percentage of missing values.
+2. Drop variables/features that have a very low variation. Either standardize all variables or do standard deviation and find features with zero variation. Drop features with zero variation.
 3. Pairwise correlation: If two features are highly correlated, keeping only one will reduce dimensionality without much loss in information. Which variable to keep? The one that has higher correlation coefficient with the target.
-4. Drop variables that have a very low correlation with the target. 
+4. Drop variables that have a very low correlation with the target.
 
 Also read [here](https://towardsdatascience.com/feature-selection-techniques-in-machine-learning-with-python-f24e7da3f36e)
 
@@ -544,42 +518,36 @@ from sklearn.feature_selection import SelectKBest, chi2
 X_new = SelectKBest(chi2, k=5).fit_transform(X, y)
 ```
 
-Univariate feature selection works by selecting the best features based on univariate statistical tests. It can be seen as a preprocessing step to an estimator.  Univariate Feature Selection is a feature selection method based on the univariate statistical test, e,g: chi2, Pearson-correlation, and many more. 
+Univariate feature selection works by selecting the best features based on univariate statistical tests. It can be seen as a preprocessing step to an estimator. Univariate Feature Selection is a feature selection method based on the univariate statistical test, e,g: chi2, Pearson-correlation, and many more.
 
 ##### Recursive Feature Elimination (RFE)
 
-Recursive Feature Elimination or RFE is a Feature Selection method **utilizing a machine learning model to selecting the features by eliminating the least important feature after recursively training**. 
+Recursive Feature Elimination or RFE is a Feature Selection method **utilizing a machine learning model to selecting the features by eliminating the least important feature after recursively training**.
 
-First, the estimator is trained on the initial set of features and the importance of each feature is obtained either through any specific attribute (such as `coef_`, `feature_importances_`) or callable. Then, the least important features are pruned from current set of features. 
+First, the estimator is trained on the initial set of features and the importance of each feature is obtained either through any specific attribute (such as `coef_`, `feature_importances_`) or callable. Then, the least important features are pruned from current set of features.
 
 [Ref](https://scikit-learn.org/stable/modules/feature_selection.html)
 
-Watch this video from Data School: https://youtu.be/YaKMeAlHgqQ 
-
-
+Watch this video from Data School: https://youtu.be/YaKMeAlHgqQ
 
 ### TensorFlow interview questions
 
 1. https://www.mlstack.cafe/blog/tensorflow-interview-questions
 2. https://www.vskills.in/interview-questions/deep-learning-with-keras-interview-questions
 
-
-
 ### Differences between Linear Regression and Logistic regression
 
-| Linear Regression                                            | Logistic Regression                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Linear regression is used to predict the continuous dependent variable; **regression** algorithm. | Logistic Regression is used to predict the categorical dependent variable; ***classification\*** algorithm. |
-| Loss Function: is uses MSE to calculate errors.              | Loss Function: *log loss* is used to calculate errors.       |
-| Outputs **numeric** values.                                  | **Sigmoid** activation is used in the output to squash the values in the range of 0-1. |
+| Linear Regression                                                                                                  | Logistic Regression                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Linear regression is used to predict the continuous dependent variable; **regression** algorithm.                  | Logistic Regression is used to predict the categorical dependent variable; **\*classification\*** algorithm.                |
+| Loss Function: is uses MSE to calculate errors.                                                                    | Loss Function: _log loss_ is used to calculate errors.                                                                      |
+| Outputs **numeric** values.                                                                                        | **Sigmoid** activation is used in the output to squash the values in the range of 0-1.                                      |
 | To perform Linear regression we require a **linear** relationship between the dependent and independent variables. | To perform Logistic regression we **do not require a linear relationship** between the dependent and independent variables. |
-| Linear regression assumes **Gaussian** (or normal) distribution of the dependent variable. | Logistic regression assumes the **binomial** distribution of the dependent variable. |
-
-
+| Linear regression assumes **Gaussian** (or normal) distribution of the dependent variable.                         | Logistic regression assumes the **binomial** distribution of the dependent variable.                                        |
 
 ### Recommender System
 
-Traditionally, recommender systems are based on methods such as clustering, nearest neighbor and matrix factorization. 
+Traditionally, recommender systems are based on methods such as clustering, nearest neighbor and matrix factorization.
 
 **Collaborative filtering:**
 
@@ -587,17 +555,15 @@ Based on **past history** and what other users with similar profiles preferred i
 
 **Content-based**:
 
-Based on the content similarity. For example, "related articles".  
-
-
+Based on the content similarity. For example, "related articles".
 
 ### Container vs Docker vs Kubernetes
 
-**Container**: If we can create an environment that we can transfer to other machines (for example: your friend’s computer or a cloud service provider like Google Cloud Platform), we can reproduce the results anywhere. Hence, a container is a type of software that packages up an application and all its dependencies so the application runs reliably from one computing environment to another. 
+**Container**: If we can create an environment that we can transfer to other machines (for example: your friend’s computer or a cloud service provider like Google Cloud Platform), we can reproduce the results anywhere. Hence, a container is a type of software that packages up an application and all its dependencies so the application runs reliably from one computing environment to another.
 
-**Docker**: Docker is a company that provides software (also called Docker) that allows users to build, run and manage containers. While Docker’s container are the most common, there are other less famous *alternatives* such as [LXD](https://linuxcontainers.org/lxd/introduction/) and [LXC](https://linuxcontainers.org/) that provides container solution. 
+**Docker**: Docker is a company that provides software (also called Docker) that allows users to build, run and manage containers. While Docker’s container are the most common, there are other less famous _alternatives_ such as [LXD](https://linuxcontainers.org/lxd/introduction/) and [LXC](https://linuxcontainers.org/) that provides container solution.
 
-**Kubernetes**: Kubernetes is a powerful open-source system developed by Google back in 2014, for managing containerized applications. In simple words, Kubernetes is a system for running and coordinating containerized applications across a cluster of machines. It is a platform designed to completely manage the life cycle of containerized applications. 
+**Kubernetes**: Kubernetes is a powerful open-source system developed by Google back in 2014, for managing containerized applications. In simple words, Kubernetes is a system for running and coordinating containerized applications across a cluster of machines. It is a platform designed to completely manage the life cycle of containerized applications.
 
 Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b)
 
@@ -625,23 +591,21 @@ In the lifecycle of any application, Docker is used for packaging the applicatio
 
 ![img](https://miro.medium.com/max/700/1*dBJjxZrfdMppXhdwjZLX6w.png)
 
-
-
 Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b), original post link: [TDS](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b)
 
 ### Different types of Images
 
-An Image, by definition, is essentially a visual representation of something  that depicts or records visual perception. Images are classified in one of the three types. 
+An Image, by definition, is essentially a visual representation of something that depicts or records visual perception. Images are classified in one of the three types.
 
 - Binary Images
 - Grayscale Images
 - Color Images
 
-**Binary Images:** This is the most basic type of image that exists. The only permissible pixel values in Binary images are 0(Black) and 1(White). Since only two values are required to define the image wholly, we only need one bit and hence binary images are also known as **1-Bit** images. 
+**Binary Images:** This is the most basic type of image that exists. The only permissible pixel values in Binary images are 0(Black) and 1(White). Since only two values are required to define the image wholly, we only need one bit and hence binary images are also known as **1-Bit** images.
 
-**Grayscale Images:** Grayscale images are by definition, monochrome images. Monochrome images have only one color throughout and the intensity of each pixel is defined by the gray level it corresponds to. Generally, an **8-Bit** image is the followed standard for grayscale images implying that there are 28= 256 grey levels in the image indexed from 0 to 255. 
+**Grayscale Images:** Grayscale images are by definition, monochrome images. Monochrome images have only one color throughout and the intensity of each pixel is defined by the gray level it corresponds to. Generally, an **8-Bit** image is the followed standard for grayscale images implying that there are 28= 256 grey levels in the image indexed from 0 to 255.
 
-**Color Images:** Color images can be visualized by 3 color planes(Red, Green, Blue) stacked on top of each other. Each pixel in a specific plane contains the intensity value of the color of that plane. Each pixel in a color image is generally comprised of **24 Bits/pixel** with 8 pixels contributing from each color plane.  
+**Color Images:** Color images can be visualized by 3 color planes(Red, Green, Blue) stacked on top of each other. Each pixel in a specific plane contains the intensity value of the color of that plane. Each pixel in a color image is generally comprised of **24 Bits/pixel** with 8 pixels contributing from each color plane.
 
 ref: [geeksforgeeks](https://www.geeksforgeeks.org/how-to-convert-rgb-image-to-binary-image-using-matlab/)
 
@@ -658,7 +622,7 @@ Ref: [medium](https://towardsdatascience.com/what-is-ocr-7d46dc419eb9)
 
 ### Sigmoid Kernel
 
-The function [`sigmoid_kernel`](https://newbedev.com/scikit_learn/modules/generated/sklearn.metrics.pairwise.sigmoid_kernel#sklearn.metrics.pairwise.sigmoid_kernel) computes the sigmoid kernel between two vectors. The sigmoid kernel is also known as hyperbolic tangent, or **Multilayer Perceptron**. 
+The function [`sigmoid_kernel`](https://newbedev.com/scikit_learn/modules/generated/sklearn.metrics.pairwise.sigmoid_kernel#sklearn.metrics.pairwise.sigmoid_kernel) computes the sigmoid kernel between two vectors. The sigmoid kernel is also known as hyperbolic tangent, or **Multilayer Perceptron**.
 
 ```python
 from sklearn.metrics.pairwise import sigmoid_kernel
@@ -668,17 +632,13 @@ from sklearn.metrics.pairwise import sigmoid_kernel
 sig = sigmoid_kernel(tfv_matrix, tfv_matrix)
 ```
 
-
-
 ### Semantic Search
 
 Semantic search is a **data searching technique in a** which a search query aims to not only find keywords, but to determine the **intent and contextual meaning** of the the words a person is using for search. Semantics refer to the philosophical study of meaning.
 
-
-
 ### What is gradient
 
-A **gradient** is a derivative of a function that has more than one input variable. 
+A **gradient** is a derivative of a function that has more than one input variable.
 
 ### Mean, Median
 
@@ -691,8 +651,6 @@ See some great resources [here](static/pytorch tutorials.pdf)
 ### Kaggle
 
 - download kaggle dataset: `kaggle datasets download [username/dataset name (just copy the url after kaggle.com)]`
-
-  
 
 ### SVM
 
@@ -725,13 +683,9 @@ Support Vector Machine (SVM) is a supervised machine learning algorithm that can
 - A smaller batch size reduces overfitting because it increases the noise in the training process.
 - A smaller batch size can improve the generalization of the model.
 
-
-
 If we use a small batch size, the optimizer will only see a small portion of the data during every cycle. This introduces noise in the training process because the gradient of the batch may take you in entirely different directions. However, on average, you will head towards a reasonable local minimum like you would using a larger batch size. Here is Jason Brownlee on ["How to Control the Stability of Training Neural Networks With the Batch Size"](https://machinelearningmastery.com/how-to-control-the-speed-and-stability-of-training-neural-networks-with-gradient-descent-batch-size/):
 
 > Smaller batch sizes are noisy, offering a regularizing effect and lower generalization error.
-
-
 
 ### Python’s built-in `sorted()` function
 
@@ -782,13 +736,11 @@ The way we do this is by using activation functions.
 
 An interesting fact: the [Universal approximation theorem](https://en.wikipedia.org/wiki/Universal_approximation_theorem) states that, when using non-linear activation functions, we can turn a two-layer neural network into a universal function approximator. This is an excellent illustration of how powerful neural networks are.
 
-Some of the most popular activation functions are [sigmoid](https://en.wikipedia.org/wiki/Logistic_function), and [ReLU](https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks).  [Convolution operation is a linear operation](https://en.wikipedia.org/wiki/Convolution#Properties) without the activation functions. 
-
-
+Some of the most popular activation functions are [sigmoid](https://en.wikipedia.org/wiki/Logistic_function), and [ReLU](https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks). [Convolution operation is a linear operation](https://en.wikipedia.org/wiki/Convolution#Properties) without the activation functions.
 
 ### Batch Inference vs Online Inference
 
-Read here: https://mlinproduction.com/batch-inference-vs-online-inference/ 
+Read here: https://mlinproduction.com/batch-inference-vs-online-inference/
 
 ### t-SNE algorithm
 
@@ -845,35 +797,33 @@ Instance segmentation: Mask-RCNN (two-stage)
 
 ### Instance segmentation:
 
-Existing methods in the literature are often divided into two groups, two-stage, and one-stage instance segmentation. 
+Existing methods in the literature are often divided into two groups, two-stage, and one-stage instance segmentation.
 
 #### Two stage segmentation
 
-Two-stage instance segmentation methods usually deal with the problem as a detection task followed by segmentation, they detect the bounding boxes of the objects in the first stage, and a binary segmentation is performed for each bounding box in the second stage. 
+Two-stage instance segmentation methods usually deal with the problem as a detection task followed by segmentation, they detect the bounding boxes of the objects in the first stage, and a binary segmentation is performed for each bounding box in the second stage.
 
-**Mask R-CNN** (He et al., 2017), which is an extension for the Faster R-CNN, adds an additional branch that computes the mask to segment the objects and replaces RoI-Pooling with RoI-Align to improve the accuracy. Hence, the Mask R-CNN loss function combines the losses of the three branches; bounding box, recognized class, and the segmented mask. 
+**Mask R-CNN** (He et al., 2017), which is an extension for the Faster R-CNN, adds an additional branch that computes the mask to segment the objects and replaces RoI-Pooling with RoI-Align to improve the accuracy. Hence, the Mask R-CNN loss function combines the losses of the three branches; bounding box, recognized class, and the segmented mask.
 
-**Mask Scoring R-CNN** (Huang et al., 2019) adds a mask-IoU branch to learn the quality of the predicted masks in order to improve the performance of the instance segmentation by producing more precise mask predictions. The mAP is improved from 37.1% to 38.3% compared to the Mask R-CNN on the COCO dataset. 
+**Mask Scoring R-CNN** (Huang et al., 2019) adds a mask-IoU branch to learn the quality of the predicted masks in order to improve the performance of the instance segmentation by producing more precise mask predictions. The mAP is improved from 37.1% to 38.3% compared to the Mask R-CNN on the COCO dataset.
 
-**PANet** (Liu et al., 2018) is built upon the Mask R-CNN and FPN networks. It enhanced the extracted features in the lower layers by adding a bottom-up pathway augmentation to the FPN network in addition to proposing adaptive feature pooling to link the features grids and all feature levels. PANet achieved mAP of 40.0% on the COCO dataset, which is higher than the Mask R-CNN using the same backbone by 2.9% mAP. 
+**PANet** (Liu et al., 2018) is built upon the Mask R-CNN and FPN networks. It enhanced the extracted features in the lower layers by adding a bottom-up pathway augmentation to the FPN network in addition to proposing adaptive feature pooling to link the features grids and all feature levels. PANet achieved mAP of 40.0% on the COCO dataset, which is higher than the Mask R-CNN using the same backbone by 2.9% mAP.
 
 Although the two-stage methods can achieve state-of-the-art performance, they are usually quite slow and can not be used for real-time applications. Using one TITAN GPU, Mask R-CNN runs at 8.6 fps, and PANet runs at 4.7 fps. Real-time instance segmentation usually requires running above 30 fps.
 
 #### One stage segmentation
 
-One-stage methods usually perform detection and segmentation directly. 
+One-stage methods usually perform detection and segmentation directly.
 
-**InstanceFCN** (Dai et al., 2016) uses FCN ( *FCN* — Fully Convolutional Network) to produce several instance-sensitive score maps that have information for the relative location, then object instances proposals are generated by using an assembling module. 
+**InstanceFCN** (Dai et al., 2016) uses FCN ( _FCN_ — Fully Convolutional Network) to produce several instance-sensitive score maps that have information for the relative location, then object instances proposals are generated by using an assembling module.
 
-**YOLACT** (Bolya et al., 2019a), which is one of the first attempts for real-time instance segmentation, consists of feature backbone followed by two parallel branches. The first branch generates multiple prototype masks, whereas the second branch computes mask coefficients for each object instance. After that, the prototypes and their corresponding mask coefficients are combined linearly, followed by cropping and threshold operations to generate the final object instances. YOLACT achieved mAP of 29.8% on the COCO dataset at 33.5 fps using Titan Xp GPU. 
+**YOLACT** (Bolya et al., 2019a), which is one of the first attempts for real-time instance segmentation, consists of feature backbone followed by two parallel branches. The first branch generates multiple prototype masks, whereas the second branch computes mask coefficients for each object instance. After that, the prototypes and their corresponding mask coefficients are combined linearly, followed by cropping and threshold operations to generate the final object instances. YOLACT achieved mAP of 29.8% on the COCO dataset at 33.5 fps using Titan Xp GPU.
 
-**YOLACT++** (Bolya et al., 2019b) is an extension for YOLACT with several performance improvements while keeping it real-time. Authors utilized the same idea of the Mask Scoring R-CNN and added a fast mask re-scoring branch to assign scores to the predicted masks according to the IoU of the mask with ground-truth. Also, the 3x3 convolutions in specific layers are replaced with 3x3 deformable convolutions in the backbone network. Finally, they optimized the prediction head by using multi-scale anchors with different aspect ratios for each FPN level. YOLACT++ achieved 34.1% mAP (more than YOLACT by 4.3%) on the COCO dataset at 33.5 fps using Titan Xp GPU. However, the deformable convolution makes the network slower, as well as the upsampling blocks in YOLACT networks. 
+**YOLACT++** (Bolya et al., 2019b) is an extension for YOLACT with several performance improvements while keeping it real-time. Authors utilized the same idea of the Mask Scoring R-CNN and added a fast mask re-scoring branch to assign scores to the predicted masks according to the IoU of the mask with ground-truth. Also, the 3x3 convolutions in specific layers are replaced with 3x3 deformable convolutions in the backbone network. Finally, they optimized the prediction head by using multi-scale anchors with different aspect ratios for each FPN level. YOLACT++ achieved 34.1% mAP (more than YOLACT by 4.3%) on the COCO dataset at 33.5 fps using Titan Xp GPU. However, the deformable convolution makes the network slower, as well as the upsampling blocks in YOLACT networks.
 
-**TensorMask** (Chen et al., 2019) explored the dense sliding window instance segmentation paradigm by utilizing structured 4D tensors over the spatial domain. Also, tensor bipyramid and aligned representation are used to recover the spatial information in order to achieve better performance. However, these operations make the network slower than two-stage methods such as Mask R-CNN. 
+**TensorMask** (Chen et al., 2019) explored the dense sliding window instance segmentation paradigm by utilizing structured 4D tensors over the spatial domain. Also, tensor bipyramid and aligned representation are used to recover the spatial information in order to achieve better performance. However, these operations make the network slower than two-stage methods such as Mask R-CNN.
 
 **CenterMask** (Lee & Park, 2020) decomposed the instance segmentation task into two parallel branches: Local Shape prediction branch, which is responsible for separating the instances, and Global Saliency branch to segment the image into a pixel-to-pixel manner. The branches are built upon a point representation layer containing the local shape information at the instance centers. The point representation is utilized from CenterNet (Zhou et al., 2019a) for object detection with a DLA-34 as a backbone. Finally, the outputs of both branches are grouped together to form the final instance masks. CenterMask achieved mAP of 33.1% on the COCO dataset at 25.2 fps using Titan Xp GPU. Although the one-stage methods run at a higher frame rate, the network speed is still an issue for real-time applications. The bottlenecks in the one-stage methods in the upsampling process in some methods, such as YOLACT.
-
-
 
 ### Target Value Types
 
@@ -979,7 +929,7 @@ This is the most easy way to make inference from trained models which reduce ope
 
    ```python
    from sklearn.model_selection import GridSearchCV
-   
+
    model = KerasClassifier(build_fn=create_model, epochs=100, batch_size=10, verbose=0)
    optimizer = ['SGD', 'RMSprop', 'Adagrad', 'Adadelta', 'Adam', 'Adamax', 'Nadam']
    param_grid = dict(optimizer=optimizer)
@@ -1047,14 +997,14 @@ The critical difference here is that KNN needs labeled points and is thus superv
 
 ### Clustering
 
-Clustering algorithms can be two types: 
+Clustering algorithms can be two types:
 
 1. Centroid based, e.g. k-means clustering
-2. Density based, e.g. DBSCAN/HDBSCAN. 
+2. Density based, e.g. DBSCAN/HDBSCAN.
 
-Another way to categorize clustering is:  	
+Another way to categorize clustering is:
 
-![](image/clustering.png) 
+![](image/clustering.png)
 
 Popular clustering algorithms: k-means and DBSCAN
 
@@ -1064,15 +1014,15 @@ DBSCAN: DBSCAN stands for **density-based spatial clustering of applications wit
 
 There are some notable differences between **K-means** and **DBScan.**
 
-| **S.No.** | **K-means Clustering**                                       | **DBScan Clustering**                                        |
-| :-------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **1.**    | Clusters formed are more or less spherical or convex in shape and must have same feature size. | Clusters formed are arbitrary in shape and may not have same feature size. |
-| **2.**    | K-means clustering is sensitive to the number of clusters specified. | Number of clusters need not be specified.                    |
-| **3.**    | K-means Clustering is more efficient for large datasets.     | DBSCan Clustering can not efficiently handle high dimensional datasets. |
-| **4.**    | K-means Clustering does not work well with outliers and noisy datasets. | DBScan clustering efficiently handles outliers and noisy datasets. |
-| **5.**    | In the domain of anomaly detection, this algorithm causes problems as anomalous points will be assigned to the same cluster as “normal” data points. | DBScan algorithm, on the other hand, locates regions of high density that are separated from one another by regions of low density. |
-| **6.**    | It requires one parameter : Number of clusters (**K**)       | It requires two parameters : Radius(**R**) and Minimum Points(**M**)R determines a chosen radius such that if it includes enough points within it, it is a dense area.M determines the minimum number of data points required in a neighborhood to be defined as a cluster. |
-| **7.**    | Varying densities of the data points doesn’t affect K-means clustering algorithm. | DBScan clustering does not work very well for sparse datasets or for data points with varying density. |
+| **S.No.** | **K-means Clustering**                                                                                                                               | **DBScan Clustering**                                                                                                                                                                                                                                                       |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1.**    | Clusters formed are more or less spherical or convex in shape and must have same feature size.                                                       | Clusters formed are arbitrary in shape and may not have same feature size.                                                                                                                                                                                                  |
+| **2.**    | K-means clustering is sensitive to the number of clusters specified.                                                                                 | Number of clusters need not be specified.                                                                                                                                                                                                                                   |
+| **3.**    | K-means Clustering is more efficient for large datasets.                                                                                             | DBSCan Clustering can not efficiently handle high dimensional datasets.                                                                                                                                                                                                     |
+| **4.**    | K-means Clustering does not work well with outliers and noisy datasets.                                                                              | DBScan clustering efficiently handles outliers and noisy datasets.                                                                                                                                                                                                          |
+| **5.**    | In the domain of anomaly detection, this algorithm causes problems as anomalous points will be assigned to the same cluster as “normal” data points. | DBScan algorithm, on the other hand, locates regions of high density that are separated from one another by regions of low density.                                                                                                                                         |
+| **6.**    | It requires one parameter : Number of clusters (**K**)                                                                                               | It requires two parameters : Radius(**R**) and Minimum Points(**M**)R determines a chosen radius such that if it includes enough points within it, it is a dense area.M determines the minimum number of data points required in a neighborhood to be defined as a cluster. |
+| **7.**    | Varying densities of the data points doesn’t affect K-means clustering algorithm.                                                                    | DBScan clustering does not work very well for sparse datasets or for data points with varying density.                                                                                                                                                                      |
 
 Ref: [GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-k-means-and-dbscan-clustering/)
 
@@ -1084,11 +1034,9 @@ Ref: [GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-k-means-an
 
 - Third, the clusters formed by DBSCAN **can be any shape**, which makes it robust to different types of data.
 
-  
+Though DBSCAN creates clusters based on varying densities, it struggles with clusters of similar densities. Also, as the dimension of data increases, it becomes difficult for DBSCAN to create clusters and it falls prey to the Curse of Dimensionality.
 
-Though DBSCAN creates clusters based on varying densities, it struggles with clusters of similar densities. Also, as the dimension of data increases, it becomes difficult for DBSCAN to create clusters and it falls prey to the Curse of Dimensionality. 
-
-There also exists a much better and recent version of this algorithm known as HDBSCAN which uses Hierarchical Clustering combined with regular DBSCAN. It is much faster and accurate than DBSCAN. Understand HDBSCAN. 
+There also exists a much better and recent version of this algorithm known as HDBSCAN which uses Hierarchical Clustering combined with regular DBSCAN. It is much faster and accurate than DBSCAN. Understand HDBSCAN.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dGsxd67IFiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -1137,8 +1085,6 @@ model.add(Dense(4))
 model.compile(loss='mean_squared_error', optimizer='SGD')
 ```
 
-
-
 [![enter image description here](https://i.stack.imgur.com/lmrin.png)](https://i.stack.imgur.com/lmrin.png) This is how Flatten works converting Matrix to single array. Flattening a tensor means to remove all of the dimensions except for one. This is exactly what the Flatten layer does.
 
 Ref: [Stackoverflow](https://stackoverflow.com/a/57112001/5920567)
@@ -1171,8 +1117,6 @@ L1 regularization is not included by default in the PyTorch optimizers, but coul
 Semantic segmentation treats **multiple objects of the same class** as a single entity.
 
 On the other hand, instance segmentation treats **multiple objects of the same class** as distinct individual objects (or **instances**). Typically, **instance segmentation** is harder than **semantic segmentation**.
-
-
 
 ### Semantic Segmentation
 
@@ -1257,7 +1201,7 @@ jac = jaccard_similarity_score(predictions, label, Normalize = True/False)
 
 ##### Instance Segmentation
 
-TODO: 
+TODO:
 
 ### What is the objective of Gradient Descent?
 
@@ -1416,7 +1360,7 @@ When to use random forest :
 
 ### How Random Forest Works
 
-See this YouTube Video https://youtu.be/v6VJ2RO66Ag  
+See this YouTube Video https://youtu.be/v6VJ2RO66Ag
 
 ### Random Forest vs Gradient Boosting
 
@@ -1432,29 +1376,25 @@ We do not have full theoretical analysis of it, so this answer is more about int
 
 The thing to observe is that the motivation behind random forest and gradient boosting is very different. Random forest, like the bagging algorithm, tries to reduce variance. The idea behind it is that when you learn, some random artifacts might move the learner away from the target. Therefore, by learning simultaneously multiple models and averaging their results you can reduce the variance, that is, the amount skewness introduced by the random artifacts. In order to obtain truly different models and not just repetition of the same model different techniques may be used. In random forest different features are used for each tree while in bagging different subsets of the training data are used.
 
-Gradient boosting generates an ensemble of trees too but does so in a different way, motivated by different ideas. Gradient Boosting is a gradient descent type of an algorithm. In each round, it takes the current ensemble that it has and computes a gradient, i.e. a direction in which the model can improve (actually the direction of improvement is the opposite side of the gradient but let’s put that aside). With this direction in hand, it trains a tree to predict it and adds it to the gradient. Therefore, each additional tree tries to get the model closer to the target and reduce the bias of the model rather than the variance.  [Ref](https://qr.ae/pvuliq)
+Gradient boosting generates an ensemble of trees too but does so in a different way, motivated by different ideas. Gradient Boosting is a gradient descent type of an algorithm. In each round, it takes the current ensemble that it has and computes a gradient, i.e. a direction in which the model can improve (actually the direction of improvement is the opposite side of the gradient but let’s put that aside). With this direction in hand, it trains a tree to predict it and adds it to the gradient. Therefore, each additional tree tries to get the model closer to the target and reduce the bias of the model rather than the variance. [Ref](https://qr.ae/pvuliq)
 
 ##### Bagging vs Boosting
 
 Random forests which is based on bagging and Gradient boosting that as the name suggests uses a technique called boosting. Bagging and boosting are both ensemble techniques, which basically means that both approaches combine multiple weak learners to create a model with a lower error than individual learners. The most obvious difference between the two approaches is that **bagging builds all weak learners simultaneously and independently**, whereas **boosting builds the models subsequently and uses the information of the previously built ones to improve the accuracy**.
 
-Note: bagging and boosting can use several algorithms as base algorithms and are thus not limited to using decision trees.  [Ref](https://www.vantage-ai.com/en/blog/demystifying-decision-trees-random-forests-gradient-boosting)
+Note: bagging and boosting can use several algorithms as base algorithms and are thus not limited to using decision trees. [Ref](https://www.vantage-ai.com/en/blog/demystifying-decision-trees-random-forests-gradient-boosting)
 
 ### Max depth in decision tree
 
-It can also be described as the length of the longest path from the tree root to a leaf. The root node is considered to have a depth of 0. The Max Depth value **cannot exceed 30 on a 32-bit machine**. The default value is 30. 
+It can also be described as the length of the longest path from the tree root to a leaf. The root node is considered to have a depth of 0. The Max Depth value **cannot exceed 30 on a 32-bit machine**. The default value is 30.
 
 The maximum depth that you allow the tree to grow to. The deeper you allow, the more complex your model will become.
 
 For training error, it is easy to see what will happen. If you increase `max_depth`, training error will always go down (or at least not go up).
 
-For testing error, it gets less obvious. If you set `max_depth` *too high*, then the decision tree might simply overfit the training data without capturing useful patterns as we would like; this will cause testing error to increase. But if you set it *too low*, that is not good as well; then you might be giving the decision tree too little flexibility to capture the patterns and interactions in the training data. This will also cause the testing error to increase.
+For testing error, it gets less obvious. If you set `max_depth` _too high_, then the decision tree might simply overfit the training data without capturing useful patterns as we would like; this will cause testing error to increase. But if you set it _too low_, that is not good as well; then you might be giving the decision tree too little flexibility to capture the patterns and interactions in the training data. This will also cause the testing error to increase.
 
 There is a nice golden spot in between the extremes of too-high and too-low. Usually, the modeller would consider the `max_depth` as a hyper-parameter, and use some sort of grid/random search with cross-validation to find a good number for `max_depth`. [Ref](https://stackoverflow.com/a/49289462/5920567)
-
-
-
-
 
 ### What's the best way to initialize the weights of a neural network?
 
@@ -1470,7 +1410,7 @@ Different image formats (especially lossy ones) may produce different input arra
 
 ### What to do when there is no data/little data for a ML product
 
-Consider the task of building a chatbot or text classification system at your organization. In the beginning there may be little or no data to work with. At this point, a basic solution using rule-based systems or traditional machine learning will be apt. As you accumulate more data, more sophisticated NLP techniques (which are often data intensive) can be used, including deep learning. At each step of this journey there are dozens of alternative approaches one can take. 
+Consider the task of building a chatbot or text classification system at your organization. In the beginning there may be little or no data to work with. At this point, a basic solution using rule-based systems or traditional machine learning will be apt. As you accumulate more data, more sophisticated NLP techniques (which are often data intensive) can be used, including deep learning. At each step of this journey there are dozens of alternative approaches one can take.
 
 ### Deal with imbalance data
 
@@ -1478,7 +1418,7 @@ Most classification data sets do not have exactly equal number of instances in e
 
 There are problems where a class imbalance is not just common, it is expected. For example, in datasets like those that characterize fraudulent transactions are imbalanced. The vast majority of the transactions will be in the “Not-Fraud” class and a very small minority will be in the “Fraud” class.
 
-######  1. Can You Collect More Data?
+###### 1. Can You Collect More Data?
 
 You might think it’s silly, but collecting more data is almost always overlooked. Can you collect more data? Take a second and think about whether you are able to gather more data on your problem. A larger dataset might expose a different and perhaps more balanced perspective on the classes. More examples of minor classes may be useful later when we look at resampling your dataset.
 
@@ -1486,9 +1426,9 @@ You might think it’s silly, but collecting more data is almost always overlook
 
 Accuracy is not the metric to use when working with an imbalanced dataset. We have seen that it is misleading. There are metrics that have been designed to tell you a more truthful story when working with imbalanced classes.
 
-Instead of accuracy, you can choose other metrics like, 
+Instead of accuracy, you can choose other metrics like,
 
-- Cohen's Kappa 
+- Cohen's Kappa
 
   ```python
   sklearn.metrics.cohen_kappa_score(y1, y2, *, labels=None, weights=None, sample_weight=None)
@@ -1504,7 +1444,7 @@ You can change the dataset that you use to build your predictive model to have m
 
 This change is called sampling your dataset and there are two main methods that you can use to even-up the classes:
 
-- You can add copies of instances from the under-represented class called **over-sampling** 
+- You can add copies of instances from the under-represented class called **over-sampling**
 
 - You can delete instances from the over-represented class, called **under-sampling**.
 
@@ -1518,19 +1458,17 @@ SMOTE works by **utilizing a k-nearest neighbour algorithm to create synthetic d
 
 ```python
 import imblearn
-from imblearn.over_sampling import SMOTE 
+from imblearn.over_sampling import SMOTE
 
 sm = SMOTE(random_state=42)
 X_resample, y_resample = sm.fit_resample(X, y)
 ```
 
-
-
 ###### 5. Ensembling Methods (Ensemble of Sampler)
 
 In the scikit-learn library, there is an ensemble classifier named`BaggingClassifier`. However, this classifier does not allow to balance each subset of data. Therefore, when training on imbalanced data set, this classifier will favour the majority classes and create a biased model.
 
-In order to fix this, we can use `BalancedBaggingClassifier` from **imblearn** library. It allows the resampling of each subset of the dataset before training each estimator of the ensemble. Therefore, `BalancedBaggingClassifier` takes the same parameters as the scikit-learn `BaggingClassifier`in addition to two other parameters, `sampling_strategy` and `replacement` which control the behaviour of the random sampler. Here is some code that shows how to do this: 
+In order to fix this, we can use `BalancedBaggingClassifier` from **imblearn** library. It allows the resampling of each subset of the dataset before training each estimator of the ensemble. Therefore, `BalancedBaggingClassifier` takes the same parameters as the scikit-learn `BaggingClassifier`in addition to two other parameters, `sampling_strategy` and `replacement` which control the behaviour of the random sampler. Here is some code that shows how to do this:
 
 ```python
 from imblearn.ensemble import BalancedBaggingClassifier
@@ -1545,27 +1483,21 @@ bbc = BalancedBaggingClassifier(base_estimator=DecisionTreeClassifier(),
 
 You should always split your dataset into training and testing sets before balancing the data.
 
-
-
 ### C𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁 and D𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁
 
 **Concept drift**
 
-Imagine you are developing a model for a self-driving car to detect other vehicles at night.  Well, this is not too difficult, since vehicles have two red tail lights and it is easy to get a lot of data. You model works great!
+Imagine you are developing a model for a self-driving car to detect other vehicles at night. Well, this is not too difficult, since vehicles have two red tail lights and it is easy to get a lot of data. You model works great!
 
 ![](image/data_drift.jpeg)
 
-
-
 Then,
 
-Car companies decide to experiment with red horizontal bars instead of two individual lights. Now your model fails to detect these cars because it has never seen this kind of tail light. Your model is suffering from 𝗰𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁. 
+Car companies decide to experiment with red horizontal bars instead of two individual lights. Now your model fails to detect these cars because it has never seen this kind of tail light. Your model is suffering from 𝗰𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁.
 
 ![](image/concept_drift.jpeg)
 
-
-
-Concept drift happens when the objects you are trying to model change over time. In the case above, cars changed and you now need to adapt your model. 
+Concept drift happens when the objects you are trying to model change over time. In the case above, cars changed and you now need to adapt your model.
 
 **Data drift**
 
@@ -1573,23 +1505,34 @@ You are now dealing with the detection of traffic signs. Again, at night things 
 
 ![](image/traffice_signs.png)
 
-
-
-New cars start getting more powerful laser high beams and now suddenly the signs reflect so much light that there are overexposed in the image. The problem now is 𝗱𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁. 
+New cars start getting more powerful laser high beams and now suddenly the signs reflect so much light that there are overexposed in the image. The problem now is 𝗱𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁.
 
 ![](image/light_reflection.png)
-
-
 
 Data drift happens when the object you are modeling stays the same, but the environment changes in a way that affects how the object is perceived. In this case, the signs are exactly the same, but they appear different because of the lighting.
 
 What can we do about these problems? While there are some methods like online learning to continue improving the model and some others to detect the drift, usually the solution is just to retrain your model. This is something you need to be prepared about in your pipeline!
 
+### What to do when your training and testing data come from different distributions?
+
+One approach is to combine all sources of data altogether and shuffle the data, before splitting it into train-test-validation. Read more from [here](https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/)
+
+### How do you combine an image and meta data as input in machine learning?
+
+You need a model that takes 2 inputs. Here's an example of how this works:
+
+1. The first input takes the image and turns it into a **feature vector**, perhaps by using a series of convolutional layers.
+2. The second input takes the metadata and turns it into a feature vector, perhaps using a series of fully-connected layers.
+3. **Concatenate** both feature vectors.
+4. Use some number of **fully-connected layers** to yield a predicted output.
+
+Ref: [stackexchange](https://stats.stackexchange.com/a/473678/257584)
+
 ### Sequential data
 
-Sequential Data is any kind of data where the order matters as you said. So we can assume that time series is a kind of sequential data, because the order matters. A time series is a sequence taken at successive equally spaced points in time and it is not the only case of sequential data. In the latter the order is defined by the dimension of time. There are other cases of sequential data as data from text documents, where you can take into account the order of the terms or biological data (DNA sequence etc.). 
+Sequential Data is any kind of data where the order matters as you said. So we can assume that time series is a kind of sequential data, because the order matters. A time series is a sequence taken at successive equally spaced points in time and it is not the only case of sequential data. In the latter the order is defined by the dimension of time. There are other cases of sequential data as data from text documents, where you can take into account the order of the terms or biological data (DNA sequence etc.).
 
-### How to select the value of K in K-means clustering? 
+### How to select the value of K in K-means clustering?
 
 The elbow method runs k-means clustering on the dataset for a range of values of k (say 1 to 10).
 
@@ -1614,7 +1557,7 @@ plt.show()
 
 ![scatter plot](https://editor.analyticsvidhya.com/uploads/75736cluster.PNG)
 
-Visually we can see that the optimal number of clusters should be around 3. But ***visualizing the data alone cannot always give the right answer*****.**
+Visually we can see that the optimal number of clusters should be around 3. But **\*visualizing the data alone cannot always give the right answer\*\*\***.\*\*
 
 ```
 Sum_of_squared_distances = []
@@ -1624,8 +1567,8 @@ for num_clusters in K :
  kmeans.fit(data_frame)
  Sum_of_squared_distances.append(kmeans.inertia_)
 plt.plot(K,Sum_of_squared_distances,’bx-’)
-plt.xlabel(‘Values of K’) 
-plt.ylabel(‘Sum of squared distances/Inertia’) 
+plt.xlabel(‘Values of K’)
+plt.ylabel(‘Sum of squared distances/Inertia’)
 plt.title(‘Elbow Method For Optimal k’)
 plt.show()
 
@@ -1637,7 +1580,7 @@ The curve looks like an elbow. In the above plot, the elbow is at k=3 (i.e. Sum 
 
 [src](https://www.analyticsvidhya.com/blog/2021/05/k-mean-getting-the-optimal-number-of-clusters/)
 
-### ANN parameter calculation	
+### ANN parameter calculation
 
 ![](image/parameter calculation.png)
 
@@ -1647,13 +1590,9 @@ The curve looks like an elbow. In the above plot, the elbow is at k=3 (i.e. Sum 
 
 ![](image/cnn_params.png)
 
+### Why transformer based models perform better
 
-
-### Why transformer based models perform better	
-
-Transformer architectures are typically trained in a semi-supervised manner on a massive amount of text. 
-
-
+Transformer architectures are typically trained in a semi-supervised manner on a massive amount of text.
 
 ### Building batch data pipeline on GCP
 
@@ -1666,10 +1605,6 @@ Transformer architectures are typically trained in a semi-supervised manner on a
 ##### Difference between NULL and BLANK
 
 A NULL is the absence of data. A BLANK is a value (empty string). Consider if you are trying to filter out both NULLS and BLANKS or only NULLs or only BLANKs.
-
-
-
-
 
 ### TensorFlow/Keras Functions and Classes
 
@@ -1708,8 +1643,6 @@ tf.keras.preprocessing.image.ImageDataGenerator(
 
 doc: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator
 
-
-
 ##### BatchNormalization
 
 Layer that normalizes its inputs.
@@ -1745,7 +1678,7 @@ Optimizers are Classes or methods used to change the attributes of your machine/
 
 ##### Random_state of sklearn
 
-*random_state* is a parameter that allows reproducibility. When this is specified, every time the code is run, the data will be split in the same way. If it isn’t specified, then each iteration will be random. 
+_random_state_ is a parameter that allows reproducibility. When this is specified, every time the code is run, the data will be split in the same way. If it isn’t specified, then each iteration will be random.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -1763,7 +1696,7 @@ Multi-class classification:
 
 Binary classification:
 
-you can either just have two outputs with a `softmax` final similar to above, or you can have *final* layer with one output, `activation='sigmoid'` and `loss='binary_crossentropy'`. 
+you can either just have two outputs with a `softmax` final similar to above, or you can have _final_ layer with one output, `activation='sigmoid'` and `loss='binary_crossentropy'`.
 
 Ref: [stackexchange](https://datascience.stackexchange.com/a/10052)
 
@@ -1774,7 +1707,7 @@ When one is explicitly using softmax (or sigmoid) function, then, for the classi
 softmax/sigmoid ->
 
 ```
-tf.keras.losses.CategoricalCrossentropy(from_logits=False) 
+tf.keras.losses.CategoricalCrossentropy(from_logits=False)
 ```
 
 One is **not using the softmax** function separately and wants to include it in the calculation of the loss function. This means that whatever inputs you are providing to the loss function is not scaled.
@@ -1785,11 +1718,9 @@ tf.keras.losses.CategoricalCrossentropy(from_logits=True)
 
 Ref: [stackoverflow](https://stackoverflow.com/a/71365020)
 
+### Split dataset in train validation and test in the local directory
 
-
-### Split dataset in train validation and test in the local directory 
-
-Split folders with files (e.g. images) into **train**, **validation** and **test** (dataset) folders. Use [this](https://pypi.org/project/split-folders/) library. 
+Split folders with files (e.g. images) into **train**, **validation** and **test** (dataset) folders. Use [this](https://pypi.org/project/split-folders/) library.
 
 ```python
 import splitfolders
@@ -1806,7 +1737,4 @@ splitfolders.ratio(
 )  # default values
 ```
 
-
-
 ### RDD programming in Spark
-
