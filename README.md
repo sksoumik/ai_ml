@@ -1,3 +1,7 @@
+### ML System Design
+
+https://huyenchip.com/machine-learning-systems-design/design-a-machine-learning-system.html#design-a-machine-learning-system-dwGQI5R
+
 ### Overfitting vs Underfitting
 
 **Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit. 
@@ -1470,7 +1474,78 @@ Consider the task of building a chatbot or text classification system at your or
 
 ### Deal with imbalance data
 
-See [this](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data) tutorial. 
+Most classification data sets do not have exactly equal number of instances in each class, but a small difference often does not matter.
+
+There are problems where a class imbalance is not just common, it is expected. For example, in datasets like those that characterize fraudulent transactions are imbalanced. The vast majority of the transactions will be in the “Not-Fraud” class and a very small minority will be in the “Fraud” class.
+
+######  1. Can You Collect More Data?
+
+You might think it’s silly, but collecting more data is almost always overlooked. Can you collect more data? Take a second and think about whether you are able to gather more data on your problem. A larger dataset might expose a different and perhaps more balanced perspective on the classes. More examples of minor classes may be useful later when we look at resampling your dataset.
+
+###### 2. Change Performance Metric
+
+Accuracy is not the metric to use when working with an imbalanced dataset. We have seen that it is misleading. There are metrics that have been designed to tell you a more truthful story when working with imbalanced classes.
+
+Instead of accuracy, you can choose other metrics like, 
+
+- Cohen's Kappa 
+
+  ```python
+  sklearn.metrics.cohen_kappa_score(y1, y2, *, labels=None, weights=None, sample_weight=None)
+  ```
+
+- Weighted F1-Score
+
+- Average AUC/Weighted AUC
+
+###### 3. Try Resampling Your Dataset
+
+You can change the dataset that you use to build your predictive model to have more balanced data.
+
+This change is called sampling your dataset and there are two main methods that you can use to even-up the classes:
+
+- You can add copies of instances from the under-represented class called **over-sampling** 
+
+- You can delete instances from the over-represented class, called **under-sampling**.
+
+These approaches are often very easy to implement and fast to run. They are an excellent starting point.
+
+###### 4. Generate Synthetic Data
+
+For example, we can use **SMOTE** - Synthetic Minority Oversampling Technique or oversampling. SMOTE is an oversampling method. It works by creating synthetic samples from the minor class instead of creating copies.
+
+SMOTE works by **utilizing a k-nearest neighbour algorithm to create synthetic data**. SMOTE first start by choosing random data from the minority class, then k-nearest neighbours from the data are set. Synthetic data would then be made between the random data and the randomly selected k-nearest neighbour.
+
+```python
+import imblearn
+from imblearn.over_sampling import SMOTE 
+
+sm = SMOTE(random_state=42)
+X_resample, y_resample = sm.fit_resample(X, y)
+```
+
+
+
+###### 5. Ensembling Methods (Ensemble of Sampler)
+
+In the scikit-learn library, there is an ensemble classifier named`BaggingClassifier`. However, this classifier does not allow to balance each subset of data. Therefore, when training on imbalanced data set, this classifier will favour the majority classes and create a biased model.
+
+In order to fix this, we can use `BalancedBaggingClassifier` from **imblearn** library. It allows the resampling of each subset of the dataset before training each estimator of the ensemble. Therefore, `BalancedBaggingClassifier` takes the same parameters as the scikit-learn `BaggingClassifier`in addition to two other parameters, `sampling_strategy` and `replacement` which control the behaviour of the random sampler. Here is some code that shows how to do this: 
+
+```python
+from imblearn.ensemble import BalancedBaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+#Create an object of the classifier.
+bbc = BalancedBaggingClassifier(base_estimator=DecisionTreeClassifier(),
+                                sampling_strategy='auto',
+                                replacement=False,
+                                random_state=0)
+```
+
+You should always split your dataset into training and testing sets before balancing the data.
+
+
 
 ### C𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁 and D𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁
 
