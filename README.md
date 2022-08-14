@@ -467,6 +467,55 @@ result = ssim(image_A, image_B)
 
 
 
+### Why your model performance poor?
+
+1. Implementation bugs
+2. Wrong hyperparameter choises
+3. Poor data quality, doesn't represent real world data.
+4. Train data collection location and model serving location is not same. Drifts 
+5. Dataset construction issues like Not enough data, noisy data, class imbalances, train/test from different distributions. 
+6. Poor outlier handling.
+7. Wrong performance metric selection, doesn't meet the business KPI. 
+8. Bias Variance tradeoff. 
+9. Concept drift. 
+
+### Reasons why your model is performing bad in production than your locally built model performance  
+
+Ref: Liran Hasan [link](https://www.aporia.com/blog/5-reasons-your-ml-model-isnt-performing-well-in-production/)
+
+###### Misalignment between actual business needs and machine learning objectives
+
+Before starting any project, ask your team or your stakeholders:  What business problem are we trying to solve? Why do we believe that machine learning is the right path? What is the measurable threshold of business value this project is trying to reach? What does “good enough” look like?
+
+###### Concept Drift
+
+The training dataset represents reality for the model: it’s one of the reasons that gathering as much data as possible is critical for a well-performing, robust model. Yet, the model is only trained on a snapshot of reality; The world is continuously changing. That means that the concepts the model has learned are changing as time passes by and accordingly, its performance degrades. That’s why it’s essential to be on the lookout for when concept drifts occur in your model and to detect them as soon as possible.
+
+###### Application interface/ Updates
+
+Often, the ML model will be utilized by applications that are developed entirely by other teams. A common problem that occurs is when these applications are updated/modified and consequently, the data that is sent to the model is no longer what the model expects. All this without the data science team ever knowing about it. 
+
+###### Feature processing bugs
+
+Data goes through many steps of transformation before finally reaching the ML model. Changes to the data processing pipeline, whether a processing job or change of queue/database configuration, could ruin the data and corrupt the model that they are being sent to.
+
+
+
+### How do I select features for Machine Learning?
+
+Why do we need feature selection? 
+
+Removing irrelevant features results in better performance. It gives us an easy understanding of the model. It also produce models that runs faster. 
+
+Techniques: 
+
+1. Remove features that has high percentage of missing values. 
+2. Drop variables/features that have a very low variation. Either standardize all variables or do standard deviation and find features with zero variation. Drop features with zero variation. 
+3. Pairwise correlation: If two features are highly correlated, keeping only one will reduce dimensionality without much loss in information. Which variable to keep? The one that has higher correlation coefficient with the target.
+4. Drop variables that have a very low correlation with the target. 
+
+Also read [here](https://towardsdatascience.com/feature-selection-techniques-in-machine-learning-with-python-f24e7da3f36e)
+
 ### TensorFlow interview questions
 
 1. https://www.mlstack.cafe/blog/tensorflow-interview-questions
