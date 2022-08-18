@@ -1046,6 +1046,20 @@ Ref: [towardsdatascience](https://towardsdatascience.com/understanding-dbscan-an
 
 The ROC curve is a graphical representation of the contrast between true **positive rates** and the false **positive rate** at various thresholds. It’s often used as a proxy for the trade-off between the **sensitivity** of the model (true positives) vs the fall-out or the probability it will trigger a false alarm (false positives).
 
+### Kubeflow vs MLflow
+
+Both enable serving models at an API endpoint. 
+
+![](image/kubeflowmlflow.jpg) 
+
+Image Ref: [analyticsindiamag](https://analyticsindiamag.com/kubeflow-vs-mlflow-which-mlops-tool-should-you-use/)
+
+Read more from [here](https://servian.dev/the-cheesy-analogy-of-mlflow-and-kubeflow-715a45580fbe)
+
+
+
+
+
 ### Convolution Operation
 
 There are two inputs to a convolutional operation
@@ -1369,6 +1383,18 @@ Both uses decision trees. But
 Unlike random forests, the decision trees in gradient boosting are built additively; in other words, each decision tree is built one after another.
 
 In random forests, the results of decision trees are aggregated at the end of the process. Gradient boosting doesn’t do this and instead aggregates the results of each decision tree along the way to calculate the final result.
+
+Boosting (which is sequential), RF grows trees in **parallel**.  
+
+Boosting reduces error mainly by reducing bias.
+
+RF reduces error mainly by reducing variance. 
+
+RF uses decision trees, which are very prone to overfitting. In order to achieve higher accuracy, RF decides to create a large number of them based on [bagging](https://en.wikipedia.org/wiki/Bootstrap_aggregating). The basic idea is to resample the data over and over and for each sample train a new classifier. Different classifiers overfit the data in a different way, and through voting those differences are averaged out.
+
+GB is a boosting method, which builds on [weak classifiers](https://stats.stackexchange.com/questions/82049/what-is-meant-by-weak-learner). The idea is to add a classifier at a time, so that the next classifier is trained to improve the already trained ensemble. 
+
+Ref: stackexchange [[1](https://stats.stackexchange.com/a/195393/257584)] [[2](https://stats.stackexchange.com/a/174020/257584)]
 
 ### Why does gradient boosting generally outperform random forests?
 
@@ -1789,4 +1815,7 @@ splitfolders.ratio(
 )  # default values
 ```
 
-### RDD programming in Spark
+### Sparse Matrices
+
+In numerical analysis and scientific computing, a sparse matrix or sparse array is **a matrix in which most of the elements are zero**.
+
