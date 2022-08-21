@@ -1,6 +1,8 @@
 This site is maintained and updated by [Sadman Kabir Soumik](https://www.linkedin.com/in/sksoumik/)
 
-Most of the contents in this page are collected from different blogs, videos, books written/made by other people. References are given with each section.
+[Most of the contents in this page are collected from different blogs, videos, books written/made by other people. References are given with each section.]
+
+---
 
 ### Overfitting vs Underfitting
 
