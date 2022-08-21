@@ -1821,9 +1821,9 @@ In numerical analysis and scientific computing, a sparse matrix or sparse array 
 
 ### Data Pipeline vs ETL Pipelin
 
-Watch the video :
+https://www.youtube.com/watch?v=VtzvF17ysbc
 
-https://youtu.be/VtzvF17ysbc
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=VtzvF17ysbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### What is Batch Inference?
 
