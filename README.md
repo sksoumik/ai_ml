@@ -139,7 +139,7 @@ However, when _n_ hidden layers use an activation like the sigmoid function, _n_
 
 2. _Proper weight initialization_: There are different ways to initialize weights, for example, Xavier/Glorot initialization, Kaiming initializer etc. Keras API has default weight initializer for each types of layers. For example, see the available initializers for tf.keras in [keras doc](https://keras.io/api/layers/initializers/#layer-weight-initializers).
 
- You can get the weights of a layer like below:
+You can get the weights of a layer like below:
 
 ```python
 # tf.keras
@@ -323,7 +323,7 @@ In two-dimensional space, Euclidean distance will look like this,
 
 ![Euclidean distance between two vectors A and B in 2-dimensional space](<https://pocket-image-cache.com//filters:format(jpg):extract_focal()/https%3A%2F%2Fmiro.medium.com%2Fmax%2F1144%2F1*aUFcVBD_dBAAayDFfAmo_A.png>)
 
- Fig2: Euclidean distance between two vectors A and B in 2-dimensional space
+Fig2: Euclidean distance between two vectors A and B in 2-dimensional space
 
 ### IoU: Intersection over Union Metric
 
@@ -1048,17 +1048,13 @@ The ROC curve is a graphical representation of the contrast between true **posit
 
 ### Kubeflow vs MLflow
 
-Both enable serving models at an API endpoint. 
+Both enable serving models at an API endpoint.
 
-![](image/kubeflowmlflow.jpg) 
+![](image/kubeflowmlflow.jpg)
 
 Image Ref: [analyticsindiamag](https://analyticsindiamag.com/kubeflow-vs-mlflow-which-mlops-tool-should-you-use/)
 
 Read more from [here](https://servian.dev/the-cheesy-analogy-of-mlflow-and-kubeflow-715a45580fbe)
-
-
-
-
 
 ### Convolution Operation
 
@@ -1378,21 +1374,21 @@ See this YouTube Video https://youtu.be/v6VJ2RO66Ag
 
 ### Random Forest vs Gradient Boosting
 
+Boosting (which is **sequential**), RF grows trees in **parallel**.
+
 Both uses decision trees. But
 
 Unlike random forests, the decision trees in gradient boosting are built additively; in other words, each decision tree is built one after another.
 
 In random forests, the results of decision trees are aggregated at the end of the process. Gradient boosting doesn’t do this and instead aggregates the results of each decision tree along the way to calculate the final result.
 
-Boosting (which is sequential), RF grows trees in **parallel**.  
-
 Boosting reduces error mainly by reducing bias.
 
-RF reduces error mainly by reducing variance. 
+RF reduces error mainly by reducing variance.
 
 RF uses decision trees, which are very prone to overfitting. In order to achieve higher accuracy, RF decides to create a large number of them based on [bagging](https://en.wikipedia.org/wiki/Bootstrap_aggregating). The basic idea is to resample the data over and over and for each sample train a new classifier. Different classifiers overfit the data in a different way, and through voting those differences are averaged out.
 
-GB is a boosting method, which builds on [weak classifiers](https://stats.stackexchange.com/questions/82049/what-is-meant-by-weak-learner). The idea is to add a classifier at a time, so that the next classifier is trained to improve the already trained ensemble. 
+GB is a boosting method, which builds on [weak classifiers](https://stats.stackexchange.com/questions/82049/what-is-meant-by-weak-learner). The idea is to add a classifier at a time, so that the next classifier is trained to improve the already trained ensemble.
 
 Ref: stackexchange [[1](https://stats.stackexchange.com/a/195393/257584)] [[2](https://stats.stackexchange.com/a/174020/257584)]
 
@@ -1561,11 +1557,11 @@ To combine text features and numerical features follow this:
 - For Text Features, vectorize it using BoW,TFIDF,AvgW2V,TFIDFW2V any of these text feature vectorization techniques.
 - For Numerical Features , use Normalisation or Column Standardization to scale the numerical data.
 - If in case you also want to use Categorical Features, then use OneHotEncoding, LabelEncoding, ResponseCoding etc , to vectorise the Categorical Features.
-- Use hstack to put all the features in one dataframe. eg. X_tr=hstack((vectorised_text_features...., standardised_numerical_features..., standardised_categorical_features...)) And, your Train Data is ready. Now , modelling can be performed. 
+- Use hstack to put all the features in one dataframe. eg. X_tr=hstack((vectorised_text_features...., standardised_numerical_features..., standardised_categorical_features...)) And, your Train Data is ready. Now , modelling can be performed.
 
-Ref: [StackOverflow](https://stackoverflow.com/a/56846321/5920567) 
+Ref: [StackOverflow](https://stackoverflow.com/a/56846321/5920567)
 
-You can also use Pipeline from sklearn: 
+You can also use Pipeline from sklearn:
 
 ```python
 from sklearn.pipeline import Pipeline, FeatureUnion
@@ -1600,7 +1596,7 @@ pipeline = Pipeline([
 ])
 ```
 
-Read more: [TDS](https://towardsdatascience.com/how-to-combine-textual-and-numerical-features-for-machine-learning-in-python-dc1526ca94d9) 
+Read more: [TDS](https://towardsdatascience.com/how-to-combine-textual-and-numerical-features-for-machine-learning-in-python-dc1526ca94d9)
 
 ### How do you with biases in Data?
 
@@ -1819,3 +1815,24 @@ splitfolders.ratio(
 
 In numerical analysis and scientific computing, a sparse matrix or sparse array is **a matrix in which most of the elements are zero**.
 
+### Data Pipeline vs ETL Pipelin
+
+Watch the video :
+
+https://youtu.be/VtzvF17ysbc
+
+### What is Batch Inference?
+
+Batch inference, or offline inference, is the process of generating predictions on a batch of observations. The batch jobs are typically generated on some recurring schedule (e.g. hourly, daily). These predictions are then stored in a database and can be made available to developers or end users. Batch inference may sometimes take advantage of big data technologies such as Spark to generate predictions. This allows data scientists and machine learning engineers to take advantage of scalable compute resources to generate many predictions at once.
+
+Ref: [Luigi](https://mlinproduction.com/author/luigi/)
+
+### What are the Benefits of Batch Inference?
+
+Batch inference affords data scientists several benefits. Since latency requirements are typically on the order of hours or days, latency is often not a concern. This allows data scientists to use tools like Spark to generate predictions on large batches. If Spark or related technologies aren’t necessary, infrastructure requirements for batch inference are still simpler than those for online inference. For instance, rather than expose a trained model through a REST API, data scientists writing batch inference jobs may be able to simply deserialize a trained model on the machine that is performing the batch inference. The predictions generated during batch inference can also be analyzed and post processed before being seen by stakeholders.
+
+Ref: [Luigi](https://mlinproduction.com/author/luigi/)
+
+### What Challenges does Batch Inference Present?
+
+While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the _cold start problem_. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same **age bracket or geographic location**. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
