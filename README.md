@@ -44,19 +44,6 @@ Hyperparameters are set/specified by the practitioners. They are often tuned for
 - Batch size
 - Number of epochs
 
-### Data Lake
-
-A data lake is a centralized repository that allows you to store all your **structured and unstructured data** at any scale.
-
-|    Characteristics    |                                         Data Warehouse                                          |                                                    Data Lake                                                     |
-| :-------------------: | :---------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
-|       **Data**        | Relational from transactional systems, operational databases, and line of business applications | Non-relational and relational from IoT devices, web sites, mobile apps, social media, and corporate applications |
-|      **Schema**       |                    Designed prior to the DW implementation (schema-on-write)                    |                                 Written at the time of analysis (schema-on-read)                                 |
-| **Price/Performance** |                         Fastest query results using higher cost storage                         |                               Query results getting faster using low-cost storage                                |
-|   **Data Quality **   |               Highly curated data that serves as the central version of the truth               |                              Any data that may or may not be curated (ie. raw data)                              |
-|       **Users**       |                                        Business analysts                                        |                   Data scientists, Data developers, and Business analysts (using curated data)                   |
-|     **Analytics**     |                             Batch reporting, BI and visualizations                              |                       Machine Learning, Predictive analytics, data discovery and profiling                       |
-
 ### Best deep CNN architectures and their principles: from AlexNet to EfficientNet
 
 Read from [theaisummer](https://theaisummer.com/cnn-architectures/)
@@ -1821,6 +1808,29 @@ splitfolders.ratio(
 
 In numerical analysis and scientific computing, a sparse matrix or sparse array is **a matrix in which most of the elements are zero**.
 
+### Data Lake
+
+A data lake is a centralized repository that allows you to store all your **structured and unstructured data** at any scale.
+
+|    Characteristics    |                        Data Warehouse                        |                          Data Lake                           |
+| :-------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|       **Data**        | Relational from transactional systems, operational databases, and line of business applications | Non-relational and relational from IoT devices, web sites, mobile apps, social media, and corporate applications |
+|      **Schema**       |  Designed prior to the DW implementation (schema-on-write)   |       Written at the time of analysis (schema-on-read)       |
+| **Price/Performance** |       Fastest query results using higher cost storage        |     Query results getting faster using low-cost storage      |
+|   **Data Quality **   | Highly curated data that serves as the central version of the truth |    Any data that may or may not be curated (ie. raw data)    |
+|       **Users**       |                      Business analysts                       | Data scientists, Data developers, and Business analysts (using curated data) |
+|     **Analytics**     |            Batch reporting, BI and visualizations            | Machine Learning, Predictive analytics, data discovery and profiling |
+
+### Databse vs Data Warehouse
+
+| Database                                                     | Data Warehouse                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| OLTP (online transaction processing); data processing system that focuses on transactions. | OLAP (online analytical processing); data processing system that focuses on data analysis and decision-making, rather than performance and day-to-day use. |
+| Primary purpose is capture and maintain the data.            | Primary purpose is explore the data.                         |
+| Must be always available.                                    | Can have scheduled downtime.                                 |
+| Used for CRUD operations.                                    | Used for complex analysis.                                   |
+| Concurrent users can be thousands/millions.                  | Concurrent users are limited.                                |
+
 ### Data Pipeline vs ETL Pipeline
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VtzvF17ysbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1843,3 +1853,60 @@ While batch inference is simpler than online inference, this simplicity does pre
 
 Ref: [Luigi](https://mlinproduction.com/author/luigi/)
 
+### Real World Examples of Batch Inference
+
+Consider product recommendations on an ecommerce site like Amazon. Rather than generate new predictions each time a user logs on to Amazon, data scientists may decide to generate recommendations for users in batch and then cache these recommendations for easy retrieval when needed. Similarly, if you’re developing a service like Netflix where you recommend viewers a list of movies, it may not make sense to generate recommendations each time a user logs on. Instead, you might generate these recommendations in batch fashion on some recurring schedule.
+
+[Ref](https://mlinproduction.com/batch-inference-vs-online-inference/)
+
+##  Introduction
+
+You’ve spent the last few weeks training a new machine learning model. After working with the product team to define the business objectives, translating these objectives into appropriate evaluation metrics, and several rounds of iterative feature engineering, you’re ready to deploy version 1 of the model. I applaud your progress!
+
+But how do you deploy your model so that it can be used by others and generate real value? A web search may point you to tutorials discussing how to stand up a Flask front-end that serves your model. But does that architecture actually fit your use-case?
+
+The first question you need to answer is whether you should use batch inference or online inference to serve your models. What are the differences between these approaches? When should you favor one over the other? And how does this choice influence the technical details of the model deployment? In the following sections we’ll answer each of these questions and provide real world examples of both batch and online inference.
+
+## Batch Inference
+
+![img](https://i2.wp.com/mlinproduction.com/wp-content/uploads/2019/03/batch_inference.png?resize=480%2C370&ssl=1)
+
+### What is Batch Inference?
+
+Batch inference, or offline inference, is the process of generating predictions on a batch of observations. The batch jobs are typically generated on some recurring schedule (e.g. hourly, daily). These predictions are then stored in a database and can be made available to developers or end users. Batch inference may sometimes take advantage of big data technologies such as Spark to generate predictions. This allows data scientists and machine learning engineers to take advantage of scalable compute resources to generate many predictions at once.
+
+### What are the Benefits of Batch Inference?
+
+Batch inference affords data scientists several benefits. Since latency requirements are typically on the order of hours or days, latency is often not a concern. This allows data scientists to use tools like Spark to generate predictions on large batches. If Spark or related technologies aren’t necessary, infrastructure requirements for batch inference are still simpler than those for online inference. For instance, rather than expose a trained model through a REST API, data scientists writing batch inference jobs may be able to simply deserialize a trained model on the machine that is performing the batch inference. The predictions generated during batch inference can also be analyzed and post processed before being seen by stakeholders.
+
+### What Challenges does Batch Inference Present?
+
+While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the *cold start problem*. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same age bracket or geographic location. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
+
+### Real World Examples of Batch Inference
+
+In my [last post](https://mlinproduction.com/docker-for-ml-part-3/) I described lead scoring as a machine learning application where batch inference could be utilized. To reiterate that example: suppose your company has built a lead scoring model to predict whether new prospective customers will buy your product or service. The marketing team asks for new leads to be scored within 24 hours of entering the system. We can perform inference each night on the batch of leads generated that day, guaranteeing that leads are scored within the agreed upon time frame.
+
+Or consider product recommendations on an ecommerce site like Amazon. Rather than generate new predictions each time a user logs on to Amazon, data scientists may decide to generate recommendations for users in batch and then cache these recommendations for easy retrieval when needed. Similarly, if you’re developing a service like Netflix where you recommend viewers a list of movies, it may not make sense to generate recommendations each time a user logs on. Instead, you might generate these recommendations in batch fashion on some recurring schedule.
+
+**Note**: I’m not sure whether Amazon and Netflix generate recommendationss using batch or online inference. But these are examples where batch inference could be used.
+
+## Online Inference
+
+![img](https://i0.wp.com/mlinproduction.com/wp-content/uploads/2019/03/online_inference-1.png?resize=400%2C300&ssl=1)
+
+[Ref:](https://mlinproduction.com/batch-inference-vs-online-inference/) 
+
+Online Inference is the process of generating machine learning predictions in real time upon request. It is also known as real time inference or dynamic inference. Typically, these predictions are generated on a single observation of data at runtime. Predictions generated using online inference may be generated at any time of the day.
+
+### What are the Benefits of Online Inference?
+
+Online inference allows us to take advantage of machine learning models in real time. This opens up an entirely new space of applications that can benefit from machine learning. Rather than wait hours or days for predictions to be generated in batch, we can generate predictions as soon as they are needed and serve these to users right away. Online inference also allows us to make predictions for any new data e.g. generating recommendations for new users upon signing up.
+
+### What Challenges does Online Inference Present?
+
+Typically, online inference faces more challenges than batch inference. Online inference tends to be more complex because of the added tooling and systems required to meet latency requirements. A system that needs to respond with a prediction within 100ms is much harder to implement than a system with a service-level agreement of 24 hours. Reason being that in those 100ms, the system needs to retrieve any necessary data to generate predictions, perform inference, validate the model output (especially when this output is being sent to end users), and then (typically) return the results over a network. These technical challenges require data scientists to intimately understand: 
+
+Online inference systems require robust monitoring solutions. Data scientists should monitor the distributions of both the input data and the generated predictions to ensure that the distributions are similar to those of the training data. If these distributions differ, it could potentially mean that an error has occurred somewhere in the data pipeline. It may also mean that the underlying processes generating the data have changed. This concept is known as *model drift*. If model drift occurs, you will have to retrain your models to take the new samples into account.
+
+[Ref](https://mlinproduction.com/batch-inference-vs-online-inference/)
