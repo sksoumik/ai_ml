@@ -1,3 +1,7 @@
+This site is maintained and updated by [Sadman Kabir Soumik](https://www.linkedin.com/in/sksoumik/)
+
+Most of the contents in this page are collected from different blogs, videos, books written/made by other people. References are given with each section. 
+
 ### Overfitting vs Underfitting
 
 **Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit.
