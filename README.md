@@ -1,6 +1,6 @@
 This site is maintained and updated by [Sadman Kabir Soumik](https://www.linkedin.com/in/sksoumik/)
 
-Most of the contents in this page are collected from different blogs, videos, books written/made by other people. References are given with each section. 
+Most of the contents in this page are collected from different blogs, videos, books written/made by other people. References are given with each section.
 
 ### Overfitting vs Underfitting
 
@@ -377,7 +377,7 @@ Assume we analyze the above transaction data to find frequently bought items and
 
 The first step for us and the algorithm is to find frequently bought items. It is a straightforward calculation that is based on frequency:
 
-```yaml
+```
 Support (Item) = Transaction of that Item / Total transactions
 
 Support (Eggs) = 3 / 6  # 6 because there are shoppers 1 to 6
@@ -398,7 +398,7 @@ Support (Banana & Butter) = 1 / 6
 
 Now that we have identified frequently bought items let’s calculate confidence. This will tell us how confident (based on our data) we can be that an item will be purchased, given that another item has been purchased.
 
-```yaml
+```
 Confidence  = conditional probability
 Confidence (Eggs -> Bacon) = Support(Eggs & Bacon) / Support(Eggs)
 = 0.5 / 0.5
@@ -1842,4 +1842,3 @@ Ref: [Luigi](https://mlinproduction.com/author/luigi/)
 While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the _cold start problem_. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same **age bracket or geographic location**. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
 
 Ref: [Luigi](https://mlinproduction.com/author/luigi/)
-
