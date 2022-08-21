@@ -1821,11 +1821,9 @@ splitfolders.ratio(
 
 In numerical analysis and scientific computing, a sparse matrix or sparse array is **a matrix in which most of the elements are zero**.
 
-### Data Pipeline vs ETL Pipelin
+### Data Pipeline vs ETL Pipeline
 
-https://www.youtube.com/watch?v=VtzvF17ysbc
-
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=VtzvF17ysbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VtzvF17ysbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### What is Batch Inference?
 
@@ -1844,3 +1842,4 @@ Ref: [Luigi](https://mlinproduction.com/author/luigi/)
 While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the _cold start problem_. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same **age bracket or geographic location**. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
 
 Ref: [Luigi](https://mlinproduction.com/author/luigi/)
+
