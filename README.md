@@ -1,7 +1,3 @@
-### ML System Design
-
-https://huyenchip.com/machine-learning-systems-design/design-a-machine-learning-system.html#design-a-machine-learning-system-dwGQI5R
-
 ### Overfitting vs Underfitting
 
 **Overfitting** happens when your model is too complex. For example, if you are training a deep neural network with a very small dataset like dozens of samples, then there is a high chance that your model is going to overfit.
@@ -26,6 +22,10 @@ The bias-variance decomposition essentially decomposes the learning error from a
 
 - Too simple model -> model underfit -> Bias
 - Too complex model -> model overfit -> Variance
+
+### ML System Design
+
+Read [here](https://huyenchip.com/machine-learning-systems-design/design-a-machine-learning-system.html#design-a-machine-learning-system-dwGQI5R)
 
 ### Parameter vs Hyperparameter
 
@@ -1836,3 +1836,6 @@ Ref: [Luigi](https://mlinproduction.com/author/luigi/)
 ### What Challenges does Batch Inference Present?
 
 While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the _cold start problem_. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same **age bracket or geographic location**. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
+
+Ref: [Luigi](https://mlinproduction.com/author/luigi/)
+
