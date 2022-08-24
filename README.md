@@ -163,6 +163,48 @@ model.add(Activation('tanh'))                         # non-linear layer
 
 Batch normalization applies a transformation that maintains the mean output close to 0 and the output standard deviation close to 1.
 
+### Data Validation for ML Pipeline
+
+![](image/data validation.png)
+
+image source: Book: Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson
+
+
+
+If our goal is to automate our machine learning model updates, validating our data is essential. In particular, when we say validating, we mean three distinct checks on our data:
+
+- Check for data anomalies.
+- Check that the data schema hasn’t changed.
+- Check that the statistics of our new datasets still align with statistics from our previous training datasets.
+
+The data validation step in our pipeline performs these checks and highlights any failures. If a failure is detected, we can stop the workflow and address the data issue by hand, for example, by curating a new dataset.
+
+In a world where datasets continuously grow, data validation is crucial to make sure that our machine learning models are still up to the task. Because we can compare schemas, we can quickly detect if the data structure in newly obtained datasets has changed (e.g., when a feature is deprecated). It can also detect if your data starts to *drift*. This means that your newly collected data has different underlying statistics than the initial dataset used to train your model. This drift could mean that new features need to be selected or that the data preprocessing steps need to be updated (e.g., if the minimum or maximum of a numerical column changes). Drift can happen for a number of reasons: an underlying trend in the data, seasonality of the data, or as a result of a feedback loop. 
+
+The TensorFlow ecosystem offers a tool that can assist you in data validation, TFDV. It is part of the TFX project. TFDV allows you to perform the kind of analyses we discussed previously (e.g., generating schemas and validating new data against an existing schema). It also offers visualizations. 
+
+TFDV accepts two input formats to start the data validation: TensorFlow’s TFRecord and CSV files. In common with other TFX components, it distributes the analysis using Apache Beam.
+
+For numerical features, TFDV computes for every feature:
+
+- The overall count of data records
+- The number of missing data records
+- The mean and standard deviation of the feature across the data records
+- The minimum and maximum value of the feature across the data records
+- The percentage of zero values of the feature across the data records
+
+In addition, it generates a histogram of the values for each feature.
+
+For categorical features, TFDV provides:
+
+- The overall count of data records
+- The percentage of missing data records
+- The number of unique records
+- The average string length of all records of a feature
+- For each category, TFDV determines the sample count for each label and its rank
+
+Read more: [Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson](https://learning.oreilly.com/library/view/building-machine-learning/9781492053187/)
+
 ### Why ReLU
 
 **ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks.
