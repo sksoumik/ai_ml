@@ -44,6 +44,62 @@ Hyperparameters are set/specified by the practitioners. They are often tuned for
 - Batch size
 - Number of epochs
 
+### If your training data classification accuracy is 80% and test data accuracy is 60% what will you do? 
+
+So, we have a overfit model. 
+
+###### What can be the possible reason?
+
+Sometimes, the distribution of data in the test set is very different from the one of the training/validation set.
+
+Can have data leakage. 
+
+If your accuracy is not where you want it to be there are many other possibilities.
+
+1. Your model needs be improved (change parameters)
+2. You may need to try a different machine learning algorithm (not all algorithms created equal)
+3. You need more data (subtle relationship difficult to find)
+4. You may need to try transforming your data (dependent upon algorithm used)
+5. **There may be no relationship between your dependent and independent variables**
+
+[Ref](https://stats.stackexchange.com/a/147932)
+
+### Test accuracy is higher than the train accuracy
+
+It's not normal at all. Possible reasons:
+
+- The model is underfitting and representing neither the train nor the test data.
+- There is a possibility of data leakage. It can happen due to peek at the test dataset as you go.
+- Do you see very high accuracy? Then perhaps, you might have included a variable similar to dependent variable in the features.
+- Give a try changing random state.
+- Is it a time series data? Does the test data come from the same population distribution? 
+
+Ref: [Kaggle](https://www.kaggle.com/questions-and-answers/186681)
+
+### What is Data Leakage in ML
+
+Data leakage can cause you to create overly optimistic if not completely invalid predictive models.
+
+Data leakage is when information from outside the training dataset is used to create the model. This additional information can allow the model to learn or know something that it otherwise would not know and in turn invalidate the estimated performance of the mode being constructed.
+
+> if any other feature whose value would not actually be available in practice at the time you’d want to use the model to make a prediction, is a feature that can introduce leakage to your model
+
+— [Data Skeptic](http://dataskeptic.com/epnotes/leakage.php)
+
+> when the data you are using to train a machine learning algorithm happens to have the information you are trying to predict
+
+— Daniel Gutierrez
+
+Ref: [machinelearningmastery](https://machinelearningmastery.com/data-leakage-machine-learning/)
+
+Data is one of the most critical factors for any technology. Similarly, data plays a vital role in developing intelligent machines and systems in machine learning and artificial intelligence. In Machine Learning, when we train a model, the model aims to perform well and give high prediction accuracy. However, imagine the situation where the model is performing exceptionally well. In contrast, testing, but when it is deployed for the actual project, or it is given accurate data, it performs poorly. So, this problem mainly occurs due to Data Leakage.  
+
+A scenario when ML model already has information of test data in training data, but this information would not be available at the time of prediction, called data leakage. It causes high performance while training set, but perform poorly in deployment or production.
+
+Data leakage generally occurs when the training data is overlapped with testing data during the development process of ML models by sharing information between both data sets. Ideally, there should not be any interaction between these data sets (training and test sets). 
+
+Ref: [javapoint](https://www.javatpoint.com/data-leakage-in-machine-learning)
+
 ### Best deep CNN architectures and their principles: from AlexNet to EfficientNet
 
 Read from [theaisummer](https://theaisummer.com/cnn-architectures/)
@@ -337,6 +393,43 @@ ref: [analytics vidya](https://www.analyticsvidhya.com/blog/2020/11/a-tour-of-ev
 ### When to use F1 as a evaluation metric?
 
 Accuracy is used when the True Positives and True negatives are more important while F1-score is used **when the False Negatives and False Positives** are crucial. Accuracy can be used when the class distribution is similar while F1-score is a better metric when there are **imbalanced classes** .
+
+### Rank aware evaluation Metrics for recommender systems
+
+ 3 most popular rank-aware metrics available to evaluate recommendation systems:
+
+- **MRR**: Mean Reciprocal Rank
+- **MAP**: Mean Average Precision
+- **NDCG**: Normalized Discounted Cumulative Gain
+
+Recommender systems have a very particular and primary concern. They need to be able to put **relevant items very high up the list of recommendations**. Most probably, the users will not scroll through 200 items to find their favorite brand of earl grey tea. We need rank-aware metrics to select recommenders that aim at these two primary goals: 
+
+##### **MRR: Mean Reciprocal Rank**
+
+This is the simplest metric of the three. It tries to measure “Where is the first relevant item?”. 
+
+**MRR Pros**
+
+- This method is simple to compute and is easy to interpret.
+- This method puts a high focus on the first relevant element of the list. It is best suited for targeted searches such as users asking for the “best item for me”.
+- Good for known-item search such as navigational queries or looking for a fact.
+
+##### **MRR Cons**
+
+- The MRR metric does not evaluate the rest of the list of recommended items. It focuses on a single item from the list.
+- It gives a list with a single relevant item just a much weight as a list with many relevant items. It is fine if that is the target of the evaluation.
+- This might not be a good evaluation metric for users that want a list of related items to browse. The goal of the users might be to compare multiple related items.
+
+##### MAP: Average Precision and Mean Average Precision
+
+We want to evaluate the whole list of recommended items up to a specific cut-off N. The drawback of this metric is that it does not consider the recommended list as an **ordered list**. 
+
+##### MAP Pros
+
+- Gives a single metric that represents the complex Area under the Precision-Recall curve. This provides the average precision per list.
+- Handles the **ranking of lists** recommended items naturally. This is in contrast to metrics that considering the retrieved items as **sets.**
+
+
 
 ### Calculate document similarity
 
