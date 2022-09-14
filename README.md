@@ -44,15 +44,15 @@ Hyperparameters are set/specified by the practitioners. They are often tuned for
 - Batch size
 - Number of epochs
 
-### If your training data classification accuracy is 80% and test data accuracy is 60% what will you do? 
+### If your training data classification accuracy is 80% and test data accuracy is 60% what will you do?
 
-So, we have a overfit model. 
+So, we have a overfit model.
 
 ###### What can be the possible reason?
 
 Sometimes, the distribution of data in the test set is very different from the one of the training/validation set.
 
-Can have data leakage. 
+Can have data leakage.
 
 If your accuracy is not where you want it to be there are many other possibilities.
 
@@ -72,7 +72,7 @@ It's not normal at all. Possible reasons:
 - There is a possibility of data leakage. It can happen due to peek at the test dataset as you go.
 - Do you see very high accuracy? Then perhaps, you might have included a variable similar to dependent variable in the features.
 - Give a try changing random state.
-- Is it a time series data? Does the test data come from the same population distribution? 
+- Is it a time series data? Does the test data come from the same population distribution?
 
 Ref: [Kaggle](https://www.kaggle.com/questions-and-answers/186681)
 
@@ -92,11 +92,11 @@ Data leakage is when information from outside the training dataset is used to cr
 
 Ref: [machinelearningmastery](https://machinelearningmastery.com/data-leakage-machine-learning/)
 
-Data is one of the most critical factors for any technology. Similarly, data plays a vital role in developing intelligent machines and systems in machine learning and artificial intelligence. In Machine Learning, when we train a model, the model aims to perform well and give high prediction accuracy. However, imagine the situation where the model is performing exceptionally well. In contrast, testing, but when it is deployed for the actual project, or it is given accurate data, it performs poorly. So, this problem mainly occurs due to Data Leakage.  
+Data is one of the most critical factors for any technology. Similarly, data plays a vital role in developing intelligent machines and systems in machine learning and artificial intelligence. In Machine Learning, when we train a model, the model aims to perform well and give high prediction accuracy. However, imagine the situation where the model is performing exceptionally well. In contrast, testing, but when it is deployed for the actual project, or it is given accurate data, it performs poorly. So, this problem mainly occurs due to Data Leakage.
 
 A scenario when ML model already has information of test data in training data, but this information would not be available at the time of prediction, called data leakage. It causes high performance while training set, but perform poorly in deployment or production.
 
-Data leakage generally occurs when the training data is overlapped with testing data during the development process of ML models by sharing information between both data sets. Ideally, there should not be any interaction between these data sets (training and test sets). 
+Data leakage generally occurs when the training data is overlapped with testing data during the development process of ML models by sharing information between both data sets. Ideally, there should not be any interaction between these data sets (training and test sets).
 
 Ref: [javapoint](https://www.javatpoint.com/data-leakage-in-machine-learning)
 
@@ -168,7 +168,55 @@ Each of the 300 features would be having a certain amount of variance — that i
 
 More the variance, more is the importance of that feature. As it contains more ‘information’. A variable with 0 variance contains 0 information. Do not confuse variance with correlation! Variance is not with respect to the target variable of your data. It just states how the value of particular feature varies throughout the data.
 
+### Imputation for Missing Data
 
+1. Replace missing value with the mean of other observations from the same feature.
+
+2. If there are outliers in the data, we can replace the missing data with median of the feature.
+
+3. Better way would be to use KNN to find the similar observations/samples, and then replace missing values with their (similar samples) average.
+
+   KNN works better for numerical data.
+
+4. For Categorical data, we can do Random forest/ ANN to predict the missing values.
+
+### What does standard deviation tell you?
+
+A standard deviation (or σ) is **a measure of how dispersed the data is in relation to the mean**. Low standard deviation means data are clustered around the mean, and high standard deviation indicates data are more spread out.
+
+![](image/standard-deviation.png)
+
+##### How to calculate std:
+
+![\sigma={\sqrt {\frac {\sum(x_{i}-{\mu})^{2}}{N}}}](https://www.gstatic.com/education/formulas2/472522532/en/population_standard_deviation.svg)
+
+| ![\sigma](https://www.gstatic.com/education/formulas2/472522532/en/population_standard_deviation_sigma.svg) | =   | population standard deviation                                                                                                                                                                                                                                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------- | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![N](https://www.gstatic.com/education/formulas2/472522532/en/population_standard_deviation_N.svg)          | =   | the size of the population                                                                                                                                                                                                                                                                                                                                 |
+| ![x_i](https://www.gstatic.com/education/formulas2/472522532/en/population_standard_deviation_xi.svg)       | =   | each value from the population                                                                                                                                                                                                                                                                                                                             |
+| ![\mu](https://www.gstatic.com/education/formulas2/472522532/en/population_standard_deviation_mu.svg)       | =   | [the population mean](https://www.google.com/search?sxsrf=ALiCzsYcQjl1rd3KFmEZFRbaKx03qumnRA:1663180699890&q=Mean&stick=H4sIAAAAAAAAAOPgE-LQz9U3MCs3MlICs0zKCky0tLKTrfRTU0qTE0sy8_P00_KLcktzEq2gtEJmbmJ6qkJiXnF5atEjRmNugZc_7glLaU1ac_IaowoXV3BGfrlrXklmSaWQGBcblMUjxcUFt4BnESuLb2piHgBE6iKyfwAAAA&sa=X&ved=2ahUKEwjUt8H29pT6AhVO-TgGHW40B6AQ24YFegQIJRAC) |
+
+Ref: Wikipedia
+
+### What does P value mean?
+
+P value is the probability for the _null hypothesis_ to be true.
+
+_P_-values are used in _hypothesis testing_ to help decide whether to reject the null hypothesis. The smaller the _p_-value, the more likely you are to reject the null hypothesis.
+
+Null hypothesis: Treats everything same or equal.
+
+The p-value, or probability value, tells you how likely it is that your data could have occurred under the null hypothesis.
+
+if your _p_-value is 0.05, that means that 5% of the time you would see a test statistic at least as extreme as the one you found if the null hypothesis was true.
+
+### P-value and Hypothesis testing
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hg39AqT9Hdc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Watch this video as well:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L3PqinKUfX4?start=1087" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### When to use Linear Regression?
 
@@ -243,8 +291,6 @@ Batch normalization applies a transformation that maintains the mean output clos
 
 image source: Book: Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson
 
-
-
 If our goal is to automate our machine learning model updates, validating our data is essential. In particular, when we say validating, we mean three distinct checks on our data:
 
 - Check for data anomalies.
@@ -253,9 +299,9 @@ If our goal is to automate our machine learning model updates, validating our da
 
 The data validation step in our pipeline performs these checks and highlights any failures. If a failure is detected, we can stop the workflow and address the data issue by hand, for example, by curating a new dataset.
 
-In a world where datasets continuously grow, data validation is crucial to make sure that our machine learning models are still up to the task. Because we can compare schemas, we can quickly detect if the data structure in newly obtained datasets has changed (e.g., when a feature is deprecated). It can also detect if your data starts to *drift*. This means that your newly collected data has different underlying statistics than the initial dataset used to train your model. This drift could mean that new features need to be selected or that the data preprocessing steps need to be updated (e.g., if the minimum or maximum of a numerical column changes). Drift can happen for a number of reasons: an underlying trend in the data, seasonality of the data, or as a result of a feedback loop. 
+In a world where datasets continuously grow, data validation is crucial to make sure that our machine learning models are still up to the task. Because we can compare schemas, we can quickly detect if the data structure in newly obtained datasets has changed (e.g., when a feature is deprecated). It can also detect if your data starts to _drift_. This means that your newly collected data has different underlying statistics than the initial dataset used to train your model. This drift could mean that new features need to be selected or that the data preprocessing steps need to be updated (e.g., if the minimum or maximum of a numerical column changes). Drift can happen for a number of reasons: an underlying trend in the data, seasonality of the data, or as a result of a feedback loop.
 
-The TensorFlow ecosystem offers a tool that can assist you in data validation, TFDV. It is part of the TFX project. TFDV allows you to perform the kind of analyses we discussed previously (e.g., generating schemas and validating new data against an existing schema). It also offers visualizations. 
+The TensorFlow ecosystem offers a tool that can assist you in data validation, TFDV. It is part of the TFX project. TFDV allows you to perform the kind of analyses we discussed previously (e.g., generating schemas and validating new data against an existing schema). It also offers visualizations.
 
 TFDV accepts two input formats to start the data validation: TensorFlow’s TFRecord and CSV files. In common with other TFX components, it distributes the analysis using Apache Beam.
 
@@ -414,17 +460,17 @@ Accuracy is used when the True Positives and True negatives are more important w
 
 ### Rank aware evaluation Metrics for recommender systems
 
- 3 most popular rank-aware metrics available to evaluate recommendation systems:
+3 most popular rank-aware metrics available to evaluate recommendation systems:
 
 - **MRR**: Mean Reciprocal Rank
 - **MAP**: Mean Average Precision
 - **NDCG**: Normalized Discounted Cumulative Gain
 
-Recommender systems have a very particular and primary concern. They need to be able to put **relevant items very high up the list of recommendations**. Most probably, the users will not scroll through 200 items to find their favorite brand of earl grey tea. We need rank-aware metrics to select recommenders that aim at these two primary goals: 
+Recommender systems have a very particular and primary concern. They need to be able to put **relevant items very high up the list of recommendations**. Most probably, the users will not scroll through 200 items to find their favorite brand of earl grey tea. We need rank-aware metrics to select recommenders that aim at these two primary goals:
 
 ##### **MRR: Mean Reciprocal Rank**
 
-This is the simplest metric of the three. It tries to measure “Where is the first relevant item?”. 
+This is the simplest metric of the three. It tries to measure “Where is the first relevant item?”.
 
 **MRR Pros**
 
@@ -440,14 +486,12 @@ This is the simplest metric of the three. It tries to measure “Where is the fi
 
 ##### MAP: Average Precision and Mean Average Precision
 
-We want to evaluate the whole list of recommended items up to a specific cut-off N. The drawback of this metric is that it does not consider the recommended list as an **ordered list**. 
+We want to evaluate the whole list of recommended items up to a specific cut-off N. The drawback of this metric is that it does not consider the recommended list as an **ordered list**.
 
 ##### MAP Pros
 
 - Gives a single metric that represents the complex Area under the Precision-Recall curve. This provides the average precision per list.
 - Handles the **ranking of lists** recommended items naturally. This is in contrast to metrics that considering the retrieved items as **sets.**
-
-
 
 ### Calculate document similarity
 
@@ -1564,11 +1608,11 @@ For testing error, it gets less obvious. If you set `max_depth` _too high_, then
 
 There is a nice golden spot in between the extremes of too-high and too-low. Usually, the modeller would consider the `max_depth` as a hyper-parameter, and use some sort of grid/random search with cross-validation to find a good number for `max_depth`. [Ref](https://stackoverflow.com/a/49289462/5920567)
 
-### Decision Tree Pruning | How to Simplify a Decision Tree with an Optimal Maximum Depth? 
+### Decision Tree Pruning | How to Simplify a Decision Tree with an Optimal Maximum Depth?
 
-Decision Trees are prone to over-fitting. A decision tree will always overfit the training data if we allow it to grow to its max depth. 
+Decision Trees are prone to over-fitting. A decision tree will always overfit the training data if we allow it to grow to its max depth.
 
-We can apply three techniques to simplify decision tree: 
+We can apply three techniques to simplify decision tree:
 
 1. Find optimal max depth
 2. Pre-pruning
@@ -1576,8 +1620,8 @@ We can apply three techniques to simplify decision tree:
 
 ##### Finding Optimal max depth
 
-1. Build a full tree without limiting anything. 
-2. Then find the max_depth value for full tree using the get_depth() method.  e.g. max_depth = 7
+1. Build a full tree without limiting anything.
+2. Then find the max_depth value for full tree using the get_depth() method. e.g. max_depth = 7
 3. Then run GridSearchCV from 1 to 7. Compare training accuracies for all 1-7 points and find the best depth which gives best training accuracies. Maybe depth 3/4/5 will give best result. Then use that optimal depth for the final training. This method can give fewer rules and higher accuracy.
 
 ```python
@@ -1606,7 +1650,7 @@ print(max_depth_grid_search.best_params_ ) # 4
 
 ##### Pre-pruning:
 
- You can tweak some parameters such as [min_samples_leaf ](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)to minimize default overfitting. This type of tweak is called pre-pruning. 
+You can tweak some parameters such as [min_samples_leaf ](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)to minimize default overfitting. This type of tweak is called pre-pruning.
 
 ```python
 full_tree = DecisionTreeClassifier(random_state=42)
@@ -1631,7 +1675,7 @@ min_samples_leaf_grid_search = GridSearchCV(
 
 ##### Post-Pruning: most effective one but costly
 
-allows the tree to classify the training set perfectly and then prunes the tree. Pruning starts with an unpruned tree, takes a sequence of subtrees (pruned trees), and picks the best one through cross-validation. 
+allows the tree to classify the training set perfectly and then prunes the tree. Pruning starts with an unpruned tree, takes a sequence of subtrees (pruned trees), and picks the best one through cross-validation.
 
 In scikit-learns`DecisionTreeClassifier`, `ccp_alpha`Is the **cost-complexity parameter.**
 
@@ -1640,7 +1684,7 @@ Essentially, pruning recursively finds the node with the “weakest link.” The
 ```python
 ccp_alphas = full_tree.cost_complexity_pruning_path(X_train, y_train)["ccp_alphas"]
 
-print(ccp_alphas) 
+print(ccp_alphas)
 # array([0., 0.00218083, 0.0028662 , 0.0029304 , 0.00395604,
 #0.00425059, 0.00502355, 0.00527473, 0.00593407, 0.00764113,
 # 0.01439037, 0.02038595, 0.05433359, 0.32661707])
@@ -1658,7 +1702,7 @@ print(ccp_alpha_grid_search.best_params_)  # 0.005934
 
 ```
 
-ref: [Edward/ Medium](Edward/ Medium) Read more from [here](https://towardsdatascience.com/build-better-decision-trees-with-pruning-8f467e73b107) 
+ref: [Edward/ Medium](Edward/ Medium) Read more from [here](https://towardsdatascience.com/build-better-decision-trees-with-pruning-8f467e73b107)
 
 ### What's the best way to initialize the weights of a neural network?
 
@@ -2061,24 +2105,24 @@ In numerical analysis and scientific computing, a sparse matrix or sparse array 
 
 A data lake is a centralized repository that allows you to store all your **structured and unstructured data** at any scale.
 
-|    Characteristics    |                        Data Warehouse                        |                          Data Lake                           |
-| :-------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|    Characteristics    |                                         Data Warehouse                                          |                                                    Data Lake                                                     |
+| :-------------------: | :---------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
 |       **Data**        | Relational from transactional systems, operational databases, and line of business applications | Non-relational and relational from IoT devices, web sites, mobile apps, social media, and corporate applications |
-|      **Schema**       |  Designed prior to the DW implementation (schema-on-write)   |       Written at the time of analysis (schema-on-read)       |
-| **Price/Performance** |       Fastest query results using higher cost storage        |     Query results getting faster using low-cost storage      |
-|   **Data Quality **   | Highly curated data that serves as the central version of the truth |    Any data that may or may not be curated (ie. raw data)    |
-|       **Users**       |                      Business analysts                       | Data scientists, Data developers, and Business analysts (using curated data) |
-|     **Analytics**     |            Batch reporting, BI and visualizations            | Machine Learning, Predictive analytics, data discovery and profiling |
+|      **Schema**       |                    Designed prior to the DW implementation (schema-on-write)                    |                                 Written at the time of analysis (schema-on-read)                                 |
+| **Price/Performance** |                         Fastest query results using higher cost storage                         |                               Query results getting faster using low-cost storage                                |
+|   **Data Quality **   |               Highly curated data that serves as the central version of the truth               |                              Any data that may or may not be curated (ie. raw data)                              |
+|       **Users**       |                                        Business analysts                                        |                   Data scientists, Data developers, and Business analysts (using curated data)                   |
+|     **Analytics**     |                             Batch reporting, BI and visualizations                              |                       Machine Learning, Predictive analytics, data discovery and profiling                       |
 
 ### Databse vs Data Warehouse
 
-| Database                                                     | Data Warehouse                                               |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Database                                                                                   | Data Warehouse                                                                                                                                             |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | OLTP (online transaction processing); data processing system that focuses on transactions. | OLAP (online analytical processing); data processing system that focuses on data analysis and decision-making, rather than performance and day-to-day use. |
-| Primary purpose is capture and maintain the data.            | Primary purpose is explore the data.                         |
-| Must be always available.                                    | Can have scheduled downtime.                                 |
-| Used for CRUD operations.                                    | Used for complex analysis.                                   |
-| Concurrent users can be thousands/millions.                  | Concurrent users are limited.                                |
+| Primary purpose is capture and maintain the data.                                          | Primary purpose is explore the data.                                                                                                                       |
+| Must be always available.                                                                  | Can have scheduled downtime.                                                                                                                               |
+| Used for CRUD operations.                                                                  | Used for complex analysis.                                                                                                                                 |
+| Concurrent users can be thousands/millions.                                                | Concurrent users are limited.                                                                                                                              |
 
 ### Data Pipeline vs ETL Pipeline
 
@@ -2108,7 +2152,7 @@ Consider product recommendations on an ecommerce site like Amazon. Rather than g
 
 [Ref](https://mlinproduction.com/batch-inference-vs-online-inference/)
 
-##  Introduction
+## Introduction
 
 You’ve spent the last few weeks training a new machine learning model. After working with the product team to define the business objectives, translating these objectives into appropriate evaluation metrics, and several rounds of iterative feature engineering, you’re ready to deploy version 1 of the model. I applaud your progress!
 
@@ -2130,7 +2174,7 @@ Batch inference affords data scientists several benefits. Since latency requirem
 
 ### What Challenges does Batch Inference Present?
 
-While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the *cold start problem*. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same age bracket or geographic location. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
+While batch inference is simpler than online inference, this simplicity does present challenges. Obviously, predictions generated in batch are not available for real time purposes. This means that predictions may not be available for new data. One example of this is is a variation of the _cold start problem_. Say a new user signs up for a service like Netflix. If recommendations are generated in batch each night, the user will not be able to see personally tailored recommendations upon first signing up. One way to get around this problem is to serve that user recommendations from a model trained on similar users. For instance, the user may see recommendations for other users in the same age bracket or geographic location. The drawback of this approach is that there are more models to build, deploy, monitor, etc.
 
 ### Real World Examples of Batch Inference
 
@@ -2144,7 +2188,7 @@ Or consider product recommendations on an ecommerce site like Amazon. Rather tha
 
 ![img](https://i0.wp.com/mlinproduction.com/wp-content/uploads/2019/03/online_inference-1.png?resize=400%2C300&ssl=1)
 
-[Ref:](https://mlinproduction.com/batch-inference-vs-online-inference/) 
+[Ref:](https://mlinproduction.com/batch-inference-vs-online-inference/)
 
 Online Inference is the process of generating machine learning predictions in real time upon request. It is also known as real time inference or dynamic inference. Typically, these predictions are generated on a single observation of data at runtime. Predictions generated using online inference may be generated at any time of the day.
 
@@ -2154,9 +2198,9 @@ Online inference allows us to take advantage of machine learning models in real 
 
 ### What Challenges does Online Inference Present?
 
-Typically, online inference faces more challenges than batch inference. Online inference tends to be more complex because of the added tooling and systems required to meet latency requirements. A system that needs to respond with a prediction within 100ms is much harder to implement than a system with a service-level agreement of 24 hours. Reason being that in those 100ms, the system needs to retrieve any necessary data to generate predictions, perform inference, validate the model output (especially when this output is being sent to end users), and then (typically) return the results over a network. These technical challenges require data scientists to intimately understand: 
+Typically, online inference faces more challenges than batch inference. Online inference tends to be more complex because of the added tooling and systems required to meet latency requirements. A system that needs to respond with a prediction within 100ms is much harder to implement than a system with a service-level agreement of 24 hours. Reason being that in those 100ms, the system needs to retrieve any necessary data to generate predictions, perform inference, validate the model output (especially when this output is being sent to end users), and then (typically) return the results over a network. These technical challenges require data scientists to intimately understand:
 
-Online inference systems require robust monitoring solutions. Data scientists should monitor the distributions of both the input data and the generated predictions to ensure that the distributions are similar to those of the training data. If these distributions differ, it could potentially mean that an error has occurred somewhere in the data pipeline. It may also mean that the underlying processes generating the data have changed. This concept is known as *model drift*. If model drift occurs, you will have to retrain your models to take the new samples into account.
+Online inference systems require robust monitoring solutions. Data scientists should monitor the distributions of both the input data and the generated predictions to ensure that the distributions are similar to those of the training data. If these distributions differ, it could potentially mean that an error has occurred somewhere in the data pipeline. It may also mean that the underlying processes generating the data have changed. This concept is known as _model drift_. If model drift occurs, you will have to retrain your models to take the new samples into account.
 
 [Ref](https://mlinproduction.com/batch-inference-vs-online-inference/)
 
@@ -2168,9 +2212,9 @@ Image ref: Book - Building Machine Learning Pipelines by Hannes Hapke, Catherine
 
 Image ref: Book - Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson
 
-##### Data Ingestion/Data Versioning 
+##### Data Ingestion/Data Versioning
 
-In this pipeline step, we process the data into a format that the following components can digest. The data ingestion step does not perform any feature engineering (this happens after the data validation step). It is also a good moment to version the incoming data. 
+In this pipeline step, we process the data into a format that the following components can digest. The data ingestion step does not perform any feature engineering (this happens after the data validation step). It is also a good moment to version the incoming data.
 
 ##### Data Validation
 
@@ -2195,11 +2239,9 @@ At the time of writing, data privacy considerations sit outside the standard mac
 
 ##### Pipeline Orchestration
 
-All the components of a machine learning pipeline described in the Model Life cycle diagram need to be executed or, as we say, orchestrated, so that the components are being executed in the correct order. Inputs to a component must be computed before a component is executed. The orchestration of these steps is performed by tools such as Apache Beam, Apache Airflow or Kubeflow Pipelines for Kubernetes infrastructure. 
+All the components of a machine learning pipeline described in the Model Life cycle diagram need to be executed or, as we say, orchestrated, so that the components are being executed in the correct order. Inputs to a component must be computed before a component is executed. The orchestration of these steps is performed by tools such as Apache Beam, Apache Airflow or Kubeflow Pipelines for Kubernetes infrastructure.
 
-Beam is an open source tool for defining and executing data-processing jobs. 
-
-
+Beam is an open source tool for defining and executing data-processing jobs.
 
 ### Loading and Saving models
 
@@ -2210,7 +2252,7 @@ Saving models in `pkl` is the recommended way when you are using sklearn API of 
 ```python
 import joblib
 #save model
-joblib.dump(xgb, filename) 
+joblib.dump(xgb, filename)
 
 #load saved model
 xgb = joblib.load(filename)
@@ -2220,17 +2262,17 @@ You can also save models in `bin` or `json` format.
 
 ##### TensorFlow
 
-Serialized model file: `saved_model.pb` or `saved_model.pbtxt` 
+Serialized model file: `saved_model.pb` or `saved_model.pbtxt`
 
-We can also saved the model in `h5` format. 
+We can also saved the model in `h5` format.
 
-TF recommended way: 
+TF recommended way:
 
 A SavedModel contains a complete TensorFlow program, including trained parameters (i.e, [`tf.Variable`](https://www.tensorflow.org/api_docs/python/tf/Variable)s) and computation. It does not require the original model building code to run, which makes it useful for sharing or deploying with [TFLite](https://tensorflow.org/lite), [TensorFlow.js](https://js.tensorflow.org/), [TensorFlow Serving](https://www.tensorflow.org/tfx/serving/tutorials/Serving_REST_simple), or [TensorFlow Hub](https://tensorflow.org/hub).
 
-You can save and load a model in the SavedModel format: 
+You can save and load a model in the SavedModel format:
 
-Save: 
+Save:
 
 ```
 tf.saved_model.save(model, path_to_dir)
@@ -2246,7 +2288,7 @@ model = tf.saved_model.load(path_to_dir)
 
 Common file types:
 
-`.pt` and `.pth` 
+`.pt` and `.pth`
 
 ##### Common Formats
 
@@ -2254,23 +2296,23 @@ ONNX
 
 ### Model Compression or Optimization | Reduce inference latency
 
-Ref: *Designing Machine Learning Systems* book by [Chip Huyen](https://github.com/chiphuyen)
+Ref: _Designing Machine Learning Systems_ book by [Chip Huyen](https://github.com/chiphuyen)
 
-If the model you want to deploy takes too long to generate predictions, there are three main approaches to reduce its inference latency: 
+If the model you want to deploy takes too long to generate predictions, there are three main approaches to reduce its inference latency:
 
-1. make it do inference faster, 
-2. make the model smaller, or 
+1. make it do inference faster,
+2. make the model smaller, or
 3. make the hardware it’s deployed on run faster.
 
 First let's talk about make the model smaller:
 
-There are 4 main approaches to make the models smaller. 
+There are 4 main approaches to make the models smaller.
 
 1. #### Quantization
 
-   Quantization is the most general and commonly used model compression method. Quantization reduces a model’s size by using fewer bits to represent its parameters. By default, most software packages use 32 bits to represent a float number (single precision floating point). If a model has 100M parameters and each requires 32 bits to store, it’ll take up 400 MB. If we use 16 bits to represent a number, we’ll reduce the memory footprint by half. Using 16 bits to represent a float is called <u>half precision.</u> Instead of using floats, you can have a model entirely in *integers*; each integer takes only 8 bits to represent. This method is also known as “fixed point.” 
+   Quantization is the most general and commonly used model compression method. Quantization reduces a model’s size by using fewer bits to represent its parameters. By default, most software packages use 32 bits to represent a float number (single precision floating point). If a model has 100M parameters and each requires 32 bits to store, it’ll take up 400 MB. If we use 16 bits to represent a number, we’ll reduce the memory footprint by half. Using 16 bits to represent a float is called <u>half precision.</u> Instead of using floats, you can have a model entirely in _integers_; each integer takes only 8 bits to represent. This method is also known as “fixed point.”
 
-   In TensorFlow, we can do Post-training quantization: Post-training quantization is a conversion technique that can reduce model size while also improving CPU and hardware accelerator latency, with little degradation in model accuracy. You can quantize an already-trained float TensorFlow model when you convert it to TensorFlow Lite format using the [TensorFlow Lite Converter](https://www.tensorflow.org/lite/models/convert/). 
+   In TensorFlow, we can do Post-training quantization: Post-training quantization is a conversion technique that can reduce model size while also improving CPU and hardware accelerator latency, with little degradation in model accuracy. You can quantize an already-trained float TensorFlow model when you convert it to TensorFlow Lite format using the [TensorFlow Lite Converter](https://www.tensorflow.org/lite/models/convert/).
 
    ```python
    import tensorflow as tf
@@ -2279,18 +2321,18 @@ There are 4 main approaches to make the models smaller.
    tflite_quant_model = converter.convert()
    ```
 
-    See more from tf [doc](https://www.tensorflow.org/lite/performance/post_training_quantization)
+   See more from tf [doc](https://www.tensorflow.org/lite/performance/post_training_quantization)
 
 2. #### Pruning
 
-   Pruning was a method originally used for decision trees where you remove sections of a tree that are uncritical and redundant for classification.25    As neural networks gained wider adoption, people started to realize that neural networks are over-parameterized and began to find ways to reduce the workload caused by the extra parameters. Pruning, in the context of neural networks, has two meanings. One is to remove entire nodes of a neural network, which means changing its architecture and reduc‐ ing its number of parameters. The more common meaning is to find parameters least useful to predictions and set them to 0. In this case, pruning doesn’t reduce the total number of parameters, only the number of nonzero parameters. The architecture of the neural network remains the same. This helps with reducing the size of a model because pruning makes a neural network more sparse, and sparse architecture tends to require less storage space than dense structure. 
+   Pruning was a method originally used for decision trees where you remove sections of a tree that are uncritical and redundant for classification.25 As neural networks gained wider adoption, people started to realize that neural networks are over-parameterized and began to find ways to reduce the workload caused by the extra parameters. Pruning, in the context of neural networks, has two meanings. One is to remove entire nodes of a neural network, which means changing its architecture and reduc‐ ing its number of parameters. The more common meaning is to find parameters least useful to predictions and set them to 0. In this case, pruning doesn’t reduce the total number of parameters, only the number of nonzero parameters. The architecture of the neural network remains the same. This helps with reducing the size of a model because pruning makes a neural network more sparse, and sparse architecture tends to require less storage space than dense structure.
 
-   In Tensorflow, we can use the `tensorflow-model-optimization` module to apply pruning: 
+   In Tensorflow, we can use the `tensorflow-model-optimization` module to apply pruning:
 
    ```python
    import tensorflow_model_optimization as tfmot
-   
-   
+
+
    # Define model for pruning.
    pruning_params = {
          'pruning_schedule': tfmot.sparsity.keras.PolynomialDecay(initial_sparsity=0.50,
@@ -2298,41 +2340,38 @@ There are 4 main approaches to make the models smaller.
                                                                   begin_step=0,
                                                                   end_step=end_step)
    }
-   
+
    model_for_pruning = prune_low_magnitude(model, **pruning_params)
-   
+
    # `prune_low_magnitude` requires a recompile.
    model_for_pruning.compile(optimizer='adam',
                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                  metrics=['accuracy'])
    ```
 
-   By applying pruning, we can reduce the size of the parameters by 3X. We can ***combine the quantization and pruning*** to reduce model size by **10X**. 
+   By applying pruning, we can reduce the size of the parameters by 3X. We can **_combine the quantization and pruning_** to reduce model size by **10X**.
 
    See [here](https://www.tensorflow.org/model_optimization/guide/pruning/pruning_with_keras)
 
-3. #### Knowledge Distillation 
+3. #### Knowledge Distillation
 
-   Knowledge distillation is a method in which a small model (student) is trained to mimic a larger model or ensemble of models (teacher). The smaller model is what you’ll deploy. Even though the student is often trained after a pretrained teacher, both may also be trained at the same time.23 One example of a distilled network used in production is DistilBERT, which reduces the size of a BERT model by 40% while retaining 97% of its language understanding capabilities and being 60% faster. 
+   Knowledge distillation is a method in which a small model (student) is trained to mimic a larger model or ensemble of models (teacher). The smaller model is what you’ll deploy. Even though the student is often trained after a pretrained teacher, both may also be trained at the same time.23 One example of a distilled network used in production is DistilBERT, which reduces the size of a BERT model by 40% while retaining 97% of its language understanding capabilities and being 60% faster.
 
-4. #### Low-Rank Factorization 
+4. #### Low-Rank Factorization
 
    The key idea behind low-rank factorization is to replace high-dimensional tensors with lower-dimensional tensors. One type of low-rank factorization is compact convolutional filters, where the over-parameterized (having too many parameters) convolution filters are replaced with compact blocks to both reduce the number of parameters and increase speed.
 
    For example, by using a number of strategies including replacing 3 × 3 convolution with 1 × 1 convolution, **SqueezeNets** achieves AlexNet-level accuracy on ImageNet with <u>50 times fewer parameters</u>.
 
-   ​	
+   ​
 
 ##### Make it do inference faster
 
 1. Use cache
-2. Loading model when the program starts, don't wait for requests.  ![](image/load model faster.png)
-
-
+2. Loading model when the program starts, don't wait for requests. ![](image/load model faster.png)
 
 ### Batch Prediction vs Online Prediction in Hardware vs Latency
 
 ![](image/hardware.png)
 
-​                                                                                        img source: Ref: *Designing Machine Learning Systems* book by [Chip Huyen](https://github.com/chiphuyen)
-
+​ img source: Ref: _Designing Machine Learning Systems_ book by [Chip Huyen](https://github.com/chiphuyen)
