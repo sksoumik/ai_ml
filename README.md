@@ -198,17 +198,37 @@ A standard deviation (or σ) is **a measure of how dispersed the data is in rela
 
 Ref: Wikipedia
 
-### What does P value mean?
+### Hypothesis testing using P-value
 
 P value is the probability for the _null hypothesis_ to be true.
 
 _P_-values are used in _hypothesis testing_ to help decide whether to reject the null hypothesis. The smaller the _p_-value, the more likely you are to reject the null hypothesis.
 
-Null hypothesis: Treats everything same or equal.
+Null hypothesis: An assumption that treats everything same or equal. Let's say, I have made an assumption that global GDP would be same before and after the covid pandemic, and that's my null hypothesis. Now, using the GDP data, we can find the p-value and justify our null hypothesis. 
 
-The p-value, or probability value, tells you how likely it is that your data could have occurred under the null hypothesis.
+Steps: 
 
-if your _p_-value is 0.05, that means that 5% of the time you would see a test statistic at least as extreme as the one you found if the null hypothesis was true.
+1. Collect data
+2. Define significance level; many cases it's 0.05
+3. Run some statistical test (given below).
+
+Now, let's say, we have run the test on 100 countries and out p value is 0.05, it means our null hypothesis would be true for only 5 countries. 
+
+Standard industry standard significance levels are: 
+
+- 0.01 < p_value: very strong evidence against null hypothesis. 
+- 0.01 <= p_value < 0.05 : strong evidence against null hypothesis. 
+- 0.05 <= p_value < 0.10 : mild evidence against null hypothesis.  
+- p_value >= 0.10 : accept null hypothesis. 
+
+
+
+There are different statistical tests for calculating p-value:
+
+1.  Z-test
+2. T-Test
+3. Anova
+4. Chi-square
 
 ### P-value and Hypothesis testing
 
