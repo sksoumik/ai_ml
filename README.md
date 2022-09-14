@@ -152,6 +152,24 @@ Normalization -> Data distribution is not Gaussian (bell curve).
 
 Standardization -> Data distribution is Gaussian (bell curve).
 
+### [How to determine the optimal threshold for a classifier and generate ROC curve?
+
+The choice of a threshold depends on the importance of TPR and FPR classification problem. For example, if your classifier will decide which criminal suspects will receive a death sentence, false positives are very bad (innocents will be killed!). Thus you would choose a threshold that yields a low FPR while keeping a reasonable TPR (so you actually catch some true criminals). If there is no external concern about low TPR or high FPR, one option is to weight them equally by choosing the threshold that maximizes TPR − FPR.
+
+[Ref](https://stats.stackexchange.com/a/386433/257584)
+
+### How PCA works?
+
+Principal Component Analysis is the process of compressing a lot of data into something that captures the essence of the data.
+
+##### Variance
+
+Each of the 300 features would be having a certain amount of variance — that is a change in the values throughout. If a feature describes number of floors in a particular building for 200 days, its variance will be 0. As there is no change in its value throughout. Features with 0 variance are of no use as they provide no insights. So, variance is indeed our friend! And this is the pattern I mentioned earlier.
+
+More the variance, more is the importance of that feature. As it contains more ‘information’. A variable with 0 variance contains 0 information. Do not confuse variance with correlation! Variance is not with respect to the target variable of your data. It just states how the value of particular feature varies throughout the data.
+
+
+
 ### When to use Linear Regression?
 
 Perhaps evident, for linear regression to work, we need to ensure that the relationship between the features and the target variable is linear. If it isn't, linear regression won't give us good predictions.
@@ -1546,6 +1564,102 @@ For testing error, it gets less obvious. If you set `max_depth` _too high_, then
 
 There is a nice golden spot in between the extremes of too-high and too-low. Usually, the modeller would consider the `max_depth` as a hyper-parameter, and use some sort of grid/random search with cross-validation to find a good number for `max_depth`. [Ref](https://stackoverflow.com/a/49289462/5920567)
 
+### Decision Tree Pruning | How to Simplify a Decision Tree with an Optimal Maximum Depth? 
+
+Decision Trees are prone to over-fitting. A decision tree will always overfit the training data if we allow it to grow to its max depth. 
+
+We can apply three techniques to simplify decision tree: 
+
+1. Find optimal max depth
+2. Pre-pruning
+3. Post-pruning
+
+##### Finding Optimal max depth
+
+1. Build a full tree without limiting anything. 
+2. Then find the max_depth value for full tree using the get_depth() method.  e.g. max_depth = 7
+3. Then run GridSearchCV from 1 to 7. Compare training accuracies for all 1-7 points and find the best depth which gives best training accuracies. Maybe depth 3/4/5 will give best result. Then use that optimal depth for the final training. This method can give fewer rules and higher accuracy.
+
+```python
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.model_selection import ParameterGrid, GridSearchCV
+
+full_tree = DecisionTreeClassifier(random_state=42)
+full_tree.fit(X_train, y_train)
+
+# find the max depth
+max_depth = full_tree.get_depth()   # 7
+
+# run grid search for from 1 to max_depth number
+max_depth_grid_search = GridSearchCV(
+    estimator=DecisionTreeClassifier(random_state=42),
+    scoring=make_scorer(accuracy_score),
+    param_grid=ParameterGrid(
+        {"max_depth": [[max_depth] for max_depth in range(1, max_depth + 1)]}
+    ),
+)
+
+max_depth_grid_search.fit(X_train, y_train)
+
+print(max_depth_grid_search.best_params_ ) # 4
+```
+
+##### Pre-pruning:
+
+ You can tweak some parameters such as [min_samples_leaf ](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)to minimize default overfitting. This type of tweak is called pre-pruning. 
+
+```python
+full_tree = DecisionTreeClassifier(random_state=42)
+full_tree.fit(X_train, y_train)
+
+print(full_tree.get_depth())   # 7
+print(full_tree.get_n_leaves()) # 19
+
+# run grid search to find min_sample_lesf
+min_samples_leaf_grid_search = GridSearchCV(
+    estimator=DecisionTreeClassifier(random_state=42),
+    scoring=make_scorer(accuracy_score),
+    param_grid=ParameterGrid(
+        {
+            "min_samples_leaf": [
+                [min_samples_leaf] for min_samples_leaf in np.arange(EPS, 0.5, 0.025)
+            ]
+        }
+    ),
+)
+```
+
+##### Post-Pruning: most effective one but costly
+
+allows the tree to classify the training set perfectly and then prunes the tree. Pruning starts with an unpruned tree, takes a sequence of subtrees (pruned trees), and picks the best one through cross-validation. 
+
+In scikit-learns`DecisionTreeClassifier`, `ccp_alpha`Is the **cost-complexity parameter.**
+
+Essentially, pruning recursively finds the node with the “weakest link.” The weakest link is characterized by an **effective alpha**, where the nodes with the smallest effective alpha are pruned first.
+
+```python
+ccp_alphas = full_tree.cost_complexity_pruning_path(X_train, y_train)["ccp_alphas"]
+
+print(ccp_alphas) 
+# array([0., 0.00218083, 0.0028662 , 0.0029304 , 0.00395604,
+#0.00425059, 0.00502355, 0.00527473, 0.00593407, 0.00764113,
+# 0.01439037, 0.02038595, 0.05433359, 0.32661707])
+
+# grid search for ccp_alpha
+ccp_alpha_grid_search = GridSearchCV(
+    estimator=DecisionTreeClassifier(random_state=42),
+    scoring=make_scorer(accuracy_score),
+    param_grid=ParameterGrid({"ccp_alpha": [[alpha] for alpha in ccp_alphas]}),
+)
+
+ccp_alpha_grid_search.fit(X_train, y_train)
+
+print(ccp_alpha_grid_search.best_params_)  # 0.005934
+
+```
+
+ref: [Edward/ Medium](Edward/ Medium) Read more from [here](https://towardsdatascience.com/build-better-decision-trees-with-pruning-8f467e73b107) 
+
 ### What's the best way to initialize the weights of a neural network?
 
 No one really knows. Thought experiment: an optimal initialization would in theory perform best at the task in question for a given architecture. But that would be task-specific, so it would depend on the dataset and the desired output. So not a general solution.
@@ -2045,3 +2159,180 @@ Typically, online inference faces more challenges than batch inference. Online i
 Online inference systems require robust monitoring solutions. Data scientists should monitor the distributions of both the input data and the generated predictions to ensure that the distributions are similar to those of the training data. If these distributions differ, it could potentially mean that an error has occurred somewhere in the data pipeline. It may also mean that the underlying processes generating the data have changed. This concept is known as *model drift*. If model drift occurs, you will have to retrain your models to take the new samples into account.
 
 [Ref](https://mlinproduction.com/batch-inference-vs-online-inference/)
+
+### Model Lifecycle components
+
+Image ref: Book - Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson
+
+![](image/model lifecycle.png)
+
+Image ref: Book - Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson
+
+##### Data Ingestion/Data Versioning 
+
+In this pipeline step, we process the data into a format that the following components can digest. The data ingestion step does not perform any feature engineering (this happens after the data validation step). It is also a good moment to version the incoming data. 
+
+##### Data Validation
+
+Before training a new model version, we need to validate the new data. Data validation focuses on checking that the statistics of the new data are as expected (e.g., the range, number of categories, and distribution of categories). It also alerts the data scientist if any anomalies are detected. For example, if you are training a binary classification model, your training data could contain 50% of Class X samples and 50% of Class Y samples. Data validation tools provide alerts if the split between these classes changes, where perhaps the newly collected data is split 70/30
+between the two classes. If a model is being trained with such an imbalanced training set and the data scientist hasn’t adjusted the model’s loss function, or over/under sampled category X or Y, the model predictions could be biased toward the dominant
+category.
+Common data validation tools will also allow you to compare different datasets. If you have a dataset with a dominant label and you split the dataset into a training and validation set, you need to make sure that the label split is roughly the same between the two datasets.
+
+##### Data preprocessing
+
+It is highly likely that you cannot use your freshly collected data and train your machine learning model directly. In almost all cases, you will need to preprocess the data to use it for your training runs. Labels often need to be converted to one or
+multi-hot vectors. 1 The same applies to the model inputs. If you train a model from text data, you want to convert the characters of the text to indices or the text tokens to word vectors. Since preprocessing is only required prior to model training and not
+with every training epoch, it makes the most sense to run the preprocessing in its own life cycle step before training the model.
+
+##### Data Privacy
+
+At the time of writing, data privacy considerations sit outside the standard machine learning pipeline. We expect this to change in the future as consumer concerns grow over the use of their data and new laws are brought in to restrict the usage of personal data. This will lead to privacy-preserving methods being integrated into tools for building machine learning pipelines.
+
+• Differential privacy, where math guarantees that model predictions do not expose a user’s data
+• Federated learning, where the raw data does not leave a user’s device
+• Encrypted machine learning, where either the entire training process can run in the encrypted space or a model trained on raw data can be encrypted
+
+##### Pipeline Orchestration
+
+All the components of a machine learning pipeline described in the Model Life cycle diagram need to be executed or, as we say, orchestrated, so that the components are being executed in the correct order. Inputs to a component must be computed before a component is executed. The orchestration of these steps is performed by tools such as Apache Beam, Apache Airflow or Kubeflow Pipelines for Kubernetes infrastructure. 
+
+Beam is an open source tool for defining and executing data-processing jobs. 
+
+
+
+### Loading and Saving models
+
+##### XGBoost
+
+Saving models in `pkl` is the recommended way when you are using sklearn API of xgboost. XGBClassifier & XGBRegressor should be saved like this through pickle format. joblib can be used:
+
+```python
+import joblib
+#save model
+joblib.dump(xgb, filename) 
+
+#load saved model
+xgb = joblib.load(filename)
+```
+
+You can also save models in `bin` or `json` format.
+
+##### TensorFlow
+
+Serialized model file: `saved_model.pb` or `saved_model.pbtxt` 
+
+We can also saved the model in `h5` format. 
+
+TF recommended way: 
+
+A SavedModel contains a complete TensorFlow program, including trained parameters (i.e, [`tf.Variable`](https://www.tensorflow.org/api_docs/python/tf/Variable)s) and computation. It does not require the original model building code to run, which makes it useful for sharing or deploying with [TFLite](https://tensorflow.org/lite), [TensorFlow.js](https://js.tensorflow.org/), [TensorFlow Serving](https://www.tensorflow.org/tfx/serving/tutorials/Serving_REST_simple), or [TensorFlow Hub](https://tensorflow.org/hub).
+
+You can save and load a model in the SavedModel format: 
+
+Save: 
+
+```
+tf.saved_model.save(model, path_to_dir)
+```
+
+Load:
+
+```
+model = tf.saved_model.load(path_to_dir)
+```
+
+##### PyTorch
+
+Common file types:
+
+`.pt` and `.pth` 
+
+##### Common Formats
+
+ONNX
+
+### Model Compression or Optimization | Reduce inference latency
+
+Ref: *Designing Machine Learning Systems* book by [Chip Huyen](https://github.com/chiphuyen)
+
+If the model you want to deploy takes too long to generate predictions, there are three main approaches to reduce its inference latency: 
+
+1. make it do inference faster, 
+2. make the model smaller, or 
+3. make the hardware it’s deployed on run faster.
+
+First let's talk about make the model smaller:
+
+There are 4 main approaches to make the models smaller. 
+
+1. #### Quantization
+
+   Quantization is the most general and commonly used model compression method. Quantization reduces a model’s size by using fewer bits to represent its parameters. By default, most software packages use 32 bits to represent a float number (single precision floating point). If a model has 100M parameters and each requires 32 bits to store, it’ll take up 400 MB. If we use 16 bits to represent a number, we’ll reduce the memory footprint by half. Using 16 bits to represent a float is called <u>half precision.</u> Instead of using floats, you can have a model entirely in *integers*; each integer takes only 8 bits to represent. This method is also known as “fixed point.” 
+
+   In TensorFlow, we can do Post-training quantization: Post-training quantization is a conversion technique that can reduce model size while also improving CPU and hardware accelerator latency, with little degradation in model accuracy. You can quantize an already-trained float TensorFlow model when you convert it to TensorFlow Lite format using the [TensorFlow Lite Converter](https://www.tensorflow.org/lite/models/convert/). 
+
+   ```python
+   import tensorflow as tf
+   converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+   converter.optimizations = [tf.lite.Optimize.DEFAULT]
+   tflite_quant_model = converter.convert()
+   ```
+
+    See more from tf [doc](https://www.tensorflow.org/lite/performance/post_training_quantization)
+
+2. #### Pruning
+
+   Pruning was a method originally used for decision trees where you remove sections of a tree that are uncritical and redundant for classification.25    As neural networks gained wider adoption, people started to realize that neural networks are over-parameterized and began to find ways to reduce the workload caused by the extra parameters. Pruning, in the context of neural networks, has two meanings. One is to remove entire nodes of a neural network, which means changing its architecture and reduc‐ ing its number of parameters. The more common meaning is to find parameters least useful to predictions and set them to 0. In this case, pruning doesn’t reduce the total number of parameters, only the number of nonzero parameters. The architecture of the neural network remains the same. This helps with reducing the size of a model because pruning makes a neural network more sparse, and sparse architecture tends to require less storage space than dense structure. 
+
+   In Tensorflow, we can use the `tensorflow-model-optimization` module to apply pruning: 
+
+   ```python
+   import tensorflow_model_optimization as tfmot
+   
+   
+   # Define model for pruning.
+   pruning_params = {
+         'pruning_schedule': tfmot.sparsity.keras.PolynomialDecay(initial_sparsity=0.50,
+                                                                  final_sparsity=0.80,
+                                                                  begin_step=0,
+                                                                  end_step=end_step)
+   }
+   
+   model_for_pruning = prune_low_magnitude(model, **pruning_params)
+   
+   # `prune_low_magnitude` requires a recompile.
+   model_for_pruning.compile(optimizer='adam',
+                 loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                 metrics=['accuracy'])
+   ```
+
+   By applying pruning, we can reduce the size of the parameters by 3X. We can ***combine the quantization and pruning*** to reduce model size by **10X**. 
+
+   See [here](https://www.tensorflow.org/model_optimization/guide/pruning/pruning_with_keras)
+
+3. #### Knowledge Distillation 
+
+   Knowledge distillation is a method in which a small model (student) is trained to mimic a larger model or ensemble of models (teacher). The smaller model is what you’ll deploy. Even though the student is often trained after a pretrained teacher, both may also be trained at the same time.23 One example of a distilled network used in production is DistilBERT, which reduces the size of a BERT model by 40% while retaining 97% of its language understanding capabilities and being 60% faster. 
+
+4. #### Low-Rank Factorization 
+
+   The key idea behind low-rank factorization is to replace high-dimensional tensors with lower-dimensional tensors. One type of low-rank factorization is compact convolutional filters, where the over-parameterized (having too many parameters) convolution filters are replaced with compact blocks to both reduce the number of parameters and increase speed.
+
+   For example, by using a number of strategies including replacing 3 × 3 convolution with 1 × 1 convolution, **SqueezeNets** achieves AlexNet-level accuracy on ImageNet with <u>50 times fewer parameters</u>.
+
+   ​	
+
+##### Make it do inference faster
+
+1. Use cache
+2. Loading model when the program starts, don't wait for requests.  ![](image/load model faster.png)
+
+
+
+### Batch Prediction vs Online Prediction in Hardware vs Latency
+
+![](image/hardware.png)
+
+​                                                                                        img source: Ref: *Designing Machine Learning Systems* book by [Chip Huyen](https://github.com/chiphuyen)
+
