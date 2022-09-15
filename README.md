@@ -204,31 +204,29 @@ P value is the probability for the _null hypothesis_ to be true.
 
 _P_-values are used in _hypothesis testing_ to help decide whether to reject the null hypothesis. The smaller the _p_-value, the more likely you are to reject the null hypothesis.
 
-Null hypothesis: An assumption that treats everything same or equal. Let's say, I have made an assumption that global GDP would be same before and after the covid pandemic, and that's my null hypothesis. Now, using the GDP data, we can find the p-value and justify our null hypothesis. 
+Null hypothesis: An assumption that treats everything same or equal. Let's say, I have made an assumption that global GDP would be same before and after the covid pandemic, and that's my null hypothesis. Now, using the GDP data, we can find the p-value and justify our null hypothesis.
 
-Steps: 
+Steps:
 
 1. Collect data
 2. Define significance level; many cases it's 0.05
 3. Run some statistical test (given below).
 
-Now, let's say, we have run the test on 100 countries and out p value is 0.05, it means our null hypothesis would be true for only 5 countries. 
+Now, let's say, we have run the test on 100 countries and out p value is 0.05, it means our null hypothesis would be true for only 5 countries.
 
-Standard industry standard significance levels are: 
+Standard industry standard significance levels are:
 
-- 0.01 < p_value: very strong evidence against null hypothesis. 
-- 0.01 <= p_value < 0.05 : strong evidence against null hypothesis. 
-- 0.05 <= p_value < 0.10 : mild evidence against null hypothesis.  
-- p_value >= 0.10 : accept null hypothesis. 
-
-
+- 0.01 < p_value: very strong evidence against null hypothesis.
+- 0.01 <= p_value < 0.05 : strong evidence against null hypothesis.
+- 0.05 <= p_value < 0.10 : mild evidence against null hypothesis.
+- p_value >= 0.10 : accept null hypothesis.
 
 There are different statistical tests for calculating p-value:
 
 1.  Z-test
-2. T-Test
-3. Anova
-4. Chi-square
+2.  T-Test
+3.  Anova
+4.  Chi-square
 
 ### P-value and Hypothesis testing
 
@@ -881,6 +879,29 @@ Support Vector Machine (SVM) is a supervised machine learning algorithm that can
 - Attention,
 - Transformers,
 - Capsule Nets
+
+### Different Optimization Algorithms in ANN
+
+Optimizers are algorithms or methods used to change the attributes of your neural network such as weights and learning rate in order to reduce the losses. How you should change your weights or learning rates of your neural network to reduce the losses is defined by the optimizers you use. Optimization algorithms or strategies are responsible for reducing the losses and to provide the most accurate results possible.
+
+Different types of optimizers:
+
+1. Gradient Descent
+2. Stochastic Gradient Descent
+3. Mini-Batch Gradient Descent
+4. Momentum
+5. AdaGrad
+6. AdaDelta
+7. Adam
+8. RMSProp
+
+Adam is the best optimizers. If one wants to train the neural network in less time and more efficiently than Adam is the optimizer. For sparse data use the optimizers with dynamic learning rate.
+
+If, want to use gradient descent algorithm than min-batch gradient descent is the best option.
+
+See how each of these works:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TudQZtgpoHk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Batch Size
 
