@@ -31,7 +31,11 @@ The bias-variance decomposition essentially decomposes the learning error from a
 
 ### ML System Design
 
-Read [here](https://huyenchip.com/machine-learning-systems-design/design-a-machine-learning-system.html#design-a-machine-learning-system-dwGQI5R)
+##### Books
+
+[Designing Machine Learning Systems](https://www.amazon.com/Designing-Machine-Learning-Systems-Production-Ready/dp/1098107969) by *Chip Huyen* 
+
+[Building Machine Learning Pipelines - Automating Model Life Cycles with TensorFlow](https://www.amazon.com/Building-Machine-Learning-Pipelines-Automating/dp/1492053198/ref=sr_1_1?crid=3F613H2EWJ9M0&keywords=Building+Machine+Learning+Pipelines+-+Automating+Model+Life+Cycles+with+TensorFlow&qid=1663489141&s=books&sprefix=building+machine+learning+pipelines+-+automating+model+life+cycles+with+tensorflow%2Cstripbooks-intl-ship%2C428&sr=1-1) by *Hannes Hapke & Catherine Nelson*
 
 ### Parameter vs Hyperparameter
 
@@ -82,13 +86,9 @@ Data leakage can cause you to create overly optimistic if not completely invalid
 
 Data leakage is when information from outside the training dataset is used to create the model. This additional information can allow the model to learn or know something that it otherwise would not know and in turn invalidate the estimated performance of the mode being constructed.
 
-> if any other feature whose value would not actually be available in practice at the time you’d want to use the model to make a prediction, is a feature that can introduce leakage to your model
+- if any other feature whose value would not actually be available in practice at the time you’d want to use the model to make a prediction, is a feature that can introduce leakage to your model
 
-— [Data Skeptic](http://dataskeptic.com/epnotes/leakage.php)
-
-> when the data you are using to train a machine learning algorithm happens to have the information you are trying to predict
-
-— Daniel Gutierrez
+- when the data you are using to train a machine learning algorithm happens to have the information you are trying to predict
 
 Ref: [machinelearningmastery](https://machinelearningmastery.com/data-leakage-machine-learning/)
 
@@ -152,7 +152,7 @@ Normalization -> Data distribution is not Gaussian (bell curve).
 
 Standardization -> Data distribution is Gaussian (bell curve).
 
-### [How to determine the optimal threshold for a classifier and generate ROC curve?
+### How to determine the optimal threshold for a classifier and generate ROC curve?
 
 The choice of a threshold depends on the importance of TPR and FPR classification problem. For example, if your classifier will decide which criminal suspects will receive a death sentence, false positives are very bad (innocents will be killed!). Thus you would choose a threshold that yields a low FPR while keeping a reasonable TPR (so you actually catch some true criminals). If there is no external concern about low TPR or high FPR, one option is to weight them equally by choosing the threshold that maximizes TPR − FPR.
 
@@ -803,6 +803,8 @@ Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-
 
 ### Main Components of Kubernetes
 
+Watch this [video](https://youtu.be/eLHnd2O0BXI?list=PLmpREe1kbYUlafA_VYg5l3Z9UorsMoaSI)
+
 ##### API Server
 
 The API server is the front end for the Kubernetes control plane. The main implementation of a Kubernetes API server is [kube-apiserver](https://kubernetes.io/docs/reference/generated/kube-apiserver/). kube-apiserver is designed to scale horizontally—that is, it scales by deploying more instances. You can run several instances of kube-apiserver and balance traffic between those instances.
@@ -876,25 +878,9 @@ sig = sigmoid_kernel(tfv_matrix, tfv_matrix)
 
 Semantic search is a **data searching technique in a** which a search query aims to not only find keywords, but to determine the **intent and contextual meaning** of the the words a person is using for search. Semantics refer to the philosophical study of meaning.
 
-### What is gradient
-
-A **gradient** is a derivative of a function that has more than one input variable.
-
 ### Mean, Median
 
 [Watch](https://youtu.be/0ifDuw-Qgvo)
-
-### PyTorch Tutorial
-
-See some great resources [here](static/pytorch tutorials.pdf)
-
-### Kaggle
-
-- download kaggle dataset: `kaggle datasets download [username/dataset name (just copy the url after kaggle.com)]`
-
-### SVM
-
-Support Vector Machine (SVM) is a supervised machine learning algorithm that can be used for **both classification or regression** challenges. The model extracts the best possible hyper-plane / line that segregates the two classes.
 
 ### Text classification
 
