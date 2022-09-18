@@ -801,6 +801,38 @@ In the lifecycle of any application, Docker is used for packaging the applicatio
 
 Ref: [Moez Ali](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b), original post link: [TDS](https://medium.com/towards-data-science/deploy-machine-learning-model-on-google-kubernetes-engine-94daac85108b)
 
+### Main Components of Kubernetes
+
+##### API Server
+
+The API server is the front end for the Kubernetes control plane. The main implementation of a Kubernetes API server is [kube-apiserver](https://kubernetes.io/docs/reference/generated/kube-apiserver/). kube-apiserver is designed to scale horizontally—that is, it scales by deploying more instances. You can run several instances of kube-apiserver and balance traffic between those instances.
+
+##### etcd
+
+Stores all cluster data. key value store. 
+
+##### kube-scheduler
+
+Control plane component that watches for newly created [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) with no assigned [node](https://kubernetes.io/docs/concepts/architecture/nodes/), and selects a node for them to run on.
+
+Factors taken into account for scheduling decisions include: individual and collective resource requirements, hardware/software/policy constraints, affinity and anti-affinity specifications, data locality, inter-workload interference, and deadlines.
+
+##### kubelet
+
+An agent that runs on each [node](https://kubernetes.io/docs/concepts/architecture/nodes/) in the cluster. It makes sure that [containers](https://kubernetes.io/docs/concepts/containers/) are running in a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/).
+
+The kubelet takes a set of PodSpecs that are provided through various mechanisms and ensures that the containers described in those PodSpecs are running and healthy. The kubelet doesn't manage containers which were not created by Kubernetes.
+
+##### Kube proxy
+
+[kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/) maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster.
+
+##### Difference between node and pod in Kubernetes
+
+Pod is the *smallest unit of deployment* in Kubernetes. Kubernetes doesn't deploy containers straight away. Whenever Kubernetes have to deploy a container it is wrapped and deployed within a pod.
+
+Node is a *physical server or virtual machine* which Kubernetes uses to deploy pods on.
+
 ### Different types of Images
 
 An Image, by definition, is essentially a visual representation of something that depicts or records visual perception. Images are classified in one of the three types.
@@ -886,14 +918,16 @@ Optimizers are algorithms or methods used to change the attributes of your neura
 
 Different types of optimizers:
 
-1. Gradient Descent
-2. Stochastic Gradient Descent
-3. Mini-Batch Gradient Descent
-4. Momentum
-5. AdaGrad
+1. **Gradient Descent (Batch Gradient Descent)**: performs a parameter update for *entire* training dataset.
+2. **Stochastic Gradient Descent**: performs a parameter update for *each* training example.
+3. **Mini-Batch Gradient Descent**: performs parameter update for every mini-batch of n training examples (batch size)
+4. **Momentum**: It is a method that helps accelerate SGD in the relevant direction and dampens oscillations by doing *exponential weighted average*. 
+5. AdaGrad: It adapts the learning rate to the parameters. 
 6. AdaDelta
 7. Adam
 8. RMSProp
+
+If your input data is **sparse**, then you likely achieve the best results using one of the **adaptive** learning-rate methods. An additional benefit is that you won't need to tune the learning rate but likely achieve the best results with the default value. 
 
 Adam is the best optimizers. If one wants to train the neural network in less time and more efficiently than Adam is the optimizer. For sparse data use the optimizers with dynamic learning rate.
 
