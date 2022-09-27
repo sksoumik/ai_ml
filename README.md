@@ -343,6 +343,10 @@ For categorical features, TFDV provides:
 
 Read more: [Building Machine Learning Pipelines by Hannes Hapke, Catherine Nelson](https://learning.oreilly.com/library/view/building-machine-learning/9781492053187/)
 
+### Automated Model Retraining with Kubeflow Pipelines
+
+Read [here](https://medium.com/kubeflow/automated-model-retraining-with-kubeflow-pipelines-691a5f211701)
+
 ### Why ReLU
 
 **ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks.
@@ -453,6 +457,14 @@ When it comes to **regression**, the most commonly used evaluation metrics are:
 - Mean percentage error (MPE)
 
 - Mean absolute percentage error (MAPE)- R2
+
+### MSE vs MAE vs RMSE
+
+So a robust system or metric must be less affected by outliers. In this scenario it is easy to conclude that MSE may be less robust than MAE, since the squaring of the errors will enforce a higher importance on outliers.
+
+If there is outlier in the data, and you want to ignore them, MAE is a better option. If you want to account for them in your loss function, go for MSE/RMSE. 
+
+MSE is highly biased for higher values. RMSE is better in terms of reflecting performance when dealing with large error values. 
 
 ### Deciding whether to use precision or recall or f1:
 
@@ -1599,6 +1611,10 @@ So basically, Image processing is related to enhancing the image and play with t
 
 Read [here](https://www.datasciencecentral.com/profiles/blogs/arima-sarima-vs-lstm-with-ensemble-learning-insights-for-time-ser)
 
+### Naive Bayes
+
+
+
 ### What is difference between Random Forest and Decision Trees?
 
 Two concepts are similar. As is implied by the names "Tree" and "Forest," a Random Forest is essentially a collection of Decision Trees. A decision tree is built on an entire dataset, using all the features/variables of interest, whereas a random forest randomly selects observations/rows and specific features/variables to build multiple decision trees from and then averages the results. After a large number of trees are built using this method, each tree "votes" or chooses the class, and the class receiving the most votes by a simple majority is the "winner" or predicted class. There are of course some more detailed differences, but this is the main conceptual difference.
@@ -1779,7 +1795,21 @@ Different image formats (especially lossy ones) may produce different input arra
 
 ### What to do when there is no data/little data for a ML product
 
-Consider the task of building a chatbot or text classification system at your organization. In the beginning there may be little or no data to work with. At this point, a basic solution using rule-based systems or traditional machine learning will be apt. As you accumulate more data, more sophisticated NLP techniques (which are often data intensive) can be used, including deep learning. At each step of this journey there are dozens of alternative approaches one can take.
+##### Non-technical Approach
+
+1. If you have no data at all, we can look for open-sourced data. 
+2. Partnership with other organization who can deliver similar data. 
+
+##### Technical Approach
+
+1. If we have data, but very small, we can start with a simple algorithm like Naive Bayes or short decision tree. We can also ensemble methods like xgboost for small datasets. Simple algorithms works better for small dataset compared to complex models like ANN.
+2. We can use transfer learning. 
+3. Transfer learning uses knowledge from a learned task to improve the performance on a related task, typically reducing the amount of required training data. Transfer learning techniques are useful because they allow models to make predictions for a new domain or task (known as the target domain) using knowledge learned from another dataset or existing machine learning models (the source domain). Transfer learning techniques should be considered when you do not have enough target training data, and the source and target domains have some similarities but are not identical.
+4. We can do data augmentation. Data augmentation means increasing the number of data points. For example, for image data, we can use some tools like [albumentations](https://albumentations.ai/) to make more data by doing rotating the image, blurring the image, adding some noise in it, zoom, crop, enhancing brightness and contrast etc. 
+5. We can also generate synthetic data. Which means fake data that contains the same schema and statistical properties as its “real” counterpart. Basically, it looks so real that it’s nearly impossible to tell that it’s not. Synthetic Minority Over-sampling Technique (SMOTE) and Modified-SMOTE are two techniques which generate synthetic data. Simply put, SMOTE takes the minority class data points and creates new data points that lie between any two nearest data points joined by a straight line. SMOTE works by utilizing a k-nearest neighbour algorithm to create synthetic data. 
+6. Consider the task of building a chatbot or text classification system at your organization. In the beginning there may be little or no data to work with. At this point, a basic solution using rule-based systems or traditional machine learning will be apt. As you accumulate more data, more sophisticated NLP techniques (which are often data intensive) can be used, including deep learning. At each step of this journey there are dozens of alternative approaches one can take.
+
+Read more from here: [KDNuggets](https://www.kdnuggets.com/2019/06/5-ways-lack-data-machine-learning.html)
 
 ### Deal with imbalance data
 
