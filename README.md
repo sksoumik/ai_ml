@@ -250,6 +250,20 @@ Linear regression requires that your features and target variables are not noisy
 
 Ref: https://today.bnomial.com/
 
+### How to find if there is any outlier in your data
+
+Outliers are data points that are far from other data points. In other words, they’re unusual values in a dataset. Outliers are problematic for many statistical analyses because they can cause tests to either miss significant findings or distort real results.
+
+You can convert extreme data points into z scores that tell you how many standard deviations away they are from the mean. **If a value has a high enough or low enough z score, it can be considered an outlier**. As a rule of thumb, values with a z score greater than 3 or less than –3 are often determined to be outliers. 
+
+To calculate the Z-score for an observation, take the raw measurement, subtract the mean, and divide by the standard deviation. Mathematically, the formula for that process is the following:
+
+![z-score equation](https://i0.wp.com/statisticsbyjim.com/wp-content/uploads/2019/10/z-score_equ.png?resize=86%2C38&is-pending-load=1#038;ssl=1)
+
+The further away an observation’s Z-score is from zero, the more unusual it is. A standard cut-off value for finding outliers are Z-scores of +/-3 or further from zero.  
+
+Ref: [statisticsbyjim](https://statisticsbyjim.com/basics/outliers/) , [scribbr](https://www.scribbr.com/statistics/outliers/#:~:text=You%20can%20convert%20extreme%20data,often%20determined%20to%20be%20outliers.)
+
 ### Loss Funcions
 
 Machines learn by means of a loss function. It’s a method of evaluating how well specific algorithm models the given data. If predictions deviates too much from actual results, loss function would cough up a very large number. Gradually, with the help of some optimization function, loss function learns to reduce the error in prediction.
