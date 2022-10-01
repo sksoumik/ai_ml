@@ -50,23 +50,18 @@ Hyperparameters are set/specified by the practitioners. They are often tuned for
 
 ### If your training data classification accuracy is 80% and test data accuracy is 60% what will you do?
 
-So, we have a overfit model.
-
-###### What can be the possible reason?
-
-Sometimes, the distribution of data in the test set is very different from the one of the training/validation set.
-
-Can have data leakage.
-
-If your accuracy is not where you want it to be there are many other possibilities.
+So, we have a overfit model. To prevent overfitting, we can take the following steps: 
 
 1. Your model needs be improved (change parameters)
 2. You may need to try a different machine learning algorithm (not all algorithms created equal)
-3. You need more data (subtle relationship difficult to find)
-4. You may need to try transforming your data (dependent upon algorithm used)
-5. **There may be no relationship between your dependent and independent variables**
-
-[Ref](https://stats.stackexchange.com/a/147932)
+3. You need more data (subtle relationship difficult to find), train with more data. 
+4. Reduce the network size (remove layers).
+4. Use k-fold cross validation. 
+4. Add weight regularization with cost function (L1 and L2 regularization). 
+4. Remove irrelevant features. 
+4. Add dropout.
+4. Apply data augmentation.
+4. Use early stopping. 
 
 ### Test accuracy is higher than the train accuracy
 
@@ -1272,6 +1267,12 @@ K-Nearest Neighbors is a supervised classification algorithm, while k-means clus
 
 The critical difference here is that KNN needs labeled points and is thus supervised learning, while k-means doesn’t—and is thus unsupervised learning.
 
+ref: [springboard](https://www.springboard.com/blog/data-science/machine-learning-interview-questions/)
+
+
+
+
+
 ### Clustering
 
 Clustering algorithms can be two types:
@@ -2436,47 +2437,24 @@ There are 4 main approaches to make the models smaller.
 
    ```python
    import tensorflow_model_optimization as tfmot
-
-
-   # Define model for pruning.
+   
    pruning_params = {
-         'pruning_schedule': tfmot.sparsity.keras.PolynomialDecay(initial_sparsity=0.50,
-                                                                  final_sparsity=0.80,
-                                                                  begin_step=0,
-                                                                  end_step=end_step)
-   }
+            'pruning_schedule': tfmot.sparsity.keras.PolynomialDecay(initial_sparsity=0.50,
+                                                                     final_sparsity=0.80,
+                                                                     begin_step=0,
+                                                                     end_step=end_step)
+      }
+   
+      model_for_pruning = prune_low_magnitude(model, **pruning_params)
 
-   model_for_pruning = prune_low_magnitude(model, **pruning_params)
+#### 3. Knowledge Distillation
 
-   # `prune_low_magnitude` requires a recompile.
-   model_for_pruning.compile(optimizer='adam',
-                 loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-                 metrics=['accuracy'])
-   ```
+ Knowledge distillation is a method in which a small model (student) is trained to mimic a larger model or ensemble of models (teacher). The smaller model is what you’ll deploy. Even though the student is often trained after a pretrained teacher, both may also be trained at the same time.23 One example of a distilled network used in production is DistilBERT, which reduces the size of a BERT model by 40% while retaining 97% of its language understanding capabilities and being 60% faster.
 
-   By applying pruning, we can reduce the size of the parameters by 3X. We can **_combine the quantization and pruning_** to reduce model size by **10X**.
+#### 4. Low-Rank Factorization
 
-   See [here](https://www.tensorflow.org/model_optimization/guide/pruning/pruning_with_keras)
+ The key idea behind low-rank factorization is to replace high-dimensional tensors with lower-dimensional tensors. One type of low-rank factorization is compact convolutional filters, where the over-parameterized (having too many parameters) convolution filters are replaced with compact blocks to both reduce the number of parameters and increase speed.
 
-3. #### Knowledge Distillation
+ For example, by using a number of strategies including replacing 3 × 3 convolution with 1 × 1 convolution, **SqueezeNets** achieves AlexNet-level accuracy on ImageNet with 50 times fewer parameters. 
 
-   Knowledge distillation is a method in which a small model (student) is trained to mimic a larger model or ensemble of models (teacher). The smaller model is what you’ll deploy. Even though the student is often trained after a pretrained teacher, both may also be trained at the same time.23 One example of a distilled network used in production is DistilBERT, which reduces the size of a BERT model by 40% while retaining 97% of its language understanding capabilities and being 60% faster.
-
-4. #### Low-Rank Factorization
-
-   The key idea behind low-rank factorization is to replace high-dimensional tensors with lower-dimensional tensors. One type of low-rank factorization is compact convolutional filters, where the over-parameterized (having too many parameters) convolution filters are replaced with compact blocks to both reduce the number of parameters and increase speed.
-
-   For example, by using a number of strategies including replacing 3 × 3 convolution with 1 × 1 convolution, **SqueezeNets** achieves AlexNet-level accuracy on ImageNet with <u>50 times fewer parameters</u>.
-
-   ​
-
-##### Make it do inference faster
-
-1. Use cache
-2. Loading model when the program starts, don't wait for requests. ![](image/load model faster.png)
-
-### Batch Prediction vs Online Prediction in Hardware vs Latency
-
-![](image/hardware.png)
-
-​ img source: Ref: _Designing Machine Learning Systems_ book by [Chip Huyen](https://github.com/chiphuyen)
+   
