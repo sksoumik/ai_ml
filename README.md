@@ -778,13 +778,31 @@ Watch this video from Data School: https://youtu.be/YaKMeAlHgqQ
 
 ### Differences between Linear Regression and Logistic regression
 
-| Linear Regression                                                                                                  | Logistic Regression                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| Linear regression is used to predict the continuous dependent variable; **regression** algorithm.                  | Logistic Regression is used to predict the categorical dependent variable; **\*classification\*** algorithm.                |
-| Loss Function: is uses MSE to calculate errors.                                                                    | Loss Function: _log loss_ is used to calculate errors.                                                                      |
-| Outputs **numeric** values.                                                                                        | **Sigmoid** activation is used in the output to squash the values in the range of 0-1.                                      |
+| Linear Regression                                            | Logistic Regression                                          |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Linear regression is used to predict the continuous dependent variable; **regression** algorithm. | Logistic Regression is used to predict the categorical dependent variable; **\*classification\*** algorithm. |
+| Loss Function: is uses MSE/MAE/RMSE to calculate errors.     | Loss Function: _log loss_ is used to calculate errors.       |
+| Outputs **numeric** values.                                  | **Sigmoid** activation is used in the output to squash the values in the range of 0-1. Then we use a threshold for classification. |
 | To perform Linear regression we require a **linear** relationship between the dependent and independent variables. | To perform Logistic regression we **do not require a linear relationship** between the dependent and independent variables. |
-| Linear regression assumes **Gaussian** (or normal) distribution of the dependent variable.                         | Logistic regression assumes the **binomial** distribution of the dependent variable.                                        |
+| Linear regression assumes **Gaussian** (or normal) distribution of the dependent variable. | Logistic regression assumes the **binomial** distribution of the dependent variable. |
+
+### Why Logistic Regression is called regression? 
+
+It is named 'Logistic Regression' **because its underlying technique is quite the same as Linear Regression**. The term “Logistic” is taken from the Logit function that is used in this method of classification. 
+
+In linear regression, we predict the output variable Y base on the weighted sum of input variables.
+
+The formula is as follows:
+
+![img](https://miro.medium.com/max/1186/1*JPiSD9deW1J5kI2AzJyIaA.png)
+
+In linear regression, our main aim is to estimate the values of Y-intercept and weights, minimize the cost function, and predict the output variable Y.
+
+In logistic regression, we perform the exact same thing but with one small addition. We pass the result through a special function known as the **Sigmoid Function** to predict the output Y.
+
+![img](https://miro.medium.com/max/1266/1*PYtD7RIjUd5GwLl2pVlypg.png)
+
+Ref: [Medium](https://ai.plainenglish.io/why-is-logistic-regression-called-regression-if-it-is-a-classification-algorithm-9c2a166e7b74)
 
 ### Recommender System
 
