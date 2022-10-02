@@ -690,6 +690,7 @@ result = ssim(image_A, image_B)
 ### Why your model performance poor?
 
 1. Implementation bugs
+1. Poor feature selection. 
 2. Wrong hyperparameter choises
 3. Poor data quality, doesn't represent real world data.
 4. Train data collection location and model serving location is not same. Drifts
@@ -1908,9 +1909,13 @@ bbc = BalancedBaggingClassifier(base_estimator=DecisionTreeClassifier(),
 
 You should always split your dataset into training and testing sets before balancing the data.
 
-### C𝗼𝗻𝗰𝗲𝗽𝘁 𝗱𝗿𝗶𝗳𝘁 and D𝗮𝘁𝗮 𝗱𝗿𝗶𝗳𝘁
+### Model Drift 
+
+Performance drops due to some reason. Drift can be divided into 2 categories like: Concept drift and Data drift.
 
 **Concept drift**
+
+Statistical change in the target variable; whatever we are trying to predict/estimate definition of that thing has been changed. 
 
 Imagine you are developing a model for a self-driving car to detect other vehicles at night. Well, this is not too difficult, since vehicles have two red tail lights and it is easy to get a lot of data. You model works great!
 
@@ -1925,6 +1930,8 @@ Car companies decide to experiment with red horizontal bars instead of two indiv
 Concept drift happens when the objects you are trying to model change over time. In the case above, cars changed and you now need to adapt your model.
 
 **Data drift**
+
+Data drift happens when data itself comes with a new meaning. Original data remains the same but due to some **environmental** effect, it affects the way the data was used to consume by the model. 
 
 You are now dealing with the detection of traffic signs. Again, at night things are pretty easy because signs reflect the lights from the car's headlights and are very well visible in the image. Easy!
 
