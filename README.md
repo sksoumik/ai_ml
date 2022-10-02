@@ -143,9 +143,11 @@ Because different features do not have similar ranges of values and hence **grad
 
 **Standardization** assumes that your data has a Gaussian (bell curve) distribution. This does not strictly have to be true, but the technique is more effective if your attribute distribution is Gaussian. Standardization is useful when your data has varying scales and the algorithm you are using does make assumptions about your data having a Gaussian distribution, such as linear regression, logistic regression, and linear discriminant analysis.
 
-Normalization -> Data distribution is not Gaussian (bell curve).
+Normalization -> Data distribution is not Gaussian (bell curve). Typically applies in KNN, ANN
 
-Standardization -> Data distribution is Gaussian (bell curve).
+Standardization -> Data distribution is Gaussian (bell curve). Typically applies in Linear regression, logistic regression. 
+
+Note: Algorithms like Random Forest (any tree based algorithm) does not require feature scaling. 
 
 ### How to determine the optimal threshold for a classifier and generate ROC curve?
 
@@ -289,7 +291,7 @@ model.layers[1].get_weights()
 ```
 
 3. Residual networks are another solution, as they provide residual connections straight to earlier layers.
-
+4. Use smaller learning rate. 
 4. Batch normalization (BN) layers can also resolve the issue. As stated before, the problem arises when a large input space is mapped to a small one, causing the derivatives to disappear. Batch normalization reduces this problem by simply normalizing the input, so it doesn’t reach the outer edges of the sigmoid function.
 
 ```python
@@ -361,6 +363,15 @@ Read [here](https://medium.com/kubeflow/automated-model-retraining-with-kubeflow
 **ReLu is** faster to compute than the **sigmoid** function, and its derivative **is** faster to compute. This makes a significant difference to training and inference time for neural networks.
 
 Main benefit is that the derivative/gradient of ReLu is either 0 or 1, so multiplying by it won't cause weights that are further away from the end result of the loss function to suffer from the vanishing gradient.
+
+### Benefits of Batch Normalization
+
+*the input values for the hidden layer are normalized*
+
+The idea is that, instead of just normalizing the inputs to the network, we **normalize the inputs to *layers within* the network**. It’s called “batch” normalization because during training, we normalize each layer’s inputs by using the mean and variance of the values in the current mini-batch (usually zero mean and unit variance).
+
+1. **Networks train faster** — Each training *iteration* will actually be slower because of the extra calculations during the forward pass and the additional hyperparameters to train during back propagation. However, it should converge much more quickly, so training should be faster overall.
+2. **Allows higher learning rates** — Gradient descent usually requires small learning rates for the network to converge. And as networks get deeper, their gradients get smaller during back propagation so they require even more iterations. Using batch normalization allows us to use much higher learning rates, which further increases the speed at which networks train.
 
 ### What is weight decay
 
