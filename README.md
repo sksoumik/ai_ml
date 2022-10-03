@@ -155,15 +155,35 @@ The choice of a threshold depends on the importance of TPR and FPR classificatio
 
 [Ref](https://stats.stackexchange.com/a/386433/257584)
 
+### Few Unsupervised Learning Algorithms
+
+1. K-means clustering.
+2. PCA
+3. ICA
+4. Apriori
+
+###  Semi-supervised and self-supervised methods
+
+1. Auto-encoder
+
+### Anomaly detection algorithms
+
+1. Auto-encoder
+2. SVM
+3. KNN (Visualization)
+4. DBScan
+5. Bayesian Networks
+
+### Clustering Algorithms
+
+1. K-means
+2. KNN
+3. PCA
+4. SVD 
+
 ### How PCA works?
 
-Principal Component Analysis is the process of compressing a lot of data into something that captures the essence of the data.
-
-##### Variance
-
-Each of the 300 features would be having a certain amount of variance — that is a change in the values throughout. If a feature describes number of floors in a particular building for 200 days, its variance will be 0. As there is no change in its value throughout. Features with 0 variance are of no use as they provide no insights. So, variance is indeed our friend! And this is the pattern I mentioned earlier.
-
-More the variance, more is the importance of that feature. As it contains more ‘information’. A variable with 0 variance contains 0 information. Do not confuse variance with correlation! Variance is not with respect to the target variable of your data. It just states how the value of particular feature varies throughout the data.
+PCA helps us to identify patterns in data based on the **correlation between features**. In a nutshell, PCA aims to find the directions of maximum variance in high-dimensional data and projects it onto a new subspace with equal or fewer dimensions than the original one. 
 
 ### Imputation for Missing Data
 
@@ -1619,11 +1639,61 @@ CountVectorizer is another technique that can do word count of the words in each
 
 Cosine Similarity: Cosine similarity is a metric used to determine how similar the documents are irrespective of their size. Mathematically, it measures the **cosine of the angle** between two vectors projected in a multi-dimensional space. In this context, the two vectors I am talking about are arrays containing the word counts of two documents.
 
+### Difference between bag-of-words and TF-IDF
+
+Whenever we apply any algorithm to textual data, we need to convert the text to a numeric form. Hence, there arises a need for some pre-processing techniques that can convert our text to numbers. Both bag-of-words (BOW) and TFIDF are pre-processing techniques that can generate a numeric form from an input text.
+
+**bag-of-words**
+
+The bag-of-words model converts text into fixed-length vectors by counting how many times each word appears. Text processing is necessary and important. 
+
+To carry out bag-of-words, we will simply have to count the number of times each word appears in each of the documents.
+
+Let us illustrate this with an example. Consider that we have the following 3 sentences:
+
+1. Text processing is necessary.
+
+2. Text processing is necessary and important.
+
+3. Text processing is easy.
+
+We will refer to each of the above sentences as documents. If we take out the unique words in all these sentences, the vocabulary will consist of these 7 words:
+
+```
+ {‘Text’, ’processing’, ’is’, ’necessary’, ’and’, ’important, ’easy’}.
+```
+
+![Bag-of-words | vs TFIDF vectorization](https://editor.analyticsvidhya.com/uploads/36630pic1.PNG)
+
+Hence, we have the following vectors for each of the documents of fixed length -7:
+
+**Document 1**: [1,1,1,1,0,0,0]
+
+**Document 2**: [1,1,1,1,1,1,0]
+
+**Document 3**: [1,1,1,0,0,0,1]
+
+
+
+**TFIDF**
+
+Some semantic information is collected by giving importance to uncommon words than common words. 
+
+```
+TF-IDF = TF*IDF
+```
+
+The term IDF means assigning a higher weight to the rare words in the document. 
+
+![img](https://miro.medium.com/max/700/1*qQgnyPLDIkUmeZKN2_ZWbQ.png)
+
+Ref: [Yassine Hamdaoui](https://towardsdatascience.com/tf-term-frequency-idf-inverse-document-frequency-from-scratch-in-python-6c2b61b78558) [analyticsvidhya](https://www.analyticsvidhya.com/blog/2021/07/bag-of-words-vs-tfidf-vectorization-a-hands-on-tutorial/)
+
 ### Common pre-processing steps for NLP
 
 1. Removing punctuations.
 2. Normalizing case (lower/upper)
-3. Filter out stop words (i', 'me', 'my', 'myself', 'we', 'our' etc)
+3. Filter out stop words (a, the, is, are, and, but, or etc.)
 4. Stemming
 5. Lemmitization.
 
